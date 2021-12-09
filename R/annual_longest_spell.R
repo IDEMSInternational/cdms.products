@@ -14,16 +14,22 @@
 #' @param result_name The name of column of the length of the longest spell period in the resulting summary dataset.
 #' @param na.rm A logical value. Should \code{NA} values be removed from the spell lengths before calculating the longest spell length? 
 #' Note that \code{NA} values in the element column are never removed to prevent spell runs continuing over non consecutive rows.
+#' @param doy The name of the day of the year (1-366) column in \code{data} if filtering to a part of the year. 
+#' Note that this filter is applied after calculating spell lengths, hence the longest spell could have started outside of this filter.
+#' To exclude a part of the year from the calculations completely, filter the data before using \code{annual_longest_spell}.
+#' @param doy_first The first day of the year to consider the longest spell within.
+#' @param doy_last The last day of the year to consider the longest spell within.
 #'
 #' @return A summary data.frame of the annual longest spell (for each station).
 #' @export
 #'
-annual_longest_spell <- function(data, element, station = NULL, year, type = c("between", "lte", "gte", "excluding between"),
-                                 lower = 0, upper = 0.85, result_name = "max_spell", na.rm = FALSE) {
-  type <- match.arg(type)
+annual_longest_spell <- function(data, element, station = NULL, year, spell_type = c("between", "lte", "gte", "excluding between"),
+                                 lower = 0, upper = 0.85, doy = NULL, doy_first = 1, doy_last = 366, result_name = "max_spell", 
+                                 na.rm = FALSE) {
+  spell_type <- match.arg(spell_type)
   
   summary_data <- 
-    switch(type,
+    switch(spell_type,
            between = data %>% dplyr::mutate(spell_day = .data[[element]] >= lower & .data[[element]] <= upper),
            lte = data %>% dplyr::mutate(spell_day = .data[[element]] <= upper),
            gte = data %>% dplyr::mutate(spell_day = .data[[element]] >= lower),
@@ -34,7 +40,12 @@ annual_longest_spell <- function(data, element, station = NULL, year, type = c("
   }
   summary_data <- summary_data %>% 
     dplyr::mutate(spell_length = spells(spell_day)) %>%
-    dplyr::group_by(.data[[year]]) %>%
+    dplyr::group_by(.data[[year]])
+  if (!is.null(doy)) {
+    summary_data <- summary_data %>% 
+      dplyr::filter(.data[[doy]] >= doy_first & .data[[doy]] <= doy_last, .preserve = TRUE)
+  }
+  summary_data <- summary_data %>%
     dplyr::summarise({{result_name}} := max(spell_length))
   return(summary_data)
 }
