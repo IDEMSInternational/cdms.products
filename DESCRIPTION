@@ -15,5 +15,5 @@ Imports:
     lubridate,
     magrittr,
     ncdf4,
-    ncdf4helpers,
+    ncdf4.helpers,
     PCICt
