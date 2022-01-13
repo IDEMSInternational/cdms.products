@@ -23,13 +23,13 @@ spei_input <- function(data, station, year, month, element) {
     for (s in unique(data[[station]])) {
       df <- data %>% dplyr::filter(.data[[station]] == s)
       dates_seq <- seq.Date(from = as.Date(paste(df[[year]][1], as.numeric(df[[month]][1]), 1), format = "%Y %m %d"),
-                            to = as.Date(paste(tail(df[[year]], 1), tail(as.numeric(df[[month]]), 1), 1), format = "%Y %m %d"),
+                            to = as.Date(paste(utils::tail(df[[year]], 1), utils::tail(as.numeric(df[[month]]), 1), 1), format = "%Y %m %d"),
                             by = "1 month")
       if (length(dates_seq) != nrow(df)) stop("Less rows than expected. data has gaps for missing months in '", s, "'. SPEI/SPI requires no date gaps.")
     }
   } else {
     dates_seq <- seq.Date(from = as.Date(paste(data[[year]][1], as.numeric(data[[month]][1]), 1), format = "%Y %m %d"),
-                          to = as.Date(paste(tail(data[[year]], 1), tail(as.numeric(data[[month]]), 1), 1), format = "%Y %m %d"),
+                          to = as.Date(paste(utils::tail(data[[year]], 1), utils::tail(as.numeric(data[[month]]), 1), 1), format = "%Y %m %d"),
                           by = "1 month")
     if (length(dates_seq) != nrow(data)) stop("Less rows than expected. data has gaps for missing months. SPEI/SPI requires no date gaps.")
   }
@@ -43,9 +43,9 @@ spei_input <- function(data, station, year, month, element) {
     ts_data <- ts_data %>% dplyr::arrange(!!! rlang::syms(c(year, month)))
     # Not sure how to do this using dplyr::select
     ts_data[id_cols] <- NULL
-    ts_data <- ts(as.matrix(ts_data), frequency = 12, start = start)
+    ts_data <- stats::ts(as.matrix(ts_data), frequency = 12, start = start)
   } else {
-    ts_data <- ts(as.matrix(data[[element]]), frequency = 12, start = start)
+    ts_data <- stats::ts(as.matrix(data[[element]]), frequency = 12, start = start)
   }
   ts_data
 }

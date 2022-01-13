@@ -130,7 +130,7 @@ wwr_export <- function(data, year, month, mean_station_pressure, mean_sea_level_
   }
   if (!missing(mean_max_temp)) {
     df_6_means <- data %>%
-      group_by(!!! rlang::syms(c(link, year))) %>%
+      dplyr::group_by(!!! rlang::syms(c(link, year))) %>%
       dplyr::summarise(mean = sprintf("%6s", round(summary_mean(.data[[mean_max_temp]], na.rm = TRUE), 1)), .groups = "keep")
     data[[mean_max_temp]] <- ifelse(is.na(data[[mean_max_temp]]), 
                                     "", round(data[[mean_max_temp]], 1))
