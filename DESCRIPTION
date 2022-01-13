@@ -16,4 +16,5 @@ Imports:
     magrittr,
     ncdf4,
     ncdf4.helpers,
-    PCICt
+    PCICt,
+    climdex.pcic

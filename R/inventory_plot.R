@@ -149,14 +149,14 @@ inventory_plot <- function(data, date, elements, station = NULL, year = NULL, do
       }
       if(facet_by == "stations-elements") {
         g <- g + 
-          ggplot2::facet_grid(facets = as.formula(paste(station, "~variable")), scales = facet_scales)
+          ggplot2::facet_grid(facets = stats::as.formula(paste(station, "~variable")), scales = facet_scales)
       }
       else if(facet_by == "elements-stations") {
         g <- g +
-          ggplot2::facet_grid(facets = as.formula(paste("variable~", station)), scales = facet_scales)
+          ggplot2::facet_grid(facets = stats::as.formula(paste("variable~", station)), scales = facet_scales)
       } else stop("invalid facet_by value:", facet_by)
     } else if(!is.null(station)) {
-      fm <- as.formula(paste(station, "~."))
+      fm <- stats::as.formula(paste(station, "~."))
       if (is_facet_wrap) {
         g <- g + 
           ggplot2::facet_wrap(facets = fm, nrow = facet_nrow, ncol = facet_ncol, scales = facet_scales)
@@ -193,24 +193,24 @@ inventory_plot <- function(data, date, elements, station = NULL, year = NULL, do
       if (is.null(facet_by) || facet_by == "stations") {
         if (is.null(facet_by)) message("facet_by not specified. facets will be by stations.")
         g <- g + 
-          ggplot2::facet_grid(facets = as.formula(paste(station, "+ variable~.")), scales = facet_scales) + 
+          ggplot2::facet_grid(facets = stats::as.formula(paste(station, "+ variable~.")), scales = facet_scales) + 
           theme_blank_y_axis + 
           ggplot2::scale_y_continuous(breaks = NULL) + 
           ggplot2::labs(y = NULL)
       } else if (facet_by == "elements") {
         g <- g + 
-          ggplot2::facet_grid(facets = as.formula(paste("variable +", station, "~.")), scales = facet_scales) + 
+          ggplot2::facet_grid(facets = stats::as.formula(paste("variable +", station, "~.")), scales = facet_scales) + 
           theme_blank_y_axis + 
           ggplot2::scale_y_continuous(breaks = NULL) + 
           ggplot2::labs(y = NULL)
       } else if (facet_by == "stations-elements") {
         g <- g + 
-          ggplot2::facet_grid(facets = as.formula(paste(station, "~variable")), scales = facet_scales) + 
+          ggplot2::facet_grid(facets = stats::as.formula(paste(station, "~variable")), scales = facet_scales) + 
           theme_blank_y_axis + 
           ggplot2::scale_y_continuous(breaks = NULL) + 
           ggplot2::labs(y = NULL)
       } else if (facet_by == "elements-stations") {
-        g <- g + ggplot2::facet_grid(facets = as.formula(paste("variable~", station)), scales = facet_scales) + 
+        g <- g + ggplot2::facet_grid(facets = stats::as.formula(paste("variable~", station)), scales = facet_scales) + 
           theme_blank_y_axis + 
           ggplot2::scale_y_continuous(breaks = NULL) + 
           ggplot2::labs(y = NULL)
@@ -271,8 +271,8 @@ inventory_plot <- function(data, date, elements, station = NULL, year = NULL, do
     ggplot2::xlab(xaxis_title) +
     ggplot2::ylab(yaxis_title) +
     ggplot2::labs(title = title, subtitle = subtitle, caption = caption) + 
-    ggplot2::theme(strip.text.x = element_text(margin = margin(1, 0, 1, 0), size = facet_xsize), 
-                   strip.text.y = element_text(margin = margin(1, 0, 1, 0), size = facet_ysize), 
+    ggplot2::theme(strip.text.x = ggplot2::element_text(margin = ggplot2::margin(1, 0, 1, 0), size = facet_xsize), 
+                   strip.text.y = ggplot2::element_text(margin = ggplot2::margin(1, 0, 1, 0), size = facet_ysize), 
                    legend.position = legend_position, 
                    plot.title = ggplot2::element_text(hjust = 0.5, size = title_size), 
                    plot.subtitle = ggplot2::element_text(size = subtitle_size), 

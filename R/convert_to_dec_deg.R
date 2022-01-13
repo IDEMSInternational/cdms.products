@@ -13,8 +13,8 @@ convert_to_dec_deg <- function (dd, mm = 0 , ss = 0, dir) {
   if(missing(dd))  stop("dd must be supplied")
   if(!missing(dir)) {
     dir <- toupper(dir)
-    if(!all(na.omit(dir) %in% c("E", "W", "N", "S"))) stop("dir must only contain direction letters E, W, N or S")
-    if(any(na.omit(dd) < 0)) stop("dd must be positive if dir is supplied") 
+    if(!all(stats::na.omit(dir) %in% c("E", "W", "N", "S"))) stop("dir must only contain direction letters E, W, N or S")
+    if(any(stats::na.omit(dd) < 0)) stop("dd must be positive if dir is supplied") 
   }
   if(!all(mm >= 0 & mm <= 60, na.rm = TRUE)) stop("mm must be between 0 and 60")
   if(!all(ss >= 0 & ss <= 60, na.rm = TRUE)) stop("ss must be between 0 and 60")
