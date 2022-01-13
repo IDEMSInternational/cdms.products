@@ -2,7 +2,10 @@
 
 export("%>%")
 export(annual_longest_spell)
+export(get_lat_from_data)
+export(get_lon_from_data)
 export(inventory_plot)
+export(lat_lon_dataframe)
 export(spells)
 export(yday_366)
 importFrom(magrittr,"%>%")
