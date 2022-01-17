@@ -19,7 +19,8 @@ Imports:
     PCICt,
     climdex.pcic,
     clifro,
-    checkmate
+    checkmate,
+    rlang
 Suggests: 
     covr,
     testthat (>= 3.0.0)
