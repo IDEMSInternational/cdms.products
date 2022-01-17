@@ -12,33 +12,24 @@ inventory_plot(
   year = NULL,
   doy = NULL,
   year_doy_plot = FALSE,
-  coord_flip = FALSE,
   facet_by = NULL,
-  facet_xsize = 7,
-  facet_ysize = 11,
+  facet_x_size = 7,
+  facet_y_size = 11,
   title = "Inventory Plot",
-  subtitle = NULL,
-  caption = NULL,
-  title_size = NULL,
-  subtitle_size = NULL,
-  caption_size = NULL,
-  xaxis_title = NULL,
-  xaxis_title_size = NULL,
-  yaxis_title = NULL,
-  yaxis_title_size = NULL,
-  xaxis_text_size = NULL,
-  xaxis_text_angle = NULL,
-  yaxis_text_size = NULL,
-  yaxis_text_angle = NULL,
-  xaxis_scale_from = NULL,
-  xaxis_scale_to = NULL,
-  xaxis_scale_by = NULL,
-  yaxis_date_format = NULL,
-  yaxis_date_scale_by = NULL,
-  yaxis_date_scale_step = 1,
-  legend_position = NULL,
+  plot.title_size = NULL,
+  plot.title_hjust = 0.5,
+  x_title = NULL,
+  y_title = NULL,
+  x_scale_from = NULL,
+  x_scale_to = NULL,
+  x_scale_by = NULL,
+  y_date_format = NULL,
+  y_date_scale_by = NULL,
+  y_date_scale_step = 1,
   facet_scales = "fixed",
   facet_dir = "h",
+  facet_x_margin = ggplot2::margin(1, 0, 1, 0),
+  facet_y_margin = ggplot2::margin(1, 0, 1, 0),
   facet_nrow = NULL,
   facet_ncol = NULL,
   missing_colour = "red",
@@ -48,7 +39,8 @@ inventory_plot(
   display_rain_days = FALSE,
   rain = NULL,
   rain_cats = list(breaks = c(0, 0.85, Inf), labels = c("Dry", "Rain"), key_colours =
-    c("tan3", "blue"))
+    c("tan3", "blue")),
+  coord_flip = FALSE
 )
 }
 \arguments{
@@ -66,55 +58,31 @@ inventory_plot(
 
 \item{year_doy_plot}{}
 
-\item{coord_flip}{}
-
 \item{facet_by}{}
 
-\item{facet_xsize}{}
+\item{facet_x_size}{}
 
-\item{facet_ysize}{}
+\item{facet_y_size}{}
 
 \item{title}{}
 
-\item{subtitle}{}
+\item{plot.title_size}{}
 
-\item{caption}{}
+\item{x_title}{}
 
-\item{title_size}{}
+\item{y_title}{}
 
-\item{subtitle_size}{}
+\item{x_scale_from}{}
 
-\item{caption_size}{}
+\item{x_scale_to}{}
 
-\item{xaxis_title}{}
+\item{x_scale_by}{}
 
-\item{xaxis_title_size}{}
+\item{y_date_format}{}
 
-\item{yaxis_title}{}
+\item{y_date_scale_by}{}
 
-\item{yaxis_title_size}{}
-
-\item{xaxis_text_size}{}
-
-\item{xaxis_text_angle}{}
-
-\item{yaxis_text_size}{}
-
-\item{yaxis_text_angle}{}
-
-\item{xaxis_scale_from}{}
-
-\item{xaxis_scale_to}{}
-
-\item{xaxis_scale_by}{}
-
-\item{yaxis_date_format}{}
-
-\item{yaxis_date_scale_by}{}
-
-\item{yaxis_date_scale_step}{}
-
-\item{legend_position}{}
+\item{y_date_scale_step}{}
 
 \item{facet_scales}{}
 
@@ -137,6 +105,8 @@ inventory_plot(
 \item{rain}{}
 
 \item{rain_cats}{}
+
+\item{coord_flip}{}
 }
 \value{
 

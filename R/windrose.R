@@ -25,8 +25,8 @@ windrose <- function(data, speed, direction, facet = NULL, n_directions = 12, n_
                      legend_title = "Wind Speed", calm_wind = 0, variable_wind = 990, n_col = NULL) {
   
   checkmate::assert_data_frame(data)
-  assert_column_name(data, speed)
-  assert_column_name(data, direction)
+  assert_column_names(data, speed)
+  assert_column_names(data, direction)
   if (!is.null(facet)) {
     assert_column_name(data, facet)
     n_facets <- length(unique(data[[facet]]))
