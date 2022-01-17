@@ -9,33 +9,23 @@
 #' @param year 
 #' @param doy 
 #' @param year_doy_plot 
-#' @param coord_flip 
 #' @param facet_by 
-#' @param facet_xsize 
-#' @param facet_ysize 
+#' @param facet_x_size 
+#' @param facet_y_size 
 #' @param title 
-#' @param subtitle 
-#' @param caption 
-#' @param title_size 
-#' @param subtitle_size 
-#' @param caption_size 
-#' @param xaxis_title 
-#' @param xaxis_title_size 
-#' @param yaxis_title 
-#' @param yaxis_title_size 
-#' @param xaxis_text_size 
-#' @param xaxis_text_angle 
-#' @param yaxis_text_size 
-#' @param yaxis_text_angle 
-#' @param xaxis_scale_from 
-#' @param xaxis_scale_to 
-#' @param xaxis_scale_by 
-#' @param yaxis_date_format 
-#' @param yaxis_date_scale_by 
-#' @param yaxis_date_scale_step 
-#' @param legend_position 
+#' @param plot.title_size 
+#' @param x_title 
+#' @param y_title 
+#' @param x_scale_from 
+#' @param x_scale_to 
+#' @param x_scale_by 
+#' @param y_date_format 
+#' @param y_date_scale_by 
+#' @param y_date_scale_step 
 #' @param facet_scales 
 #' @param facet_dir 
+#' @param facet_x_margin
+#' @param facet_y_margin
 #' @param facet_nrow 
 #' @param facet_ncol 
 #' @param missing_colour 
@@ -45,47 +35,43 @@
 #' @param display_rain_days 
 #' @param rain 
 #' @param rain_cats 
+#' @param coord_flip 
 #'
 #' @return
 #' @export
 #'
 #' @examples
 inventory_plot <- function(data, date, elements, station = NULL, year = NULL, doy = NULL,  
-                           year_doy_plot = FALSE, coord_flip = FALSE, facet_by = NULL, 
-                           facet_xsize = 7, facet_ysize = 11,
-                           title = "Inventory Plot", subtitle = NULL, caption = NULL, 
-                           title_size = NULL,  subtitle_size = NULL, caption_size = NULL, 
-                           xaxis_title = NULL, xaxis_title_size = NULL,
-                           yaxis_title = NULL, yaxis_title_size = NULL,
-                           xaxis_text_size = NULL, xaxis_text_angle = NULL, 
-                           yaxis_text_size = NULL, yaxis_text_angle = NULL, 
-                           xaxis_scale_from = NULL, xaxis_scale_to = NULL, xaxis_scale_by = NULL, 
-                           yaxis_date_format = NULL, yaxis_date_scale_by = NULL, yaxis_date_scale_step = 1,
-                           legend_position = NULL, 
+                           year_doy_plot = FALSE, facet_by = NULL, 
+                           facet_x_size = 7, facet_y_size = 11,
+                           title = "Inventory Plot", plot.title_size = NULL, plot.title_hjust = 0.5,
+                           x_title = NULL, y_title = NULL, 
+                           x_scale_from = NULL, x_scale_to = NULL, x_scale_by = NULL, 
+                           y_date_format = NULL, y_date_scale_by = NULL, y_date_scale_step = 1,
                            facet_scales = "fixed", facet_dir = "h", 
+                           facet_x_margin = ggplot2::margin(1, 0, 1, 0),
+                           facet_y_margin = ggplot2::margin(1, 0, 1, 0),
                            facet_nrow = NULL, facet_ncol = NULL, 
                            missing_colour = "red",
                            present_colour = "grey",
                            missing_label = "Missing",
                            present_label = "Present",
                            display_rain_days = FALSE, rain = NULL, 
-                           rain_cats = list(breaks = c(0, 0.85, Inf), labels = c("Dry", "Rain"), key_colours = c("tan3", "blue"))) {
+                           rain_cats = list(breaks = c(0, 0.85, Inf), labels = c("Dry", "Rain"), key_colours = c("tan3", "blue")),
+                           coord_flip = FALSE) {
   
-  if (missing(data)) stop("data must be specified.")
-  col_names <- names(data)
-  if (missing(date)) stop("date column must be specified.")
-  if (!date %in% col_names) stop("date column: ", date, " is not a column in data.")
-  if (!lubridate::is.Date(data[[date]])) stop("date columns must be of type Date.")
-  
-  if (missing(elements)) stop("element column(s) must be specified.")
-  if (!all(elements %in% col_names)) stop("Some of elements are not columns in the data.")
-  
-  if (!is.null(station) && !station %in% col_names) stop("station column: ", station, " is not a column in data.")
+  checkmate::assert_data_frame(data)
+  assert_column_names(data, date)
+  checkmate::assert_string(date)
+  checkmate::assert_date(data[[date]])
+  checkmate::assert_character(elements)
+  assert_column_names(data, elements)
+  if (!is.null(station)) assert_column_names(data, station)
   
   if (display_rain_days && !is.null(rain) && !rain %in% elements) elements <- c(elements, rain)
   
   is_facet_wrap <- !is.null(facet_nrow) || !is.null(facet_ncol)
-  scale_xdate <- !is.null(xaxis_scale_from) || !is.null(xaxis_scale_to) || !is.null(xaxis_scale_by)
+  scale_xdate <- !is.null(x_scale_from) || !is.null(x_scale_to) || !is.null(x_scale_by)
   
   # Add year and doy columns if doing year_doy plot
   if(year_doy_plot) {
@@ -178,14 +164,14 @@ inventory_plot <- function(data, date, elements, station = NULL, year = NULL, do
     }
     if (scale_xdate) {
       g <- g +
-        ggplot2::scale_x_continuous(breaks = seq(xaxis_scale_from, xaxis_scale_to, xaxis_scale_by))
+        ggplot2::scale_x_continuous(breaks = seq(x_scale_from, x_scale_to, x_scale_by))
     }
-    if (!is.null(yaxis_date_scale_by) && !is.null(yaxis_date_format)) {
+    if (!is.null(y_date_scale_by) && !is.null(y_date_format)) {
       g <- g +
         ggplot2::scale_y_date(breaks = seq(min(data[["common_date"]]), 
                                            max(data[["common_date"]]), 
-                                           by = paste0(yaxis_date_scale_step, " ", yaxis_date_scale_by)),
-                              date_labels = yaxis_date_format)
+                                           by = paste0(y_date_scale_step, " ", y_date_scale_by)),
+                              date_labels = y_date_format)
     }
   } else {
     g <- ggplot2::ggplot(data = data, ggplot2::aes_(x = as.name(date), y = 1, fill = as.name(key_name))) + ggplot2::geom_raster() + ggplot2::scale_fill_manual(values = key) + ggplot2::scale_x_date(date_minor_breaks = "1 year")
@@ -196,24 +182,24 @@ inventory_plot <- function(data, date, elements, station = NULL, year = NULL, do
           ggplot2::facet_grid(facets = stats::as.formula(paste(station, "+ variable~.")), scales = facet_scales) + 
           theme_blank_y_axis + 
           ggplot2::scale_y_continuous(breaks = NULL) + 
-          ggplot2::labs(y = NULL)
+          ggplot2::labs(y = y_title)
       } else if (facet_by == "elements") {
         g <- g + 
           ggplot2::facet_grid(facets = stats::as.formula(paste("variable +", station, "~.")), scales = facet_scales) + 
           theme_blank_y_axis + 
           ggplot2::scale_y_continuous(breaks = NULL) + 
-          ggplot2::labs(y = NULL)
+          ggplot2::labs(y = y_title)
       } else if (facet_by == "stations-elements") {
         g <- g + 
           ggplot2::facet_grid(facets = stats::as.formula(paste(station, "~variable")), scales = facet_scales) + 
           theme_blank_y_axis + 
           ggplot2::scale_y_continuous(breaks = NULL) + 
-          ggplot2::labs(y = NULL)
+          ggplot2::labs(y = y_title)
       } else if (facet_by == "elements-stations") {
         g <- g + ggplot2::facet_grid(facets = stats::as.formula(paste("variable~", station)), scales = facet_scales) + 
           theme_blank_y_axis + 
           ggplot2::scale_y_continuous(breaks = NULL) + 
-          ggplot2::labs(y = NULL)
+          ggplot2::labs(y = y_title)
       } else stop("invalid facet_by value:", facet_by)
     } else if (!is.null(station)) {
       if (!is.factor(data[[station]]))
@@ -257,9 +243,9 @@ inventory_plot <- function(data, date, elements, station = NULL, year = NULL, do
     }
     if (scale_xdate) {
       g <-
-        g + ggplot2::scale_x_date(breaks = paste0(xaxis_scale_by, " year"), 
-                                  limits = c(from = as.Date(paste0(xaxis_scale_from, "-01-01")), 
-                                             to = as.Date(paste0(xaxis_scale_to, "-12-31"))),
+        g + ggplot2::scale_x_date(breaks = paste0(x_scale_by, " year"), 
+                                  limits = c(from = as.Date(paste0(x_scale_from, "-01-01")), 
+                                             to = as.Date(paste0(x_scale_to, "-12-31"))),
                                   date_labels = "%Y"
         )
     }
@@ -268,18 +254,11 @@ inventory_plot <- function(data, date, elements, station = NULL, year = NULL, do
     g <- g + ggplot2::coord_flip()
   }
   g <- g + 
-    ggplot2::xlab(xaxis_title) +
-    ggplot2::ylab(yaxis_title) +
-    ggplot2::labs(title = title, subtitle = subtitle, caption = caption) + 
-    ggplot2::theme(strip.text.x = ggplot2::element_text(margin = ggplot2::margin(1, 0, 1, 0), size = facet_xsize), 
-                   strip.text.y = ggplot2::element_text(margin = ggplot2::margin(1, 0, 1, 0), size = facet_ysize), 
-                   legend.position = legend_position, 
-                   plot.title = ggplot2::element_text(hjust = 0.5, size = title_size), 
-                   plot.subtitle = ggplot2::element_text(size = subtitle_size), 
-                   plot.caption = ggplot2::element_text(size = caption_size), 
-                   axis.text.x = ggplot2::element_text(size = xaxis_text_size, angle = xaxis_text_angle, vjust = 0.6), 
-                   axis.title.x = ggplot2::element_text(size = xaxis_title_size), 
-                   axis.title.y = ggplot2::element_text(size = yaxis_title_size), 
-                   axis.text.y = ggplot2::element_text(size = yaxis_text_size, angle = yaxis_text_angle, hjust = 0.6))
+    ggplot2::xlab(x_title) +
+    ggplot2::ylab(y_title) +
+    ggplot2::labs(title = title) + 
+    ggplot2::theme(strip.text.x = ggplot2::element_text(margin = facet_x_margin, size = facet_x_size), 
+                   strip.text.y = ggplot2::element_text(margin = facet_y_margin, size = facet_y_size), 
+                   plot.title = ggplot2::element_text(hjust = plot.title_hjust, size = plot.title_size))
   return(g)
 }
