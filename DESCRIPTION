@@ -17,7 +17,9 @@ Imports:
     ncdf4,
     ncdf4.helpers,
     PCICt,
-    climdex.pcic
+    climdex.pcic,
+    clifro,
+    checkmate
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
