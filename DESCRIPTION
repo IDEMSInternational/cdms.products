@@ -18,3 +18,6 @@ Imports:
     ncdf4.helpers,
     PCICt,
     climdex.pcic
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
