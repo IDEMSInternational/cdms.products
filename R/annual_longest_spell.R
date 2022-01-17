@@ -25,6 +25,7 @@
 #' @return A summary data.frame of the annual longest spell (for each station).
 #' @export
 #'
+#' @importFrom rlang .data :=
 annual_longest_spell <- function(data, element, station = NULL, date = NULL, year = NULL, 
                                  spell_type = c("between", "lte", "gte", "excluding between"),
                                  lower = 0, upper = 0.85, doy = NULL, doy_first = 1, doy_last = 366, result_name = "max_spell", 
@@ -56,13 +57,13 @@ annual_longest_spell <- function(data, element, station = NULL, date = NULL, yea
       dplyr::group_by(.data[[station]])
   }
   summary_data <- summary_data %>% 
-    dplyr::mutate(spell_length = spells(spell_day)) %>%
+    dplyr::mutate(spell_length = spells(.data$spell_day)) %>%
     dplyr::group_by(.data[[year]])
   if (!is.null(doy)) {
     summary_data <- summary_data %>% 
       dplyr::filter(.data[[doy]] >= doy_first & .data[[doy]] <= doy_last, .preserve = TRUE)
   }
   summary_data <- summary_data %>%
-    dplyr::summarise({{result_name}} := max(spell_length))
+    dplyr::summarise({{result_name}} := max(.data$spell_length))
   return(summary_data)
 }
