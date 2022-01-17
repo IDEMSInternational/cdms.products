@@ -17,4 +17,6 @@ Imports:
     ncdf4,
     ncdf4.helpers,
     PCICt,
-    climdex.pcic
+    climdex.pcic,
+    clifro,
+    checkmate
