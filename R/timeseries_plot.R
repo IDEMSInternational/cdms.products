@@ -38,17 +38,18 @@ ts_line_plot <- function(data, time = year, element, station = NULL, facets = "n
     base_plot <- ggplot(data_longer, mapping = aes(x = {{ time }}, y = value, colour = {{ station }})) +
       facet_grid(cols = vars(Element))
   } else if (facets == "stations"){
-    if (length(data %>% dplyr::select({{ element }})) == 1){
-      base_plot <- ggplot(data, mapping = aes(x = {{ time }}, y = {{ element }})) +
-        facet_grid(cols = vars({{ station }}))
-    } else {
-      base_plot <- ggplot(data_longer, mapping = aes(x = {{ time }}, y = value, colour = Element)) +
-        facet_grid(cols = vars({{ station }}))
-    }
-  } else if (facets == "both"){
-    base_plot <- ggplot(data_longer, mapping = aes(x = {{ time }}, y = value)) +
-      facet_grid({{ station }} ~ Element)
+  if (length(data %>% dplyr::select({{ element }})) == 1){
+    base_plot <- ggplot(data, mapping = aes(x = {{ time }}, y = {{ element }}))
+  } else {
+    base_plot <- ggplot(data_longer, mapping = aes(x = {{ time }}, y = value, colour = Element))
   }
+  
+  base_plot <- base_plot +
+    facet_grid(cols = vars({{ station }}))
+} else if (facets == "both"){
+  base_plot <- ggplot(data_longer, mapping = aes(x = {{ time }}, y = value)) +
+    facet_grid({{ station }} ~ Element)
+}
   
   base_plot <- base_plot + geom_line()
   
