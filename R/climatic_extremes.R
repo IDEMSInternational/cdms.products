@@ -26,6 +26,5 @@ climatic_extremes <- function(data, date_time, station = NULL, elements,
                    na_prop = na_prop, na_n = na_n, na_consec = na_consec, 
                    na_n_non = na_n_non,
                    first_date = first_date, n_dates = n_dates, 
-                   last_date = last_date,
-                   summaries.params = summaries.params, names = names)
+                   last_date = last_date, names = names)
 }
