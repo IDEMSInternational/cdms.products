@@ -137,7 +137,7 @@ climatic_summary <- function(data, date_time, station = NULL, elements,
   } else if (to == "dekadal") {
     if (is.null(pentad)) {
       dekad <- ".dekad"
-      data[[dekad]] <- RInstatClimatic::dekade(data[[date_time]])
+      data[[dekad]] <- RInstatClimatic::dekad(data[[date_time]])
     }
     to <- "annual-within-year"
     by <- dekad
