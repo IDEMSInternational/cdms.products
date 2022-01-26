@@ -1,5 +1,5 @@
 #' Title
-#'
+#' 
 #' @param data 
 #' @param date_time 
 #' @param station 
@@ -28,6 +28,9 @@
 #'   \code{dplyr::across}
 #' @param summaries.params Additional parameters to pass to \code{summaries}.
 #'   Must be a list of lists with the same names as \code{summaries}.
+#' @param first_date If \code{TRUE} the first instance of \code{date_time} when the value equals the summary value is included. Generally only used for extreme summaries i.e. first \code{date_time} when the maximum occurred.
+#' @param n_dates If \code{TRUE} the number of \code{date_time} points when the value equals the summary value is included. Generally only used for extreme summaries i.e. number of days in which the minimum occurred.
+#' @param last_date If \code{TRUE} the last instance of \code{date_time} when the value equals the summary value is included. Generally only used for extreme summaries i.e. last \code{date_time} when the maximum occurred.
 #'
 #' @return
 #' @export
@@ -46,7 +49,8 @@ climatic_summary <- function(data, date_time, station = NULL, elements,
                              doy = NULL, doy_first = 1, doy_last = 366, 
                              summaries, na.rm = FALSE,
                              na_prop = NULL, na_n = NULL, na_consec = NULL, 
-                             na_n_non = NULL, 
+                             na_n_non = NULL,
+                             first_date = FALSE, n_dates = FALSE, last_date = FALSE,
                              summaries.params = list(), names = "{.fn}_{.col}") {
   
   checkmate::assert_data_frame(data)
@@ -72,6 +76,10 @@ climatic_summary <- function(data, date_time, station = NULL, elements,
   checkmate::assert_int(na_consec, lower = 0, null.ok = TRUE)
   checkmate::assert_int(na_n_non, lower = 0, null.ok = TRUE)
   
+  checkmate::assert_logical(first_date)
+  checkmate::assert_logical(n_dates)
+  checkmate::assert_logical(last_date)
+
   any_na_params <- !is.null(na_prop) || !is.null(na_n) || 
     !is.null(na_consec) || !is.null(na_n_non)
   if (na.rm) {
@@ -186,19 +194,63 @@ climatic_summary <- function(data, date_time, station = NULL, elements,
                       "consec = ", na_params[3], ", ",
                       "n_non = ", na_params[4], ")")
   }
-  lambda_summaries <- vector("list", length(summaries))
+  exp_summaries <- vector("list", length(summaries))
+  names(exp_summaries) <- names(summaries)
   for (i in seq_along(summaries)) {
     fn_exp <- summaries[[i]]
     fn_exp <- paste0(fn_exp, "(", .x_call)
     add_params <- summaries.params[[names(summaries)[i]]]
     fn_exp <- add_params(fn_exp, add_params)
     fn_exp <- paste0(fn_exp, ")")
-    lambda_summaries[[i]] <- fn_exp
+    exp_summaries[[i]] <- fn_exp
   }
-  lambda_summaries <- paste0("~", lambda_summaries)
-  lambda_summaries <- sapply(lambda_summaries, formula)
+  lambda_summaries <- paste0("~", exp_summaries)
+  lambda_summaries <- sapply(lambda_summaries, stats::formula)
   names(lambda_summaries) <- names(summaries)
-  grp_data %>%
+  sum_data <- grp_data %>%
     dplyr::summarise(dplyr::across(dplyr::all_of(elements), 
                                    lambda_summaries, .names = names))
+  
+  if (first_date || n_dates || last_date) {
+    date_summaries <- list()
+    if (first_date) date_summaries[["first"]] <- dplyr::first
+    # n() needs to be called like this 
+    #  otherwise the column with be passed to n() giving and error
+    if (n_dates) date_summaries[["n"]] <- ~ dplyr::n()
+    if (last_date) date_summaries[["last"]] = dplyr::last
+    if (length(summaries) == 1 && length(elements) == 1) adjust_names <- FALSE
+    else adjust_names <- TRUE
+    k <- 1
+    date_summaries_data_list <- vector("list", length(summaries) * length(elements))
+    for (i in seq_along(elements)) {
+      for (j in seq_along(summaries)) {
+        exp_summaries_elements <- gsub(".x", elements[i], exp_summaries,
+                                       fixed = TRUE)
+        fil_data <- grp_data %>%
+          dplyr::filter(`==`(.data[[elements[i]]], 
+                             !! rlang::parse_expr(exp_summaries_elements[j])),
+                        .preserve = TRUE)
+        date_summaries_data <- fil_data %>%
+          dplyr::summarise(
+            dplyr::across(dplyr::all_of(date_time), date_summaries,
+                          .names = ifelse(adjust_names, 
+                                          paste(names, 
+                                                summaries[j], 
+                                                elements[i],
+                                                sep = "_"),
+                                          names)))
+        date_summaries_data_list[[k]] <- date_summaries_data
+        k <- k + 1
+      }
+    }
+    join_grps <- as.character(dplyr::groups(grp_data))
+    extra_date_summaries <- 
+      Reduce(function(x, y) dplyr::left_join(x, y, 
+                                             by = join_grps),
+             date_summaries_data_list
+             )
+    sum_data <- dplyr::left_join(sum_data, extra_date_summaries, 
+                                 by = join_grps)
+  }
+  return(sum_data)
 }

@@ -2,7 +2,9 @@
 
 export("%>%")
 export(annual_longest_spell)
+export(climatic_extremes)
 export(climatic_missing)
+export(climatic_summary)
 export(climdex)
 export(climdex_single_station)
 export(convert_to_dec_deg)

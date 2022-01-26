@@ -4,14 +4,7 @@
 \alias{climatic_missing}
 \title{Title}
 \usage{
-climatic_missing(
-  data,
-  date,
-  elements = ...,
-  stations,
-  start = TRUE,
-  end = FALSE
-)
+climatic_missing(data, date, elements, stations, start = TRUE, end = FALSE)
 }
 \arguments{
 \item{data}{The data.frame to calculate from.}
@@ -21,9 +14,9 @@ climatic_missing(
 \item{stations}{The name of the station column in \code{data}, if the data are for multiple station.
 The calculations are performed separately for each station.}
 
-\item{start}{#A logical value. If \code{TRUE} start date as ...}
+\item{start}{A logical value. If \code{TRUE} start date as ...}
 
-\item{end}{#A logical value. If \code{TRUE} set end date as ...}
+\item{end}{A logical value. If \code{TRUE} set end date as ...}
 
 \item{element}{The name of the column in \code{data} to apply the function to.}
 }
