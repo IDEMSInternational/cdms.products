@@ -1,5 +1,5 @@
 #' Title
-#'
+#' 
 #' @param data 
 #' @param date_time 
 #' @param station 
@@ -28,9 +28,9 @@
 #'   \code{dplyr::across}
 #' @param summaries.params Additional parameters to pass to \code{summaries}.
 #'   Must be a list of lists with the same names as \code{summaries}.
-#' @param first_date 
-#' @param n_dates 
-#' @param last_date 
+#' @param first_date If \code{TRUE} the first instance of \code{date_time} when the value equals the summary value is included. Generally only used for extreme summaries i.e. first \code{date_time} when the maximum occurred.
+#' @param n_dates If \code{TRUE} the number of \code{date_time} points when the value equals the summary value is included. Generally only used for extreme summaries i.e. number of days in which the minimum occurred.
+#' @param last_date If \code{TRUE} the last instance of \code{date_time} when the value equals the summary value is included. Generally only used for extreme summaries i.e. last \code{date_time} when the maximum occurred.
 #'
 #' @return
 #' @export
@@ -205,7 +205,7 @@ climatic_summary <- function(data, date_time, station = NULL, elements,
     exp_summaries[[i]] <- fn_exp
   }
   lambda_summaries <- paste0("~", exp_summaries)
-  lambda_summaries <- sapply(lambda_summaries, formula)
+  lambda_summaries <- sapply(lambda_summaries, stats::formula)
   names(lambda_summaries) <- names(summaries)
   sum_data <- grp_data %>%
     dplyr::summarise(dplyr::across(dplyr::all_of(elements), 

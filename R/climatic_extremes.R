@@ -1,3 +1,14 @@
+#' Calculate extremes
+#' 
+#' @inheritParams climatic_summary
+#' 
+#' @param max_val If \code{TRUE} calculate the extreme maximum
+#' @param min_val If \code{TRUE} calculate the extreme minimum
+#'
+#' @return
+#' @export
+#'
+#' @examples
 climatic_extremes <- function(data, date_time, station = NULL, elements, 
                               year = NULL, month = NULL, dekad = NULL, 
                               pentad = NULL,
