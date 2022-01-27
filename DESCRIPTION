@@ -20,7 +20,15 @@ Imports:
     climdex.pcic,
     clifro,
     checkmate,
-    rlang
+    rlang,
+    stats,
+    reshape2,
+    sp,
+    stringr,
+    tibble,
+    tidyr,
+    tidyselect,
+    zoo
 Suggests: 
     covr,
     testthat (>= 3.0.0)
