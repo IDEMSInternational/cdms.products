@@ -44,8 +44,8 @@ ts_line_plot <- function(data, time, element, station, facets = "none",
   
   base_plot <- base_plot + ggplot2::geom_line()
   
-  # color by viridis
-  base_plot <- base_plot + viridis::scale_colour_viridis(discrete = TRUE, option = "C") # colour blind friendly
+  # color by viridis?
+  # base_plot <- base_plot + viridis::scale_colour_viridis(discrete = TRUE, option = "C") # colour blind friendly
   
   if (add_points){
     base_plot <- base_plot + ggplot2::geom_point()
