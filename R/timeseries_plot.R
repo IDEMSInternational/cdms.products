@@ -1,50 +1,60 @@
-
-ts_line_plot <- function(data, time, element, station, facets = "none",
-                         add_points = FALSE, add_line_of_best_fit = FALSE,
-                         se = TRUE, add_path = FALSE, add_step = FALSE,
-                         na.rm = FALSE, show.legend = NA){
+timeseries_plot <- function(data, time, elements, station = NULL, facets = c("none", "elements", "stations", "both"),
+                            add_points = FALSE, add_line_of_best_fit = FALSE,
+                            se = TRUE, add_path = FALSE, add_step = FALSE,
+                            na.rm = FALSE, show.legend = NA){
   
-  # this is only applied when there is more than one element
-  data_longer <- data %>% tidyr::pivot_longer(cols = c({{ element }}), names_to = "element")
-
-  if (facets == "none"){
-    if (length(element) == 1){
-      if (is.null(.data[[station]])){
-        base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[time]], y = .data[[element]]))
-      } else {
-        base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[time]], y = .data[[element]], colour = .data[[station]]))          
-      }
-    } else {
-      if (is.null(.data[[station]])){
-        base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[time]], y = value, colour = element))
-      } else {
-        data_longer <- data_longer %>%
-          dplyrl::mutate(station_element = paste(.data[[station]], element, sep = "_"))
-        base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[time]], y = value, colour = station_element))
-      }
-    }
-  } else if (facets == "elements"){
+  checkmate::assert_data_frame(data)
+  # time can be a date, factor, or character.
+  # call date_time for consistency with summary plot?
+  checkmate::assert_character(elements)
+  checkmate::assert_character(station, null.ok = TRUE)
+  facets <- match.arg(facets)
+  checkmate::assert_logical(add_points)
+  checkmate::assert_logical(add_line_of_best_fit)
+  checkmate::assert_logical(se)
+  checkmate::assert_logical(add_path)
+  checkmate::assert_logical(add_step)
+  checkmate::assert_logical(show.legend)
+  
+  data_longer <- data %>% tidyr::pivot_longer(cols = c({{ elements }}), names_to = "elements")
+  if (facets == "elements"){
     if (is.null(.data[[station]])){
       base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[time]], y = value)) +
-        ggplot2::facet_grid(cols = vars(element))
+        ggplot2::facet_grid(cols = vars(elements))
     } else {
       base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[time]], y = value, colour = .data[[station]])) +
-        ggplot2::facet_grid(cols = vars(element))
+        ggplot2::facet_grid(cols = vars(elements))
     }
   } else if (facets == "stations"){
-    if (length(element) == 1){
-      base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[time]], y = .data[[element]]))
+    if (length(elements) == 1){
+      base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[time]], y = .data[[elements]]))
     } else {
-      base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[time]], y = value, colour = element))
+      base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[time]], y = value, colour = elements))
     }
     base_plot <- base_plot + ggplot2::facet_grid(cols = vars(.data[[station]]))
   } else if (facets == "both"){
     base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[time]], y = value)) +
-      ggplot2::facet_grid({{ station }} ~ element)
+      ggplot2::facet_grid({{ station }} ~ elements)
+  } else { # if "none", or NULL
+    if (length(elements) == 1){
+      if (is.null(.data[[station]])){
+        base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[time]], y = .data[[elements]]))
+      } else {
+        base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[time]], y = .data[[elements]], colour = .data[[station]]))          
+      }
+    } else {
+      if (is.null(.data[[station]])){
+        base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[time]], y = value, colour = elements))
+      } else {
+        data_longer <- data_longer %>%
+          dplyrl::mutate(station_elements = paste(.data[[station]], elements, sep = "_"))
+        base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[time]], y = value, colour = station_elements))
+      }
+    }
   }
   
   base_plot <- base_plot + ggplot2::geom_line(na.rm = na.rm, show.legend = show.legend)
-
+  
   # color by viridis?
   # base_plot <- base_plot + viridis::scale_colour_viridis(discrete = TRUE, option = "C") # colour blind friendly
   
