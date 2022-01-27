@@ -1,3 +1,22 @@
+#' Title
+#'
+#' @param data 
+#' @param time 
+#' @param elements 
+#' @param station 
+#' @param facets 
+#' @param add_points 
+#' @param add_line_of_best_fit 
+#' @param se 
+#' @param add_path 
+#' @param add_step 
+#' @param na.rm 
+#' @param show.legend 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 timeseries_plot <- function(data, time, elements, station = NULL, facets = c("none", "elements", "stations", "both"),
                             add_points = FALSE, add_line_of_best_fit = FALSE,
                             se = TRUE, add_path = FALSE, add_step = FALSE,
