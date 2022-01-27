@@ -1,7 +1,8 @@
 
 ts_line_plot <- function(data, time, element, station, facets = "none",
                          add_points = FALSE, add_line_of_best_fit = FALSE,
-                         se = TRUE, add_path = FALSE, add_step = FALSE){
+                         se = TRUE, add_path = FALSE, add_step = FALSE,
+                         na.rm = FALSE, show.legend = NA){
   
   # this is only applied when there is more than one element
   data_longer <- data %>% tidyr::pivot_longer(cols = c({{ element }}), names_to = "element")
@@ -42,8 +43,8 @@ ts_line_plot <- function(data, time, element, station, facets = "none",
       ggplot2::facet_grid({{ station }} ~ element)
   }
   
-  base_plot <- base_plot + ggplot2::geom_line()
-  
+  base_plot <- base_plot + ggplot2::geom_line(na.rm = na.rm, show.legend = show.legend)
+
   # color by viridis?
   # base_plot <- base_plot + viridis::scale_colour_viridis(discrete = TRUE, option = "C") # colour blind friendly
   
