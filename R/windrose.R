@@ -28,7 +28,7 @@ windrose <- function(data, speed, direction, facet = NULL, n_directions = 12, n_
   assert_column_names(data, speed)
   assert_column_names(data, direction)
   if (!is.null(facet)) {
-    assert_column_name(data, facet)
+    assert_column_names(data, facet)
     n_facets <- length(unique(data[[facet]]))
     if (is.null(n_col)) n_col <- ceiling(sqrt(n_facets))
     checkmate::assert_int(n_col)
