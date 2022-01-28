@@ -58,7 +58,7 @@ timeseries_plot <- function(data, date_time, elements, station = NULL, facets = 
     base_plot <- base_plot + ggplot2::facet_grid(cols = vars(.data[[station]]))
   } else if (facets == "both"){
     base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value)) +
-      ggplot2::facet_grid(.data$station ~ .data$elements_list)
+      ggplot2::facet_grid(rows = vars(.data[[station]]), cols = vars(elements_list))
   } else { # if "none", or NULL
     if (length(elements) == 1){
       if (is.null(station)) {
@@ -71,7 +71,7 @@ timeseries_plot <- function(data, date_time, elements, station = NULL, facets = 
         base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data$elements_list))
       } else {
         data_longer <- data_longer %>%
-          dplyr::mutate(station_elements = paste(.data$station, .data$elements_list, sep = "_"))
+          dplyr::mutate(station_elements = paste(.data[[station]], .data$elements_list, sep = "_"))
         base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data$station_elements))
       }
     }
