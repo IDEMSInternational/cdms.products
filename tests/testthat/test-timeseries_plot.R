@@ -20,7 +20,7 @@ timeseries_plot(niger_yearly_data, date_time = "year", elements = c("max_rain"),
 # station
 timeseries_plot(niger_monthly_data, date_time = "year", elements = c("max_rain"), station = "station", facets = "none")
 timeseries_plot(niger_monthly_data, date_time = "year", elements = c("max_rain"), station = "station", facets = "elements")
-timeseries_plot(niger_monthly_data, date_time = "year", elements = c("max_rain"), station = "station", facets = "stations")
+timeseries_plot(niger_monthly_data, date_time = "year", elements = c("max_rain"), station = "station")
 timeseries_plot(niger_monthly_data, date_time = "year", elements = c("max_rain"), station = "station", facets = "both")
 
 # no station
