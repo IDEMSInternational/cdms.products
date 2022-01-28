@@ -34,7 +34,7 @@ timeseries_plot <- function(data, date_time, elements, station = NULL, facets = 
   checkmate::assert_logical(add_step)
   checkmate::assert_logical(show.legend)
   
-  if ((facets == "stations" | facets == "both") & is.null(station)){
+  if ((facets == "stations" || facets == "both") && is.null(station)) {
     warning("facets set to none since no stations are given in data")
     facets = "none"
   }
