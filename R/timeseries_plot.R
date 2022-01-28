@@ -71,7 +71,7 @@ timeseries_plot <- function(data, date_time, elements, station = NULL, facets = 
         base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data$elements))
       } else {
         data_longer <- data_longer %>%
-          dplyrl::mutate(station_elements = paste(.data[[station]], elements, sep = "_"))
+          dplyr::mutate(station_elements = paste(.data[[station]], .data[[elements]], sep = "_"))
         base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data$station_elements))
       }
     }
