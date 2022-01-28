@@ -1,7 +1,7 @@
 #' Title
 #'
 #' @param data 
-#' @param time 
+#' @param date_time 
 #' @param elements 
 #' @param station 
 #' @param facets 
@@ -17,14 +17,13 @@
 #' @export
 #'
 #' @examples
-timeseries_plot <- function(data, time, elements, station = NULL, facets = c("none", "elements", "stations", "both"),
+timeseries_plot <- function(data, date_time, elements, station = NULL, facets = c("stations", "elements", "both", "none"),
                             add_points = FALSE, add_line_of_best_fit = FALSE,
                             se = TRUE, add_path = FALSE, add_step = FALSE,
                             na.rm = FALSE, show.legend = NA){
   
   checkmate::assert_data_frame(data)
-  # time can be a date, factor, or character.
-  # call date_time for consistency with summary plot?
+  # date_time can be a date, factor, or character.
   checkmate::assert_character(elements)
   checkmate::assert_character(station, null.ok = TRUE)
   facets <- match.arg(facets)
@@ -35,39 +34,45 @@ timeseries_plot <- function(data, time, elements, station = NULL, facets = c("no
   checkmate::assert_logical(add_step)
   checkmate::assert_logical(show.legend)
   
-  data_longer <- data %>% tidyr::pivot_longer(cols = c({{ elements }}), names_to = "elements")
+  if ((facets == "stations" | facets == "both") & is.null(station)){
+    warning("facets set to none since no stations are given in data")
+    facets = "none"
+  }
+  
+  data_longer <- data %>% tidyr::pivot_longer(cols = all_of(elements), names_to = "elements")
+
   if (facets == "elements"){
-    if (is.null(.data[[station]])){
-      base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[time]], y = value)) +
+    if (is.null(station)){
+      base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value)) +
         ggplot2::facet_grid(cols = vars(elements))
     } else {
-      base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[time]], y = value, colour = .data[[station]])) +
+      base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data[[station]])) +
         ggplot2::facet_grid(cols = vars(elements))
     }
   } else if (facets == "stations"){
     if (length(elements) == 1){
-      base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[time]], y = .data[[elements]]))
+      base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[date_time]], y = .data[[elements]]))
     } else {
-      base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[time]], y = value, colour = elements))
+      base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data$elements))
     }
     base_plot <- base_plot + ggplot2::facet_grid(cols = vars(.data[[station]]))
   } else if (facets == "both"){
-    base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[time]], y = value)) +
-      ggplot2::facet_grid({{ station }} ~ elements)
+    base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value)) +
+      ggplot2::facet_grid(.data$station ~ .data$elements)
   } else { # if "none", or NULL
     if (length(elements) == 1){
       if (is.null(.data[[station]])){
-        base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[time]], y = .data[[elements]]))
+        base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[date_time]], y = .data[[elements]]))
       } else {
-        base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[time]], y = .data[[elements]], colour = .data[[station]]))          
+        base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[date_time]], y = .data[[elements]], colour = .data[[station]]))          
       }
     } else {
-      if (is.null(.data[[station]])){
-        base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[time]], y = value, colour = elements))
+      if (is.null(station)){
+        base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data$elements))
       } else {
         data_longer <- data_longer %>%
           dplyrl::mutate(station_elements = paste(.data[[station]], elements, sep = "_"))
-        base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[time]], y = value, colour = station_elements))
+        base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data$station_elements))
       }
     }
   }
