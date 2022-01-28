@@ -1,45 +1,42 @@
 context("timeseries output")
 
 library(RInstatClimatic)
+library(openair)
 
 # Get the data --------------------------------------------------------------------------------------------------------
-niger_data <- readRDS("C:/Users/lzc1n17/OneDrive - University of Southampton/PhD/IDEMS/RInstatClimatic/Niger4_day_month_year.RDS")
-niger_data <- niger_data$get_data_frame()
-niger_data_1 <- niger_data$Data
-niger_monthly_data <- niger_data$Data_by_year_month
-niger_yearly_data <- niger_data$Data_by_year
-# Using month to make multiple stations
-niger_monthly_data$station = ifelse(niger_monthly_data$month_abbr %in% c("Jan", "Feb", "Mar"), "Hi", "Ho")
+data("mydata")
+
+mydata$station <- ifelse(mydata$ws < 5, "A", "B")
 
 # no station
-timeseries_plot(niger_yearly_data, date_time = "year", elements = c("max_rain"), facets = "none")
-timeseries_plot(niger_yearly_data, date_time = "year", elements = c("max_rain"), facets = "elements")
-timeseries_plot(niger_yearly_data, date_time = "year", elements = c("max_rain"), facets = "stations")
-timeseries_plot(niger_yearly_data, date_time = "year", elements = c("max_rain"), facets = "both")
+timeseries_plot(mydata, date_time = "date", elements = c("nox"), facets = "none")
+timeseries_plot(mydata, date_time = "date", elements = c("nox"), facets = "elements")
+timeseries_plot(mydata, date_time = "date", elements = c("nox"), facets = "stations")
+timeseries_plot(mydata, date_time = "date", elements = c("nox"), facets = "both")
 
 # station
-timeseries_plot(niger_monthly_data, date_time = "year", elements = c("max_rain"), station = "station", facets = "none")
-timeseries_plot(niger_monthly_data, date_time = "year", elements = c("max_rain"), station = "station", facets = "elements")
-timeseries_plot(niger_monthly_data, date_time = "year", elements = c("max_rain"), station = "station")
-timeseries_plot(niger_monthly_data, date_time = "year", elements = c("max_rain"), station = "station", facets = "both")
+timeseries_plot(mydata, date_time = "date", elements = c("nox"), station = "station", facets = "none")
+timeseries_plot(mydata, date_time = "date", elements = c("nox"), station = "station", facets = "elements")
+timeseries_plot(mydata, date_time = "date", elements = c("nox"), station = "station")
+timeseries_plot(mydata, date_time = "date", elements = c("nox"), station = "station", facets = "both")
 
 # no station
-timeseries_plot(niger_yearly_data, date_time = "year", elements = c("max_rain", "max_tmax"), facets = "none", show.legend = FALSE) +
+timeseries_plot(mydata, date_time = "date", elements = c("nox", "no2"), facets = "none", show.legend = FALSE) +
   viridis::scale_color_viridis(discrete = TRUE, option = "C")
-timeseries_plot(niger_yearly_data, date_time = "year", elements = c("max_rain", "max_tmax"), facets = "elements")
+timeseries_plot(mydata, date_time = "date", elements = c("nox", "no2"), facets = "elements")
 
 # station
-timeseries_plot(niger_monthly_data, date_time = "year", elements = c("max_rain", "max_tmax"), station = "station", facets = "none")
-timeseries_plot(niger_monthly_data, date_time = "year", elements = c("max_rain", "max_tmax"), station = "station", facets = "elements")
-timeseries_plot(niger_monthly_data, date_time = "year", elements = c("max_rain", "max_tmax"), station = "station", facets = "stations")
-timeseries_plot(niger_monthly_data, date_time = "year", elements = c("max_rain", "max_tmax"), station = "station", facets = "both")
+timeseries_plot(mydata, date_time = "date", elements = c("nox", "no2"), station = "station", facets = "none")
+timeseries_plot(mydata, date_time = "date", elements = c("nox", "no2"), station = "station", facets = "elements")
+timeseries_plot(mydata, date_time = "date", elements = c("nox", "no2"), station = "station", facets = "stations")
+timeseries_plot(mydata, date_time = "date", elements = c("nox", "no2"), station = "station", facets = "both")
 
 
 
 # Should throw error
-timeseries_plot("niger_monthly_data", date_time = "year", elements = c("max_rain", "max_tmax"), station = "station", facets = "none")
-timeseries_plot(niger_monthly_data, date_time = year, elements = c("max_rain", "max_tmax"), station = "station", facets = "none")
-timeseries_plot(niger_monthly_data, date_time = "year", elements = c("no"), station = "station", facets = "none")
-timeseries_plot(niger_monthly_data, date_time = "year", elements = c("max_rain"), facets = "none")
-timeseries_plot(niger_monthly_data, date_time = "year", elements = c("max_rain"), facets = "nonxe")
-timeseries_plot(niger_monthly_data, date_time = "year", elements = c("max_rain"))
+#timeseries_plot("mydata", date_time = "date", elements = c("nox", "max_tmax"), station = "station", facets = "none")
+#timeseries_plot(mydata, date_time = year, elements = c("nox", "max_tmax"), station = "station", facets = "none")
+#timeseries_plot(mydata, date_time = "date", elements = c("no"), station = "station", facets = "none")
+#timeseries_plot(mydata, date_time = "date", elements = c("nox"), facets = "none")
+#timeseries_plot(mydata, date_time = "date", elements = c("nox"), facets = "nonxe")
+#timeseries_plot(mydata, date_time = "date", elements = c("nox"))
