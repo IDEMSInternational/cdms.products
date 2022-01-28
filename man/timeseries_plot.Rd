@@ -6,10 +6,10 @@
 \usage{
 timeseries_plot(
   data,
-  time,
+  date_time,
   elements,
   station = NULL,
-  facets = c("none", "elements", "stations", "both"),
+  facets = c("stations", "elements", "both", "none"),
   add_points = FALSE,
   add_line_of_best_fit = FALSE,
   se = TRUE,
@@ -22,7 +22,7 @@ timeseries_plot(
 \arguments{
 \item{data}{}
 
-\item{time}{}
+\item{date_time}{}
 
 \item{elements}{}
 
