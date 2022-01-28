@@ -36,7 +36,7 @@ timeseries_plot <- function(data, date_time, elements, station = NULL, facets = 
   
   if ((facets == "stations" || facets == "both") && is.null(station)) {
     warning("facets set to none since no stations are given in data")
-    facets = "none"
+    facets <- "none"
   }
   
   data_longer <- data %>% tidyr::pivot_longer(cols = all_of(elements), names_to = "elements_list")
