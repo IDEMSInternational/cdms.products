@@ -37,5 +37,7 @@ Imports:
     utils
 Suggests: 
     covr,
-    testthat (>= 3.0.0)
+    openair,
+    testthat (>= 3.0.0),
+    tseries
 Config/testthat/edition: 3
