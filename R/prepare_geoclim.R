@@ -1,8 +1,7 @@
-#' Prepare monthly data in GeoCLIM format
+#' Prepare dekad or pentad data in GeoCLIM format
 #'
 #' @param data 
 #' @param year 
-#' @param month 
 #' @param element 
 #' @param metadata 
 #' @param latitude 
@@ -10,19 +9,23 @@
 #' @param station_id 
 #' @param join_by 
 #' @param add_cols 
+#' @param type 
+#' @param type_col 
 #'
 #' @return
 #' @export
 #'
 #' @examples
-prepare_geoclim_month <- function(data, year, month, element, metadata = NULL,
-                                  join_by = NULL, station_id, 
-                                  latitude, longitude, add_cols = NULL) {
+prepare_geoclim <- function(data, year, type = c("dekad", "pentad"),
+                            type_col, element, metadata = NULL,
+                            join_by = NULL, station_id,
+                            latitude, longitude, add_cols = NULL) {
   checkmate::assert_data_frame(data)
   checkmate::assert_string(year)
   assert_column_names(data, year)
-  checkmate::assert_string(month)
-  assert_column_names(data, month)
+  type <- match.arg(type)
+  checkmate::assert_string(type_col)
+  assert_column_names(data, type_col)
   checkmate::assert_string(element)
   assert_column_names(data, element)
   checkmate::assert_data_frame(metadata, null.ok = TRUE)
@@ -42,27 +45,23 @@ prepare_geoclim_month <- function(data, year, month, element, metadata = NULL,
   assert_column_names(data_with_meta, latitude)
   assert_column_names(data_with_meta, longitude)
   
-  unique_months <- unique(data[[month]])
-  if (setequal(as.character(unique_months), as.character(1:12))) {
-    data[[month]] <- factor(data[[month]], 
-                            levels = 1:12, 
-                            labels = month_name_english)
-  } else if (setequal(unique_months, month_abb_english)) {
-    data[[month]] <- factor(data[[month]], levels = month_abb_english)
-  } else if (setequal(unique_months, month_name_english)) {
-    data[[month]] <- factor(data[[month]], levels = month_name_english)
-  } else if (setequal(unique_months, month.abb)) {
-    data[[month]] <- factor(data[[month]], levels = month.abb)
-  } else if (setequal(unique_months, month.name)) {
-    data[[month]] <- factor(data[[month]], levels = month.name)
+  unique_types <- unique(data[[type_col]])
+  if (type == "dekad") ntypes <- 36
+  else if (type == "pentad") ntypes <- 72
+  if (setequal(as.character(unique_types), as.character(1:ntypes))) {
+    data[[type_col]] <- factor(data[[type_col]], 
+                            levels = 1:ntypes, 
+                            labels = 1:ntypes)
   } else {
-    if (!is.factor(data[[month]]) || nlevels(data[[month]]) != 12) {
-      stop("Values in month column are not recognised. ",
-           "Values must be full or abbreviated month names ", 
-           "or numbers 1 to 12 or a factor with 12 levels.")
+    if (is.factor(data[[type_col]]) && nlevels(data[[type_col]]) == ntypes) {
+      levels(data[[type_col]]) <- 1:ntypes
+    } else {
+      stop("Values in type column are not recognised. ",
+           "Values must be numbers 1 to ", ntypes, 
+           " or a factor with ", ntypes, " levels.")
     }
   }
-  month_levels <- levels(data[[month]])
+  type_levels <- levels(data[[type_col]])
   
   if (!is.null(metadata)) {
     data_by <- unique(data[[names(join_by)]])
@@ -88,7 +87,7 @@ prepare_geoclim_month <- function(data, year, month, element, metadata = NULL,
   geoclim_data <- 
     tidyr::pivot_wider(data_with_meta,
                        id_cols = tidyselect::all_of(id_cols),
-                       names_from = tidyselect::all_of(month),
+                       names_from = tidyselect::all_of(type_col),
                        values_from = tidyselect::all_of(element), 
                        values_fill = -999)
   names(geoclim_data)[names(geoclim_data) == station_id] <- "id"
