@@ -112,14 +112,14 @@ climatic_summary <- function(data, date_time, station = NULL, elements,
   if (to %in% c("pentad", "dekadal", "monthly", "annual", 
                 "annual-within-year")) {
     if (is.null(year)) {
-      year <- ".year"
+      year <- "year"
       data[[year]] <- lubridate::year(data[[date_time]])
     }
   }
   
   if (to %in% c("monthly", "longterm-monthly")) {
     if (is.null(month)) {
-      month <- ".month"
+      month <- "month"
       data[[month]] <- lubridate::month(data[[date_time]])
     }
     }
@@ -129,14 +129,14 @@ climatic_summary <- function(data, date_time, station = NULL, elements,
   # to simplify case handling internally.
   if (to == "pentad") {
     if (is.null(pentad)) {
-      pentad <- ".pentad"
+      pentad <- "pentad"
       data[[pentad]] <- RInstatClimatic::pentad(data[[date_time]])
     }
     to <- "annual-within-year"
     by <- pentad
   } else if (to == "dekadal") {
     if (is.null(pentad)) {
-      dekad <- ".dekad"
+      dekad <- "dekad"
       data[[dekad]] <- RInstatClimatic::dekad(data[[date_time]])
     }
     to <- "annual-within-year"
@@ -154,14 +154,14 @@ climatic_summary <- function(data, date_time, station = NULL, elements,
       dplyr::group_by(.data[[station]])
   } else grp_data <- data
   if (to == "hourly") {
-    hour <- ".hour"
+    hour <- "hour"
     grp_data[[hour]] <- lubridate::hour(grp_data[[date_time]])
     date <- ".date"
     grp_data[[date]] <- as.Date(grp_data[[date_time]])
     grp_data <- grp_data %>%
       dplyr::group_by(.data[[date]], .data[[hour]], .add = TRUE)
   } else if (to == "daily") {
-    date <- ".date"
+    date <- "date"
     grp_data[[date]] <- as.Date(grp_data[[date_time]])
     grp_data <- grp_data %>%
       dplyr::group_by(.data[[date]])
