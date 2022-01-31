@@ -55,7 +55,8 @@ output_CPT <- function(data, lat_lon_data, station_latlondata, latitude, longitu
     }
     else {
       stations <- data.frame(data[station])
-      year <- data_unstacked %>% dplyr::select(!!! rlang::quos(year))
+      # TODO Check this. It was previously data_unstacked but not defined.
+      year <- data %>% dplyr::select(!!! rlang::quos(year))
       data <- data.frame(year, stations)
       stacked_data <- reshape2::melt(data, id.vars=c("year"))
       names(stacked_data)[2] <-  "station"
@@ -73,7 +74,7 @@ output_CPT <- function(data, lat_lon_data, station_latlondata, latitude, longitu
   
   unstacked_data <- data %>% dplyr::select(station, year, element) %>% tidyr::spread(key = station, value = element)
   names(unstacked_data)[1] <- station_label
-  unstacked_data <- unstacked_data %>% dplyr::mutate_all(dplyr::funs(replace(., is.na(.), na_code)))
+  unstacked_data <- unstacked_data %>% dplyr::mutate_all(list(~replace(.x, is.na(.x), na_code)))
   
   lat_lon_data <- data %>% dplyr::group_by(station) %>% dplyr::summarise(latitude = min(latitude, na.rm = TRUE), longitude = min(longitude, na.rm = TRUE))
   if(anyNA(data$latitude) || anyNA(data$longitude)) warning("Missing values in latitude or longitude.")

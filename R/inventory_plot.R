@@ -36,6 +36,7 @@
 #' @param rain 
 #' @param rain_cats 
 #' @param coord_flip 
+#' @param plot.title_hjust 
 #'
 #' @return
 #' @export

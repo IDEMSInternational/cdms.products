@@ -19,7 +19,7 @@ export_geoclim_month <- function(data, year, month, element, metadata = NULL,
                           join_by = join_by, station_id = station_id,
                           latitude = latitude, longitude = longitude, 
                           add_cols = add_cols)
-  csv_params <- modifyList(list(x = geomclim_data,
+  csv_params <- utils::modifyList(list(x = geomclim_data,
                                 file = file_path,
                                 row.names = FALSE), 
                            list(...))

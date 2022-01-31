@@ -2,7 +2,7 @@
 #'
 #' @param data The data.frame to calculate from.
 #' @param date The name of the date column in \code{data}.
-#' @param element The name of the column in \code{data} to apply the function to.
+#' @param elements The name of the column in \code{data} to apply the function to.
 #' @param stations The name of the station column in \code{data}, if the data are for multiple station. 
 #' The calculations are performed separately for each station.
 #' @param start A logical value. If \code{TRUE} start date as ...
@@ -62,7 +62,7 @@ climatic_missing <- function(data, date, elements, stations,
     dplyr::summarise(From = dplyr::first(start),
                      To = dplyr::last(end),
                      Missing = sum(is.na(.data$value)),
-                     `%` = round(sum(is.na(.data$value))/n()*100, 1))
+                     `%` = round(sum(is.na(.data$value))/dplyr::n()*100, 1))
   
   # complete years
   complete.years <- data.stack %>%

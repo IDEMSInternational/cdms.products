@@ -1,9 +1,14 @@
 Package: RInstatClimatic
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+Authors@R: c(
+    person("Danny", "Parsons", 
+    email = "danny@idems.international", 
+    role = c("aut", "cre"),
+    comment = c(ORCID = "https://orcid.org/0000-0002-8333-9880")),
+    person("Lily", "Clements", 
+    role = "aut"))
+           
 Description: What the package does (one paragraph).
 License: LGPL (>= 3)
 Encoding: UTF-8
@@ -28,7 +33,8 @@ Imports:
     tibble,
     tidyr,
     tidyselect,
-    zoo
+    zoo,
+    utils
 Suggests: 
     covr,
     testthat (>= 3.0.0)

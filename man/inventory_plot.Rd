@@ -68,6 +68,8 @@ inventory_plot(
 
 \item{plot.title_size}{}
 
+\item{plot.title_hjust}{}
+
 \item{x_title}{}
 
 \item{y_title}{}
