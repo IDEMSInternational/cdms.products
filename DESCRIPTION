@@ -34,7 +34,8 @@ Imports:
     tidyr,
     tidyselect,
     zoo,
-    utils
+    utils,
+    naflex
 Suggests: 
     covr,
     openair,
