@@ -40,9 +40,6 @@ inventory_table <- function(data, date, elements, station = NULL, year = NULL, m
     data[[day]] <- lubridate::day(data[[date]])
   }
   
-  # in the {{}} way we don't need to do an if/else statement. is there a way to do it here without if/else?
-  # only using M, X because that's how it is in the data given to me
-  
   if(is.null(station)){
     inventory_data <- data %>%
       tidyr::pivot_longer(cols = all_of(elements), names_to = "element") %>%
