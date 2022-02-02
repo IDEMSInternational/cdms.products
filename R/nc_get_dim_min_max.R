@@ -1,13 +1,13 @@
 #' Title
 #'
-#' @param nc 
-#' @param dimension 
-#' @param time_as_date
+#' @param nc TODO
+#' @param dimension TODO 
+#' @param time_as_date TODO
 #'
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 nc_get_dim_min_max <- function(nc, dimension, time_as_date = TRUE) {
   if(!dimension %in% names(nc$dim)) stop(dimension, " not found in file.")
   vals <- nc$dim[[dimension]]$vals

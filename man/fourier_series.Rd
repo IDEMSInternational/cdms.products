@@ -7,15 +7,18 @@
 fourier_series(x, n, period)
 }
 \arguments{
-\item{x}{}
+\item{x}{TODO}
 
-\item{n}{}
+\item{n}{TODO}
 
-\item{period}{}
+\item{period}{TODO}
 }
 \value{
 
 }
 \description{
 Title
+}
+\examples{
+# TODO
 }

@@ -8,7 +8,7 @@
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 climatic_extremes <- function(data, date_time, station = NULL, elements, 
                               year = NULL, month = NULL, dekad = NULL, 
                               pentad = NULL,

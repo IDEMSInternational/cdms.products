@@ -1,11 +1,11 @@
 #' Get the latitude and longitude coordinates from a data frame
 #'
-#' @param datafile 
+#' @param datafile TODO
 #'
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 lat_lon_dataframe <- function(datafile){
   latitude  <- get_lat_from_data(datafile)
   longitude <- get_lon_from_data(datafile)

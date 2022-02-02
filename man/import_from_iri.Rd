@@ -9,23 +9,26 @@ import_from_iri(download_from, data_file, path, X1, X2, Y1, Y2, get_area_point)
 \arguments{
 \item{download_from}{Source(?) to download the data from. Takes values \code{"CHIRPS_V2P0"}, \code{"TAMSTAT"}, \code{"NOAA_ARC2"}, \code{"NOAA_RFE2"}, \code{"NOAA_CMORPH_DAILY"}, \code{"NASA_TRMM_3B42"}}
 
-\item{data_file}{}
+\item{data_file}{TODO}
 
-\item{path}{}
+\item{path}{TODO}
 
-\item{X1}{}
+\item{X1}{TODO}
 
-\item{X2}{}
+\item{X2}{TODO}
 
-\item{Y1}{}
+\item{Y1}{TODO}
 
-\item{Y2}{}
+\item{Y2}{TODO}
 
-\item{get_area_point}{}
+\item{get_area_point}{TODO}
 }
 \value{
 
 }
 \description{
 Import data from IRI (International Research Institute for Climate and Society)
+}
+\examples{
+# TODO
 }

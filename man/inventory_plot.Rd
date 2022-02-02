@@ -44,75 +44,83 @@ inventory_plot(
 )
 }
 \arguments{
-\item{data}{}
+\item{data}{The data.frame to calculate from.}
 
-\item{date}{}
+\item{date}{The name of the date column in \code{data}.}
 
-\item{elements}{}
+\item{elements}{The name of the column in \code{data} to apply the function to.}
 
-\item{station}{}
+\item{year}{The name of the year column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[date]])}.}
 
-\item{year}{}
+\item{doy}{The name of the day of the year (1-366) column in \code{data}.
+If \code{doy} is \code{NULL} then it can be calculated as \code{yday_366(data[[date]])} if \code{date} is provided.}
 
-\item{doy}{}
+\item{year_doy_plot}{TODO}
 
-\item{year_doy_plot}{}
+\item{facet_by}{TODO}
 
-\item{facet_by}{}
+\item{facet_x_size}{TODO}
 
-\item{facet_x_size}{}
+\item{facet_y_size}{TODO}
 
-\item{facet_y_size}{}
+\item{title}{The text for the title.}
 
-\item{title}{}
+\item{plot.title_size}{TODO}
 
-\item{plot.title_size}{}
+\item{plot.title_hjust}{TODO}
 
-\item{plot.title_hjust}{}
+\item{x_title}{The text for the x-axis.}
 
-\item{x_title}{}
+\item{y_title}{The text for the y-axis.}
 
-\item{y_title}{}
+\item{x_scale_from}{TODO - see ?scale_continuous}
 
-\item{x_scale_from}{}
+\item{x_scale_to}{TODO}
 
-\item{x_scale_to}{}
+\item{x_scale_by}{TODO}
 
-\item{x_scale_by}{}
+\item{y_date_format}{TODO}
 
-\item{y_date_format}{}
+\item{y_date_scale_by}{TODO}
 
-\item{y_date_scale_by}{}
+\item{y_date_scale_step}{TODO}
 
-\item{y_date_scale_step}{}
+\item{facet_scales}{TODO}
 
-\item{facet_scales}{}
+\item{facet_dir}{TODO}
 
-\item{facet_dir}{}
+\item{facet_x_margin}{TODO}
 
-\item{facet_nrow}{}
+\item{facet_y_margin}{TODO}
 
-\item{facet_ncol}{}
+\item{facet_nrow}{TODO}
 
-\item{missing_colour}{}
+\item{facet_ncol}{TODO}
 
-\item{present_colour}{}
+\item{missing_colour}{TODO}
 
-\item{missing_label}{}
+\item{present_colour}{TODO}
 
-\item{present_label}{}
+\item{missing_label}{TODO}
 
-\item{display_rain_days}{}
+\item{present_label}{TODO}
 
-\item{rain}{}
+\item{display_rain_days}{TODO}
 
-\item{rain_cats}{}
+\item{rain}{TODO}
 
-\item{coord_flip}{}
+\item{rain_cats}{TODO}
+
+\item{coord_flip}{TODO}
+
+\item{stations}{The name of the station column in \code{data}, if the data are for multiple station.}
 }
 \value{
 
 }
 \description{
 Produces an inventory of available and missing data
+}
+\examples{
+# TODO
 }

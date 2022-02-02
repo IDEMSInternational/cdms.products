@@ -12,7 +12,7 @@
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 inventory_table <- function(data, date, elements, station = NULL, year = NULL, month = NULL,  
                             day = NULL) {
   

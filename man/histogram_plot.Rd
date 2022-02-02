@@ -2,7 +2,7 @@
 % Please edit documentation in R/histogram_plot.R
 \name{histogram_plot}
 \alias{histogram_plot}
-\title{Title}
+\title{Histogram Plot}
 \usage{
 histogram_plot(
   data,
@@ -21,35 +21,39 @@ histogram_plot(
 )
 }
 \arguments{
-\item{data}{}
+\item{data}{The data.frame to calculate from}
 
-\item{date_time}{}
+\item{date_time}{The name of the date column in \code{data}.}
 
-\item{elements}{}
+\item{elements}{The name of the elements column in \code{data}.}
 
-\item{station}{}
+\item{station}{The name of the station column in \code{data}, if the data are for multiple station.
+Histogram plots are calculated separately for each station.}
 
-\item{facets}{}
+\item{facets}{How to split the histograms. Default \code{"station"}. Can be one of \code{"elements"}, \code{"both"}, or \code{"none"}.}
 
-\item{position}{}
+\item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.}
 
-\item{plot_type}{}
+\item{plot_type}{Type of plot to display. Can be one of \code{"histogram"}, \code{"density"}, or \code{"frequency"}.}
 
-\item{binwidth}{}
+\item{binwidth}{The width of the bins. Can be specified as a numeric value or as a function that calculates width from unscaled x. Here, "unscaled x" refers to the original x values in the data, before application of any scale transformation. When specifying a function along with a grouping structure, the function will be called once per group. The default is to use the number of bins in \code{bins}, covering the range of the data. You should always override this value, exploring multiple widths to find the best to illustrate the stories in your data.}
 
-\item{bins}{}
+\item{bins}{Number of bins. Overridden by \code{binwidth}. Defaults to 30.}
 
-\item{na.rm}{}
+\item{na.rm}{If \code{FALSE}, the default, missing values are removed with a warning. If \code{TRUE}, missing values are silently removed.}
 
-\item{orientation}{}
+\item{orientation}{The orientation of the layer. The default (\code{NA}) automatically determines the orientation from the aesthetic mapping. In the rare event that this fails it can be given explicitly by setting \code{orientation} to either "x" or "y".}
 
-\item{show.legend}{}
+\item{show.legend}{logical. Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.}
 
-\item{breaks}{}
+\item{breaks}{A numeric vector giving the bin boundaries. Overrides \code{binwidth} and \code{bins}.}
 }
 \value{
 
 }
 \description{
-Title
+Histogram Plot
+}
+\examples{
+# TODO
 }

@@ -7,15 +7,18 @@
 nc_get_dim_min_max(nc, dimension, time_as_date = TRUE)
 }
 \arguments{
-\item{nc}{}
+\item{nc}{TODO}
 
-\item{dimension}{}
+\item{dimension}{TODO}
 
-\item{time_as_date}{}
+\item{time_as_date}{TODO}
 }
 \value{
 
 }
 \description{
 Title
+}
+\examples{
+# TODO
 }

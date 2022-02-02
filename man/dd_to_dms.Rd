@@ -7,13 +7,16 @@
 dd_to_dms(x, lat)
 }
 \arguments{
-\item{x}{}
+\item{x}{TODO}
 
-\item{lat}{}
+\item{lat}{TODO}
 }
 \value{
 
 }
 \description{
 Title
+}
+\examples{
+# TODO
 }

@@ -7,11 +7,14 @@
 get_lon_from_data(datafile)
 }
 \arguments{
-\item{datafile}{}
+\item{datafile}{TODO}
 }
 \value{
 
 }
 \description{
 Get the longitude coordinate from the data
+}
+\examples{
+# TODO
 }

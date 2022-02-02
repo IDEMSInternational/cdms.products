@@ -15,3 +15,6 @@ pentad(date)
 \description{
 Title
 }
+\examples{
+# TODO
+}

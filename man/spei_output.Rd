@@ -23,3 +23,6 @@ spei_output(x, data, station, year, month)
 \description{
 This function extracts the SPEI/SPI column from an spei object x.
 }
+\examples{
+# TODO
+}

@@ -36,3 +36,6 @@ The inventory table is calculated separately for each station.}
 \description{
 Inventory Table
 }
+\examples{
+# TODO
+}

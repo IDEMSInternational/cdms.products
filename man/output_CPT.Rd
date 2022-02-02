@@ -18,29 +18,32 @@ output_CPT(
 )
 }
 \arguments{
-\item{data}{}
+\item{data}{The data.frame to calculate from.}
 
-\item{lat_lon_data}{}
+\item{lat_lon_data}{TODO}
 
-\item{station_latlondata}{}
+\item{station_latlondata}{TODO}
 
-\item{latitude}{}
+\item{latitude}{TODO}
 
-\item{longitude}{}
+\item{longitude}{TODO}
 
-\item{station}{}
+\item{station}{The name of the station column in \code{data}, if the data are for multiple station.}
 
-\item{year}{}
+\item{year}{The name of the year column in \code{data}.}
 
-\item{element}{}
+\item{element}{The name of the column in \code{data} to apply the function to.}
 
-\item{long.data}{}
+\item{long.data}{TODO}
 
-\item{na_code}{}
+\item{na_code}{TODO}
 }
 \value{
 
 }
 \description{
 Title
+}
+\examples{
+# TODO
 }

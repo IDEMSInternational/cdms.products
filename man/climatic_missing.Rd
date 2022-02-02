@@ -26,3 +26,6 @@ The calculations are performed separately for each station.}
 \description{
 Title
 }
+\examples{
+# TODO
+}

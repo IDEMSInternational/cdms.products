@@ -16,25 +16,28 @@ climdex_single_station(
 )
 }
 \arguments{
-\item{ci}{}
+\item{ci}{TODO}
 
-\item{freq}{}
+\item{freq}{TODO}
 
-\item{indices}{}
+\item{indices}{TODO}
 
-\item{year}{}
+\item{year}{TODO}
 
-\item{month}{}
+\item{month}{TODO}
 
-\item{spells.can.span.years}{}
+\item{spells.can.span.years}{TODO}
 
-\item{gsl.mode}{}
+\item{gsl.mode}{TODO}
 
-\item{threshold}{}
+\item{threshold}{TODO}
 }
 \value{
 
 }
 \description{
 Title
+}
+\examples{
+# TODO
 }

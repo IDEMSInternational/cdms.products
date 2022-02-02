@@ -1,12 +1,12 @@
 #' Title
 #'
-#' @param x 
-#' @param lat 
+#' @param x TODO
+#' @param lat TODO
 #'
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 dd_to_dms <- function(x, lat) {
   if (lat) dir <- ifelse(x >= 0, "N", "S")
   else dir <- ifelse(x >= 0, "E", "W")

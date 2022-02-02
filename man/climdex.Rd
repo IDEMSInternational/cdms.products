@@ -29,51 +29,54 @@ climdex(
 )
 }
 \arguments{
-\item{data}{}
+\item{data}{The data.frame to calculate from}
 
-\item{station}{}
+\item{station}{The name of the station column in \code{data}, if the data are for multiple station.}
 
-\item{date}{}
+\item{date}{The name of the date column in \code{data}.}
 
-\item{year}{}
+\item{year}{The name of the year column in \code{data}.}
 
-\item{month}{}
+\item{month}{The name of the month column in \code{data}.}
 
-\item{prec}{}
+\item{prec}{The name of the precipitation column in \code{data}.}
 
-\item{tmax}{}
+\item{tmax}{The name of the maximum temperature column in \code{data}.}
 
-\item{tmin}{}
+\item{tmin}{The name of the minimum temperature column in \code{data}.}
 
-\item{indices}{}
+\item{indices}{TODO}
 
-\item{freq}{}
+\item{freq}{TODO}
 
-\item{base.range}{}
+\item{base.range}{TODO}
 
-\item{n}{}
+\item{n}{TODO}
 
-\item{northern.hemisphere}{}
+\item{northern.hemisphere}{TODO}
 
-\item{quantiles}{}
+\item{quantiles}{TODO}
 
-\item{temp.qtiles}{}
+\item{temp.qtiles}{TODO}
 
-\item{prec.qtiles}{}
+\item{prec.qtiles}{TODO}
 
-\item{max.missing.days}{}
+\item{max.missing.days}{TODO}
 
-\item{min.base.data.fraction.present}{}
+\item{min.base.data.fraction.present}{TODO}
 
-\item{spells.can.span.years}{}
+\item{spells.can.span.years}{TODO}
 
-\item{gsl.mode}{}
+\item{gsl.mode}{TODO}
 
-\item{threshold}{}
+\item{threshold}{TODO}
 }
 \value{
 
 }
 \description{
 Title
+}
+\examples{
+# TODO
 }

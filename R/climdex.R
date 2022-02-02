@@ -1,31 +1,31 @@
 #' Title
 #'
-#' @param data 
-#' @param station 
-#' @param date 
-#' @param year 
-#' @param month 
-#' @param prec 
-#' @param tmax 
-#' @param tmin 
-#' @param indices 
-#' @param freq 
-#' @param base.range 
-#' @param n 
-#' @param northern.hemisphere 
-#' @param quantiles 
-#' @param temp.qtiles 
-#' @param prec.qtiles 
-#' @param max.missing.days 
-#' @param min.base.data.fraction.present 
-#' @param spells.can.span.years 
-#' @param gsl.mode 
-#' @param threshold 
+#' @param data The data.frame to calculate from
+#' @param station The name of the station column in \code{data}, if the data are for multiple station. 
+#' @param date The name of the date column in \code{data}.
+#' @param year The name of the year column in \code{data}.
+#' @param month The name of the month column in \code{data}.
+#' @param prec The name of the precipitation column in \code{data}.
+#' @param tmax The name of the maximum temperature column in \code{data}.
+#' @param tmin The name of the minimum temperature column in \code{data}.
+#' @param indices TODO
+#' @param freq TODO
+#' @param base.range TODO
+#' @param n TODO
+#' @param northern.hemisphere TODO
+#' @param quantiles TODO
+#' @param temp.qtiles TODO
+#' @param prec.qtiles TODO
+#' @param max.missing.days TODO
+#' @param min.base.data.fraction.present TODO
+#' @param spells.can.span.years TODO
+#' @param gsl.mode TODO
+#' @param threshold TODO
 #'
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 climdex <- function(data, station, date, year, month, prec, tmax, tmin, indices, freq = "annual",
                     base.range = c(1961, 1990), n = 5, northern.hemisphere = TRUE,
                     quantiles = NULL, temp.qtiles = c(0.1, 0.9), 

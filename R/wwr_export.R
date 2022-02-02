@@ -4,32 +4,32 @@
 #' this gives Yearly data records with monthly and annual data for a particular year.
 #'
 #' @param data The data.frame to calculate from
-#' @param year 
-#' @param month 
-#' @param mean_station_pressure 
-#' @param mean_sea_level_pressure 
-#' @param mean_temp 
-#' @param total_precip 
-#' @param mean_max_temp 
-#' @param mean_min_temp 
-#' @param mean_rel_hum 
-#' @param link 
-#' @param link_by 
-#' @param station_data 
-#' @param wmo_number 
-#' @param latitude 
-#' @param longitude 
-#' @param country_name 
-#' @param station_name 
-#' @param height_station 
-#' @param height_barometer 
-#' @param wigos_identifier 
-#' @param folder 
+#' @param year The name of the year column in \code{data}. 
+#' @param month The name of the month column in \code{data}.
+#' @param mean_station_pressure TODO
+#' @param mean_sea_level_pressure TODO
+#' @param mean_temp TODO
+#' @param total_precip TODO
+#' @param mean_max_temp TODO
+#' @param mean_min_temp TODO
+#' @param mean_rel_hum TODO
+#' @param link TODO
+#' @param link_by TODO
+#' @param station_data TODO
+#' @param wmo_number TODO
+#' @param latitude TODO
+#' @param longitude TODO
+#' @param country_name TODO
+#' @param station_name TODO
+#' @param height_station TODO
+#' @param height_barometer TODO
+#' @param wigos_identifier TODO
+#' @param folder TODO
 #'
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 wwr_export <- function(data, year, month, mean_station_pressure, mean_sea_level_pressure, 
                        mean_temp, total_precip, mean_max_temp, mean_min_temp, mean_rel_hum, link, link_by,
                        station_data, wmo_number, latitude, longitude, country_name, station_name, 

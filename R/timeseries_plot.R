@@ -1,22 +1,23 @@
-#' Title
+#' Timeseries Plot
 #'
-#' @param data 
-#' @param date_time 
-#' @param elements 
-#' @param station 
-#' @param facets 
-#' @param add_points 
-#' @param add_line_of_best_fit 
-#' @param se 
-#' @param add_path 
-#' @param add_step 
-#' @param na.rm 
-#' @param show.legend 
+#' @param data The data.frame to calculate from.
+#' @param date_time The name of the date column in \code{data}.
+#' @param elements The name of the column in \code{data} to apply the function to.
+#' @param station The name of the station column in \code{data}, if the data are for multiple station.
+#' Timeseries plots are calculated separately for each station.
+#' @param facets How to split the time series plots. Default \code{"station"}. Can be one of \code{"elements"}, \code{"both"}, or \code{"none"}.
+#' @param add_points logical. If \code{TRUE}, points are added to the plot using  \code{"ggplot2::geom_point()"}.
+#' @param add_line_of_best_fit logical. If \code{TRUE}, points are added to the plot using  \code{"ggplot2::geom_smooth(method = "lm")"}.
+#' @param se logical. If \code{TRUE}, the standard error is are added to the line of best fit. Only works if \code{add_line_of_best_fit = TRUE}. 
+#' @param add_path logical. If \code{TRUE}, paths are added to the plot using  \code{"ggplot2::geom_path()"}.
+#' @param add_step logical. If \code{TRUE}, steps are added to the plot using  \code{"ggplot2::geom_step()"}.
+#' @param na.rm If \code{FALSE}, the default, missing values are removed with a warning. If \code{TRUE}, missing values are silently removed.
+#' @param show.legend logical. Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.
 #'
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 timeseries_plot <- function(data, date_time, elements, station = NULL, facets = c("stations", "elements", "both", "none"),
                             add_points = FALSE, add_line_of_best_fit = FALSE,
                             se = TRUE, add_path = FALSE, add_step = FALSE,

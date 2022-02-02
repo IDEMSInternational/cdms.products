@@ -1,14 +1,14 @@
 #' Title
 #'
-#' @param dd 
-#' @param mm 
-#' @param ss 
+#' @param dd TODO
+#' @param mm TODO
+#' @param ss TODO
 #' @param dir Direction to --- to. Takes values \code{"N"}, \code{"E"}, \code{"S"}, or \code{"W"}
 #'
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 convert_to_dec_deg <- function (dd, mm = 0 , ss = 0, dir) {
   if(missing(dd))  stop("dd must be supplied")
   if(!missing(dir)) {

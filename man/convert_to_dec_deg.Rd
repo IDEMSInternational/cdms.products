@@ -7,11 +7,11 @@
 convert_to_dec_deg(dd, mm = 0, ss = 0, dir)
 }
 \arguments{
-\item{dd}{}
+\item{dd}{TODO}
 
-\item{mm}{}
+\item{mm}{TODO}
 
-\item{ss}{}
+\item{ss}{TODO}
 
 \item{dir}{Direction to --- to. Takes values \code{"N"}, \code{"E"}, \code{"S"}, or \code{"W"}}
 }
@@ -20,4 +20,7 @@ convert_to_dec_deg(dd, mm = 0, ss = 0, dir)
 }
 \description{
 Title
+}
+\examples{
+# TODO
 }

@@ -21,35 +21,38 @@ windrose(
 )
 }
 \arguments{
-\item{data}{}
+\item{data}{The data.frame to calculate from.}
 
-\item{speed}{}
+\item{speed}{TODO}
 
-\item{direction}{}
+\item{direction}{TODO}
 
-\item{facet}{}
+\item{facet}{TODO}
 
-\item{n_directions}{}
+\item{n_directions}{TODO}
 
-\item{n_speeds}{}
+\item{n_speeds}{TODO}
 
-\item{speed_cuts}{}
+\item{speed_cuts}{TODO}
 
-\item{col_pal}{}
+\item{col_pal}{TODO}
 
-\item{ggtheme}{}
+\item{ggtheme}{TODO}
 
-\item{legend_title}{}
+\item{legend_title}{TODO}
 
-\item{calm_wind}{}
+\item{calm_wind}{TODO}
 
-\item{variable_wind}{}
+\item{variable_wind}{TODO}
 
-\item{n_col}{}
+\item{n_col}{TODO}
 }
 \value{
 
 }
 \description{
 A wrapper for plotting a windrose of wind speed and direction using ggplot2
+}
+\examples{
+# TODO
 }

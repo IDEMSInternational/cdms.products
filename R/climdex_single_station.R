@@ -3,19 +3,19 @@
 # Not intended to be used externally.
 #' Title
 #'
-#' @param ci 
-#' @param freq 
-#' @param indices 
-#' @param year 
-#' @param month 
-#' @param spells.can.span.years 
-#' @param gsl.mode 
-#' @param threshold 
+#' @param ci TODO
+#' @param freq TODO
+#' @param indices TODO
+#' @param year TODO
+#' @param month TODO
+#' @param spells.can.span.years TODO
+#' @param gsl.mode TODO
+#' @param threshold TODO
 #'
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 climdex_single_station <- function(ci, freq = "annual", indices, year, month,
                                    spells.can.span.years = FALSE, gsl.mode = gsl.mode,
                                    threshold = 1) {
