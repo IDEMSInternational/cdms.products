@@ -19,8 +19,8 @@ A data frame with 54423 rows and 14 variables:
 \item{hmax}{daily maximum relative humidity, percentage}
 \item{hmin}{daily minimum relative humidity, percentage}
 \item{sunh}{daily number of sunshine hours}
-\item{sunh}{daily mean wind speed, m/s}
-\item{sunh}{daily mean wind direction, degrees}
+\item{ws}{daily mean wind speed, m/s}
+\item{wd}{daily mean wind direction, degrees}
 }
 }
 \source{
