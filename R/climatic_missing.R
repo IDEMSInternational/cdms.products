@@ -11,7 +11,7 @@
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 climatic_missing <- function(data, date, elements, stations,
                              start = TRUE, end = FALSE){
   

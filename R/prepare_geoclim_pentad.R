@@ -1,11 +1,11 @@
 #' Prepare pentad data in GeoCLIM format
 #' @inheritParams prepare_geoclim
-#' @param pentad
+#' @param pentad TODO
 #'
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 prepare_geoclim_pentad <- function(data, year, pentad, element, 
                                    metadata = NULL, join_by = NULL, 
                                    station_id, latitude, longitude, 

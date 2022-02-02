@@ -1,12 +1,12 @@
 #' Export monthly data in GeoCLIM format
 #' @inheritParams prepare_geoclim_month
-#' @param file_path 
+#' @param file_path TODO
 #' @param ... Other parameters passed to \code{write.csv()}
 #'
 #' @return Invisibly returns the file path of the saved data
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 export_geoclim_month <- function(data, year, month, element, metadata = NULL,
                                  join_by = NULL, station_id,
                                  latitude, longitude, add_cols = NULL, 

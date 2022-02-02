@@ -2,7 +2,7 @@
 % Please edit documentation in R/timeseries_plot.R
 \name{timeseries_plot}
 \alias{timeseries_plot}
-\title{Title}
+\title{Timeseries Plot}
 \usage{
 timeseries_plot(
   data,
@@ -20,33 +20,37 @@ timeseries_plot(
 )
 }
 \arguments{
-\item{data}{}
+\item{data}{The data.frame to calculate from.}
 
-\item{date_time}{}
+\item{date_time}{The name of the date column in \code{data}.}
 
-\item{elements}{}
+\item{elements}{The name of the column in \code{data} to apply the function to.}
 
-\item{station}{}
+\item{station}{The name of the station column in \code{data}, if the data are for multiple station.
+Timeseries plots are calculated separately for each station.}
 
-\item{facets}{}
+\item{facets}{How to split the time series plots. Default \code{"station"}. Can be one of \code{"elements"}, \code{"both"}, or \code{"none"}.}
 
-\item{add_points}{}
+\item{add_points}{logical. If \code{TRUE}, points are added to the plot using  \code{"ggplot2::geom_point()"}.}
 
-\item{add_line_of_best_fit}{}
+\item{add_line_of_best_fit}{logical. If \code{TRUE}, points are added to the plot using  \code{"ggplot2::geom_smooth(method = "lm")"}.}
 
-\item{se}{}
+\item{se}{logical. If \code{TRUE}, the standard error is are added to the line of best fit. Only works if \code{add_line_of_best_fit = TRUE}.}
 
-\item{add_path}{}
+\item{add_path}{logical. If \code{TRUE}, paths are added to the plot using  \code{"ggplot2::geom_path()"}.}
 
-\item{add_step}{}
+\item{add_step}{logical. If \code{TRUE}, steps are added to the plot using  \code{"ggplot2::geom_step()"}.}
 
-\item{na.rm}{}
+\item{na.rm}{If \code{FALSE}, the default, missing values are removed with a warning. If \code{TRUE}, missing values are silently removed.}
 
-\item{show.legend}{}
+\item{show.legend}{logical. Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.}
 }
 \value{
 
 }
 \description{
-Title
+Timeseries Plot
+}
+\examples{
+# TODO
 }

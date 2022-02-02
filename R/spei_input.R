@@ -9,7 +9,7 @@
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 spei_input <- function(data, station, year, month, element) {
   if (missing(station)) id_cols <- c(year, month) else id_cols <- c(station, year, month)
   # SPEI package assumes data is ordered so must be sorted

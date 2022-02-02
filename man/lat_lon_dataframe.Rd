@@ -7,11 +7,14 @@
 lat_lon_dataframe(datafile)
 }
 \arguments{
-\item{datafile}{}
+\item{datafile}{TODO}
 }
 \value{
 
 }
 \description{
 Get the latitude and longitude coordinates from a data frame
+}
+\examples{
+# TODO
 }

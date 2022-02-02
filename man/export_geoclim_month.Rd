@@ -20,27 +20,27 @@ export_geoclim_month(
 )
 }
 \arguments{
-\item{data}{}
+\item{data}{The data.frame to calculate from.}
 
-\item{year}{}
+\item{year}{The name of the year column in \code{data}.}
 
-\item{month}{}
+\item{month}{The name of the month column in \code{data}.}
 
-\item{element}{}
+\item{element}{The name of the column in \code{data} to apply the function to.}
 
-\item{metadata}{}
+\item{metadata}{TODO}
 
-\item{join_by}{}
+\item{join_by}{TODO}
 
-\item{station_id}{}
+\item{station_id}{TODO}
 
-\item{latitude}{}
+\item{latitude}{TODO}
 
-\item{longitude}{}
+\item{longitude}{TODO}
 
-\item{add_cols}{}
+\item{add_cols}{TODO}
 
-\item{file_path}{}
+\item{file_path}{TODO}
 
 \item{...}{Other parameters passed to \code{write.csv()}}
 }
@@ -49,4 +49,7 @@ Invisibly returns the file path of the saved data
 }
 \description{
 Export monthly data in GeoCLIM format
+}
+\examples{
+# TODO
 }

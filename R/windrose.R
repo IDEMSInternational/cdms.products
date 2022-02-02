@@ -2,24 +2,24 @@
 #' 
 #' A wrapper for plotting a windrose of wind speed and direction using ggplot2
 #'
-#' @param data 
-#' @param speed 
-#' @param direction 
-#' @param facet 
-#' @param n_directions 
-#' @param n_speeds 
-#' @param speed_cuts 
-#' @param col_pal 
-#' @param ggtheme 
-#' @param legend_title 
-#' @param calm_wind 
-#' @param variable_wind 
-#' @param n_col 
+#' @param data The data.frame to calculate from.
+#' @param speed TODO
+#' @param direction TODO
+#' @param facet TODO
+#' @param n_directions TODO
+#' @param n_speeds TODO
+#' @param speed_cuts TODO
+#' @param col_pal TODO
+#' @param ggtheme TODO
+#' @param legend_title TODO
+#' @param calm_wind TODO
+#' @param variable_wind TODO
+#' @param n_col TODO
 #'
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 windrose <- function(data, speed, direction, facet = NULL, n_directions = 12, n_speeds = 5, speed_cuts = NA, col_pal = "GnBu",
                      ggtheme = c("grey", "gray", "bw", "linedraw", "light", "minimal", "classic"),
                      legend_title = "Wind Speed", calm_wind = 0, variable_wind = 990, n_col = NULL) {

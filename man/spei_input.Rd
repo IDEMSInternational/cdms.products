@@ -23,3 +23,6 @@ spei_input(data, station, year, month, element)
 \description{
 Title
 }
+\examples{
+# TODO
+}

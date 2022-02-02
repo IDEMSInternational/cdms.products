@@ -18,29 +18,32 @@ nc_as_data_frame(
 )
 }
 \arguments{
-\item{nc}{}
+\item{nc}{TODO}
 
-\item{vars}{}
+\item{vars}{TODO}
 
-\item{keep_raw_time}{}
+\item{keep_raw_time}{TODO}
 
-\item{include_metadata}{}
+\item{include_metadata}{TODO}
 
-\item{boundary}{}
+\item{boundary}{TODO}
 
-\item{lon_points}{}
+\item{lon_points}{TODO}
 
-\item{lat_points}{}
+\item{lat_points}{TODO}
 
-\item{id_points}{}
+\item{id_points}{TODO}
 
-\item{show_requested_points}{}
+\item{show_requested_points}{TODO}
 
-\item{great_circle_dist}{}
+\item{great_circle_dist}{TODO}
 }
 \value{
 
 }
 \description{
 Title
+}
+\examples{
+# TODO
 }

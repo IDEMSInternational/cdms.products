@@ -16,7 +16,7 @@
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 spei_output <- function(x, data, station, year, month) {
   if (! inherits(x, "spei")) stop("x must be an object of class 'spei'")
   vals <- x$fitted

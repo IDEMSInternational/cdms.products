@@ -2,46 +2,47 @@
 #' 
 #' Produces an inventory of available and missing data
 #'
-#' @param data 
-#' @param date 
-#' @param elements 
-#' @param station 
-#' @param year 
-#' @param doy 
-#' @param year_doy_plot 
-#' @param facet_by 
-#' @param facet_x_size 
-#' @param facet_y_size 
-#' @param title 
-#' @param plot.title_size 
-#' @param x_title 
-#' @param y_title 
-#' @param x_scale_from 
-#' @param x_scale_to 
-#' @param x_scale_by 
-#' @param y_date_format 
-#' @param y_date_scale_by 
-#' @param y_date_scale_step 
-#' @param facet_scales 
-#' @param facet_dir 
-#' @param facet_x_margin
-#' @param facet_y_margin
-#' @param facet_nrow 
-#' @param facet_ncol 
-#' @param missing_colour 
-#' @param present_colour 
-#' @param missing_label 
-#' @param present_label 
-#' @param display_rain_days 
-#' @param rain 
-#' @param rain_cats 
-#' @param coord_flip 
-#' @param plot.title_hjust 
+#' @param data The data.frame to calculate from.
+#' @param date The name of the date column in \code{data}.
+#' @param elements The name of the column in \code{data} to apply the function to.
+#' @param stations The name of the station column in \code{data}, if the data are for multiple station. 
+#' @param year The name of the year column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[date]])}.
+#' @param doy The name of the day of the year (1-366) column in \code{data}. 
+#' If \code{doy} is \code{NULL} then it can be calculated as \code{yday_366(data[[date]])} if \code{date} is provided.
+#' @param year_doy_plot TODO
+#' @param facet_by TODO
+#' @param facet_x_size TODO
+#' @param facet_y_size TODO
+#' @param title The text for the title.
+#' @param plot.title_size TODO
+#' @param x_title The text for the x-axis.
+#' @param y_title The text for the y-axis.
+#' @param x_scale_from TODO - see ?scale_continuous 
+#' @param x_scale_to TODO
+#' @param x_scale_by TODO
+#' @param y_date_format TODO
+#' @param y_date_scale_by TODO
+#' @param y_date_scale_step TODO
+#' @param facet_scales TODO
+#' @param facet_dir TODO
+#' @param facet_x_margin TODO
+#' @param facet_y_margin TODO
+#' @param facet_nrow TODO
+#' @param facet_ncol TODO
+#' @param missing_colour TODO
+#' @param present_colour TODO
+#' @param missing_label TODO
+#' @param present_label TODO
+#' @param display_rain_days TODO
+#' @param rain TODO
+#' @param rain_cats TODO 
+#' @param coord_flip TODO
+#' @param plot.title_hjust TODO
 #'
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 inventory_plot <- function(data, date, elements, station = NULL, year = NULL, doy = NULL,  
                            year_doy_plot = FALSE, facet_by = NULL, 
                            facet_x_size = 7, facet_y_size = 11,

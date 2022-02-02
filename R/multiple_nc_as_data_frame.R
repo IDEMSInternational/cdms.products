@@ -1,21 +1,21 @@
 #' Title
 #'
-#' @param path 
-#' @param vars 
-#' @param keep_raw_time 
-#' @param include_metadata 
-#' @param boundary 
-#' @param lon_points 
-#' @param lat_points 
-#' @param id_points 
-#' @param show_requested_points 
-#' @param great_circle_dist 
-#' @param id 
+#' @param path TODO
+#' @param vars TODO
+#' @param keep_raw_time TODO
+#' @param include_metadata TODO
+#' @param boundary TODO
+#' @param lon_points TODO
+#' @param lat_points TODO
+#' @param id_points TODO
+#' @param show_requested_points TODO
+#' @param great_circle_dist TODO
+#' @param id TODO
 #'
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 multiple_nc_as_data_frame <- function(path, vars, keep_raw_time = TRUE, include_metadata = TRUE, boundary = NULL, lon_points = NULL, lat_points = NULL, id_points = NULL, show_requested_points = TRUE, great_circle_dist = TRUE, id = "id") {
   filepaths <- list.files(path = path, pattern="*\\.nc", full.names = TRUE)
   filenames <- basename(filepaths)

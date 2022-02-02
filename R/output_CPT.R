@@ -1,20 +1,20 @@
 #' Title
 #'
-#' @param data 
-#' @param lat_lon_data 
-#' @param station_latlondata 
-#' @param latitude 
-#' @param longitude 
-#' @param station 
-#' @param year 
-#' @param element 
-#' @param long.data 
-#' @param na_code 
+#' @param data The data.frame to calculate from.
+#' @param lat_lon_data TODO
+#' @param station_latlondata TODO
+#' @param latitude TODO
+#' @param longitude TODO
+#' @param station The name of the station column in \code{data}, if the data are for multiple station. 
+#' @param year The name of the year column in \code{data}.
+#' @param element The name of the column in \code{data} to apply the function to.
+#' @param long.data TODO
+#' @param na_code TODO
 #'
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 output_CPT <- function(data, lat_lon_data, station_latlondata, latitude, longitude, station, year, element, long.data = TRUE, na_code = -999) {
   
   if(missing(data)) stop("data should be provided")

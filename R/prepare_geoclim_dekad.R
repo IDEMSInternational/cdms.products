@@ -1,11 +1,11 @@
 #' Prepare dekad data in GeoCLIM format
 #' @inheritParams prepare_geoclim
-#' @param dekad
+#' @param dekad TODO
 #'
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 prepare_geoclim_dekad <- function(data, year, dekad, element, metadata = NULL,
                                   join_by = NULL, station_id,
                                   latitude, longitude, add_cols = NULL) {

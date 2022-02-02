@@ -1,18 +1,18 @@
 #' Import data from IRI (International Research Institute for Climate and Society)
 #'
 #' @param download_from Source(?) to download the data from. Takes values \code{"CHIRPS_V2P0"}, \code{"TAMSTAT"}, \code{"NOAA_ARC2"}, \code{"NOAA_RFE2"}, \code{"NOAA_CMORPH_DAILY"}, \code{"NASA_TRMM_3B42"}
-#' @param data_file 
-#' @param path 
-#' @param X1 
-#' @param X2 
-#' @param Y1 
-#' @param Y2 
-#' @param get_area_point 
+#' @param data_file TODO
+#' @param path TODO
+#' @param X1 TODO
+#' @param X2 TODO
+#' @param Y1 TODO
+#' @param Y2 TODO
+#' @param get_area_point TODO
 #'
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 import_from_iri <- function(download_from, data_file, path, X1, X2,Y1,Y2, get_area_point){
   if(path == ""){
     gaugelocdir = getwd()

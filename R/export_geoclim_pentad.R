@@ -5,7 +5,7 @@
 #' @return Invisibly returns the file path of the saved data
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 export_geoclim_pentad <- function(data, year, pentad, element, metadata = NULL,
                                   join_by = NULL, station_id,
                                   latitude, longitude, add_cols = NULL,

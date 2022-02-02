@@ -32,47 +32,47 @@ wwr_export(
 \arguments{
 \item{data}{The data.frame to calculate from}
 
-\item{year}{}
+\item{year}{The name of the year column in \code{data}.}
 
-\item{month}{}
+\item{month}{The name of the month column in \code{data}.}
 
-\item{mean_station_pressure}{}
+\item{mean_station_pressure}{TODO}
 
-\item{mean_sea_level_pressure}{}
+\item{mean_sea_level_pressure}{TODO}
 
-\item{mean_temp}{}
+\item{mean_temp}{TODO}
 
-\item{total_precip}{}
+\item{total_precip}{TODO}
 
-\item{mean_max_temp}{}
+\item{mean_max_temp}{TODO}
 
-\item{mean_min_temp}{}
+\item{mean_min_temp}{TODO}
 
-\item{mean_rel_hum}{}
+\item{mean_rel_hum}{TODO}
 
-\item{link}{}
+\item{link}{TODO}
 
-\item{link_by}{}
+\item{link_by}{TODO}
 
-\item{station_data}{}
+\item{station_data}{TODO}
 
-\item{wmo_number}{}
+\item{wmo_number}{TODO}
 
-\item{latitude}{}
+\item{latitude}{TODO}
 
-\item{longitude}{}
+\item{longitude}{TODO}
 
-\item{country_name}{}
+\item{country_name}{TODO}
 
-\item{station_name}{}
+\item{station_name}{TODO}
 
-\item{height_station}{}
+\item{height_station}{TODO}
 
-\item{height_barometer}{}
+\item{height_barometer}{TODO}
 
-\item{wigos_identifier}{}
+\item{wigos_identifier}{TODO}
 
-\item{folder}{}
+\item{folder}{TODO}
 }
 \value{
 
@@ -80,4 +80,7 @@ wwr_export(
 \description{
 Reshape data into formats required by WMO for submission of climatic data
 this gives Yearly data records with monthly and annual data for a particular year.
+}
+\examples{
+# TODO
 }

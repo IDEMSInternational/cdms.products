@@ -1,13 +1,13 @@
 #' Title
 #'
-#' @param x 
-#' @param n 
-#' @param period 
+#' @param x TODO
+#' @param n TODO
+#' @param period TODO
 #'
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 fourier_series <- function(x, n, period) {
   p2 <- "2 * pi"
   h <-  seq_len(n)

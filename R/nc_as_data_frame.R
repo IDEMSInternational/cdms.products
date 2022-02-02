@@ -1,20 +1,20 @@
 #' Title
 #'
-#' @param nc 
-#' @param vars 
-#' @param keep_raw_time 
-#' @param include_metadata 
-#' @param boundary 
-#' @param lon_points 
-#' @param lat_points 
-#' @param id_points 
-#' @param show_requested_points 
-#' @param great_circle_dist 
+#' @param nc TODO
+#' @param vars TODO
+#' @param keep_raw_time TODO
+#' @param include_metadata TODO
+#' @param boundary TODO
+#' @param lon_points TODO
+#' @param lat_points TODO
+#' @param id_points TODO
+#' @param show_requested_points TODO
+#' @param great_circle_dist TODO
 #'
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 nc_as_data_frame <- function(nc, vars, keep_raw_time = TRUE, include_metadata = TRUE, boundary = NULL, lon_points = NULL, lat_points = NULL, id_points = NULL, show_requested_points = TRUE, great_circle_dist = TRUE) {
   if(missing(vars)) vars <- ncdf4.helpers::nc.get.variable.list(nc)
   if(sum(is.null(lon_points), is.null(lat_points)) == 1) stop("You must specificy both lon_points and lat_points")

@@ -33,31 +33,31 @@ climatic_extremes(
 )
 }
 \arguments{
-\item{data}{}
+\item{data}{The data.frame to calculate from}
 
-\item{date_time}{}
+\item{date_time}{The name of the date column in \code{data}.}
 
-\item{station}{}
+\item{station}{The name of the station column in \code{data}, if the data are for multiple station.}
 
-\item{elements}{}
+\item{elements}{The name of the column in \code{data} to apply the spell condition to}
 
-\item{year}{}
+\item{year}{The name of the year column in \code{data}.}
 
-\item{month}{}
+\item{month}{The name of the month column in \code{data}.}
 
-\item{dekad}{}
+\item{dekad}{TODO}
 
-\item{pentad}{}
+\item{pentad}{TODO}
 
-\item{to}{}
+\item{to}{TODO}
 
-\item{by}{}
+\item{by}{TODO}
 
-\item{doy}{}
+\item{doy}{The name of the day of the year (1-366) column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[doy]])}.}
 
-\item{doy_first}{}
+\item{doy_first}{The first day of the year.}
 
-\item{doy_last}{}
+\item{doy_last}{The last day of the year}
 
 \item{max_val}{If \code{TRUE} calculate the extreme maximum}
 
@@ -89,4 +89,7 @@ any \code{na_} parameters are specified.}
 }
 \description{
 Calculate extremes
+}
+\examples{
+# TODO
 }

@@ -1,18 +1,18 @@
 #' Title
 #' 
-#' @param data 
-#' @param date_time 
-#' @param station 
-#' @param elements 
-#' @param year 
-#' @param month 
-#' @param dekad 
-#' @param pentad 
-#' @param to 
-#' @param by 
-#' @param doy 
-#' @param doy_first 
-#' @param doy_last 
+#' @param data The data.frame to calculate from
+#' @param date_time The name of the date column in \code{data}.
+#' @param station The name of the station column in \code{data}, if the data are for multiple station. 
+#' @param elements The name of the column in \code{data} to apply the spell condition to
+#' @param year The name of the year column in \code{data}.
+#' @param month The name of the month column in \code{data}. 
+#' @param dekad TODO
+#' @param pentad TODO
+#' @param to TODO
+#' @param by TODO
+#' @param doy The name of the day of the year (1-366) column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[doy]])}.
+#' @param doy_first The first day of the year.
+#' @param doy_last The last day of the year
 #' @param summaries A named character vector of summary functions. The names are
 #'   the used as the column names in the results. The values can be any function
 #'   name as a string. e.g. c(mean = "mean", st_dv = "sd", n_na =
@@ -35,7 +35,7 @@
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 #' @importFrom rlang .data
 climatic_summary <- function(data, date_time, station = NULL, elements, 
                              year = NULL, month = NULL, dekad = NULL, 

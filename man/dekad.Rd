@@ -15,3 +15,6 @@ dekad(date)
 \description{
 Title
 }
+\examples{
+# TODO
+}

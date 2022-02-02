@@ -7,11 +7,14 @@
 get_lat_from_data(datafile)
 }
 \arguments{
-\item{datafile}{}
+\item{datafile}{TODO}
 }
 \value{
 
 }
 \description{
 Get the latitude coordinate from the data
+}
+\examples{
+# TODO
 }
