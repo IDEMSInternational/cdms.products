@@ -46,10 +46,10 @@ histogram_plot <- function(data, date_time, elements, station = NULL, facets = c
   if (facets == "elements"){
     if (is.null(station)){
       base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]])) +
-        ggplot2::facet_grid(cols = vars(elements_list))
+        ggplot2::facet_grid(cols = ggplot2::vars(.data$elements_list))
     } else {
       base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], fill = .data[[station]])) +
-        ggplot2::facet_grid(cols = vars(elements_list))
+        ggplot2::facet_grid(cols = ggplot2::vars(.data$elements_list))
     }
   } else if (facets == "stations"){
     if (length(elements) == 1){
@@ -57,10 +57,10 @@ histogram_plot <- function(data, date_time, elements, station = NULL, facets = c
     } else {
       base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], fill = .data$elements_list))
     }
-    base_plot <- base_plot + ggplot2::facet_grid(cols = vars(.data[[station]]))
+    base_plot <- base_plot + ggplot2::facet_grid(cols = ggplot2::vars(.data[[station]]))
   } else if (facets == "both"){
     base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]])) +
-      ggplot2::facet_grid(rows = vars(.data[[station]]), cols = vars(.data$elements_list))
+      ggplot2::facet_grid(rows = ggplot2::vars(.data[[station]]), cols = ggplot2::vars(.data$elements_list))
   } else { # if "none", or NULL
     if (length(elements) == 1){
       if (is.null(station)) {

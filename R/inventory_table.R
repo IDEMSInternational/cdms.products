@@ -18,16 +18,16 @@
 inventory_table <- function(data, date, elements, station = NULL, year = NULL, month = NULL,  
                             day = NULL, missing_indicator = "M", observed_indicator = "X") {
   
-  #checkmate::assert_data_frame(data)
-  #assert_column_names(data, date)
-  #checkmate::assert_string(date)
-  #checkmate::assert_date(data[[date]])
-  #checkmate::assert_character(elements)
-  #assert_column_names(data, elements)
-  #if (!is.null(station)) assert_column_names(data, station)
-  #if (!is.null(year)) assert_column_names(data, year)
-  #if (!is.null(month)) assert_column_names(data, month)
-  #if (!is.null(day)) assert_column_names(data, day)
+  checkmate::assert_data_frame(data)
+  checkmate::assert_string(date)
+  checkmate::assert_date(data[[date]])
+  checkmate::assert_character(elements)
+  assert_column_names(data, elements)
+  if (!is.null(station)) assert_column_names(data, station)
+  if (!is.null(date)) assert_column_names(data, date)
+  if (!is.null(year)) assert_column_names(data, year)
+  if (!is.null(month)) assert_column_names(data, month)
+  if (!is.null(day)) assert_column_names(data, day)
   
   if(is.null(year)) {
     year <- ".year"
@@ -56,10 +56,10 @@ inventory_table <- function(data, date, elements, station = NULL, year = NULL, m
     
     if (is.null(station)){
       summary_data <- inventory_data %>%
-        group_by(.data$element, .data[[year]], .data[[month]])
+        dplyr::group_by(.data$element, .data[[year]], .data[[month]])
     } else {
       summary_data <- inventory_data %>%
-        group_by(.data[[station]], .data$element, .data[[year]], .data[[month]])
+        dplyr::group_by(.data[[station]], .data$element, .data[[year]], .data[[month]])
     }
     summary_data <- summary_data %>%
       dplyr::summarise(Available = sum(.data$value == observed_indicator),
