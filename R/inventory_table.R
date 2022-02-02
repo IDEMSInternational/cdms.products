@@ -56,10 +56,10 @@ inventory_table <- function(data, date, elements, station = NULL, year = NULL, m
     
     if (is.null(station)){
       summary_data <- inventory_data %>%
-        group_by(.data$element, .data[[year]], .data[[month]])
+        dplyr::group_by(.data$element, .data[[year]], .data[[month]])
     } else {
       summary_data <- inventory_data %>%
-        group_by(.data[[station]], .data$element, .data[[year]], .data[[month]])
+        dplyr::group_by(.data[[station]], .data$element, .data[[year]], .data[[month]])
     }
     summary_data <- summary_data %>%
       dplyr::summarise(Available = sum(.data$value == observed_indicator),
