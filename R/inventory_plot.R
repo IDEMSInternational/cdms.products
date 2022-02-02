@@ -5,7 +5,7 @@
 #' @param data The data.frame to calculate from.
 #' @param date The name of the date column in \code{data}.
 #' @param elements The name of the column in \code{data} to apply the function to.
-#' @param stations The name of the station column in \code{data}, if the data are for multiple station. 
+#' @param station The name of the station column in \code{data}, if the data are for multiple station. 
 #' @param year The name of the year column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[date]])}.
 #' @param doy The name of the day of the year (1-366) column in \code{data}. 
 #' If \code{doy} is \code{NULL} then it can be calculated as \code{yday_366(data[[date]])} if \code{date} is provided.

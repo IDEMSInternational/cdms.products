@@ -50,6 +50,8 @@ inventory_plot(
 
 \item{elements}{The name of the column in \code{data} to apply the function to.}
 
+\item{station}{The name of the station column in \code{data}, if the data are for multiple station.}
+
 \item{year}{The name of the year column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[date]])}.}
 
 \item{doy}{The name of the day of the year (1-366) column in \code{data}.
@@ -112,8 +114,6 @@ If \code{doy} is \code{NULL} then it can be calculated as \code{yday_366(data[[d
 \item{rain_cats}{TODO}
 
 \item{coord_flip}{TODO}
-
-\item{stations}{The name of the station column in \code{data}, if the data are for multiple station.}
 }
 \value{
 
