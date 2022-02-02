@@ -11,7 +11,9 @@ inventory_table(
   station = NULL,
   year = NULL,
   month = NULL,
-  day = NULL
+  day = NULL,
+  missing_indicator = "M",
+  observed_indicator = "X"
 )
 }
 \arguments{
@@ -29,6 +31,10 @@ The inventory table is calculated separately for each station.}
 \item{month}{The name of the month column in \code{data}. If \code{NULL} it will be created using \code{lubridate::month(data[[date]])}.}
 
 \item{day}{The name of the day column in \code{data}. If \code{NULL} it will be created using \code{lubridate::day(data[[date]])}.}
+
+\item{missing_indicator}{Indicator to give if the data is missing. Default \code{"M"}.}
+
+\item{observed_indicator}{Indicator to give if the data is observed. Default \code{"X"}.}
 }
 \value{
 

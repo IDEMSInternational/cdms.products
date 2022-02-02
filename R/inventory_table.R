@@ -8,13 +8,15 @@
 #' @param year The name of the year column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[date]])}.
 #' @param month The name of the month column in \code{data}. If \code{NULL} it will be created using \code{lubridate::month(data[[date]])}.
 #' @param day The name of the day column in \code{data}. If \code{NULL} it will be created using \code{lubridate::day(data[[date]])}.
+#' @param missing_indicator Indicator to give if the data is missing. Default \code{"M"}.
+#' @param observed_indicator Indicator to give if the data is observed. Default \code{"X"}.
 #'
 #' @return
 #' @export
 #'
 #' @examples # TODO
 inventory_table <- function(data, date, elements, station = NULL, year = NULL, month = NULL,  
-                            day = NULL) {
+                            day = NULL, missing_indicator = "M", observed_indicator = "X") {
   
   #checkmate::assert_data_frame(data)
   #assert_column_names(data, date)
@@ -40,36 +42,32 @@ inventory_table <- function(data, date, elements, station = NULL, year = NULL, m
     data[[day]] <- lubridate::day(data[[date]])
   }
   
-  if(is.null(station)){
-    inventory_data <- data %>%
-      tidyr::pivot_longer(cols = all_of(elements), names_to = "element") %>%
-      dplyr::select(c(.data[[year]], .data[[month]], .data[[day]], .data$element, .data$value)) %>%
-      dplyr::mutate(value = ifelse(is.na(.data$value), "M", "X")) %>% 
-      tidyr::pivot_wider(id_cols = c(.data$element, .data[[year]], .data[[month]]),
-                         names_from = .data[[day]],
-                         values_from = .data$value) %>%
-      dplyr::rowwise() %>%
-      dplyr::mutate(Available = sum(c(`1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`,
-                                      `16`, `17`, `18`, `19`, `20`, `21`, `22`, `23`, `24`, `25`, `26`, `27`, `28`,
-                                      `29`, `30`, `31`) == "X", na.rm = TRUE)) %>%
-      dplyr::mutate(Missing = sum(c(`1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`,
-                                    `16`, `17`, `18`, `19`, `20`, `21`, `22`, `23`, `24`, `25`, `26`, `27`, `28`,
-                                    `29`, `30`, `31`) == "M", na.rm = TRUE)) 
+  if (is.null(station)){
+    selected_cols <- c(year, month)
   } else {
-    inventory_data <- data %>%
-        tidyr::pivot_longer(cols = all_of(elements), names_to = "element") %>%
-        dplyr::select(c(.data[[year]], .data[[month]], .data[[day]], .data[[station]], .data$element, .data$value)) %>%
-      dplyr::mutate(value = ifelse(is.na(.data$value), "M", "X")) %>% 
-      tidyr::pivot_wider(id_cols = c(.data[[station]], .data$element, .data[[year]], .data[[month]]),
-                         names_from = .data[[day]],
-                         values_from = .data$value) %>%
-      dplyr::rowwise() %>%
-      dplyr::mutate(Available = sum(c(`1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`,
-                                      `16`, `17`, `18`, `19`, `20`, `21`, `22`, `23`, `24`, `25`, `26`, `27`, `28`,
-                                      `29`, `30`, `31`) == "X", na.rm = TRUE)) %>%
-      dplyr::mutate(Missing = sum(c(`1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`,
-                                    `16`, `17`, `18`, `19`, `20`, `21`, `22`, `23`, `24`, `25`, `26`, `27`, `28`,
-                                    `29`, `30`, `31`) == "M", na.rm = TRUE)) 
+    selected_cols <- c(station, year, month)
   }
-  return(inventory_data)
+  
+
+    inventory_data <- data %>%
+        tidyr::pivot_longer(cols = tidyselect::all_of(elements), names_to = "element") %>%
+        dplyr::select(c(tidyselect::all_of(selected_cols), .data[[day]], .data$element, .data$value)) %>%
+      dplyr::mutate(value = ifelse(is.na(.data$value), missing_indicator, observed_indicator))
+    
+    if (is.null(station)){
+      summary_data <- inventory_data %>%
+        group_by(.data$element, .data[[year]], .data[[month]])
+    } else {
+      summary_data <- inventory_data %>%
+        group_by(.data[[station]], .data$element, .data[[year]], .data[[month]])
+    }
+    summary_data <- summary_data %>%
+      dplyr::summarise(Available = sum(.data$value == observed_indicator),
+                       Missing = sum(.data$value == missing_indicator))
+    
+    inventory_data_wider <- inventory_data %>%
+      tidyr::pivot_wider(id_cols = c(tidyselect::all_of(selected_cols), .data$element),
+                         names_from = .data[[day]],
+                         values_from = .data$value)
+  return(dplyr::full_join(inventory_data_wider, summary_data))
 }
