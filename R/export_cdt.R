@@ -16,7 +16,7 @@ export_CDT <- function(data, date, year, station, element, metadata = NULL,
                            ...) {
   checkmate::check_string(file)
   CDT_data <- 
-     prepare_cdt(data = data, date = date, year = year, station = station,
+     prepare_CDT(data = data, date = date, year = year, station = station,
                  element = element, metadata = metadata, join_by = join_by,
                  latitude = latitude, longitude = longitude, altitude = altitude)
   
