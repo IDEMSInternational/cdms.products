@@ -22,13 +22,13 @@
 #' dplyr::group_by(station_name, year, dekad_date) %>%
 #' dplyr::summarise(date = dplyr::first(date), sum = sum(tmax))
 #' 
-#' prepare_CDT(data = summary_data, date = "date", year = "year",
+#' prepare_cdt(data = summary_data, date = "date", year = "year",
 #'             station = "station_name",
 #'             element = "sum", metadata = stations_niger, join_by = "station_name",
 #'             latitude = "lat", longitude = "long", altitude = "alt")
 
 
-prepare_CDT <- function(data, date, year, element, metadata = NULL, join_by = NULL,
+prepare_cdt <- function(data, date, year, element, metadata = NULL, join_by = NULL,
                         station, latitude, longitude, altitude) {
   checkmate::assert_data_frame(data)
   checkmate::assert_string(year)

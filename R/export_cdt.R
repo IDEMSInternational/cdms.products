@@ -1,5 +1,5 @@
 #' Export data in CDT format
-#' @inheritParams prepare_CDT
+#' @inheritParams prepare_cdt
 #' @param file_path TODO
 #' @param ... Other parameters passed to \code{write.csv()}
 #'
@@ -10,17 +10,17 @@
 #' 
 #' 
 #' 
-export_CDT <- function(data, date, year, station, element, metadata = NULL,
+export_cdt <- function(data, date, year, station, element, metadata = NULL,
                            join_by = NULL, latitude, longitude, altitude,
-                           file_path = paste0("GEOCLIM-", element, ".csv"),
+                           file_path = paste0("CDT-", element, ".csv"),
                            ...) {
   checkmate::check_string(file)
-  CDT_data <- 
-     prepare_CDT(data = data, date = date, year = year, station = station,
+  cdt_data <- 
+     prepare_cdt(data = data, date = date, year = year, station = station,
                  element = element, metadata = metadata, join_by = join_by,
                  latitude = latitude, longitude = longitude, altitude = altitude)
   
-  csv_params <- utils::modifyList(list(x = CDT_data,
+  csv_params <- utils::modifyList(list(x = cdt_data,
                                        file = file_path,
                                        row.names = FALSE),
                                   list(...))
