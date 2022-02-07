@@ -64,9 +64,9 @@ histogram_plot <- function(data, date_time, elements, station = NULL, facets = c
   } else { # if "none", or NULL
     if (length(elements) == 1){
       if (is.null(station)) {
-        base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[date_time]], ))
+        base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[date_time]]))
       } else {
-        base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[date_time]], , fill = .data[[station]]))          
+        base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[date_time]], fill = .data[[station]]))          
       }
     } else {
       if (is.null(station)){
@@ -74,7 +74,7 @@ histogram_plot <- function(data, date_time, elements, station = NULL, facets = c
       } else {
         data_longer <- data_longer %>%
           dplyr::mutate(station_elements = paste(.data[[station]], .data$elements_list, sep = "_"))
-        base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], fill = station_elements))
+        base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], fill = .data$station_elements))
       }
     }
   }
