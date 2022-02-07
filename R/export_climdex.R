@@ -44,7 +44,7 @@ export_climdex <- function(data, date = NULL, year = NULL, month = NULL, day = N
     data[[month]] <- lubridate::month(data[[date]])
   }
   if(is.null(day)) {
-    day <- ".day"
+    day <- "day"
     data[[day]] <- lubridate::day(data[[date]])
   }
   
