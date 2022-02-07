@@ -54,7 +54,8 @@ export_climdex <- function(data, date = NULL, year = NULL, month = NULL, day = N
   
   file_params <- utils::modifyList(list(x = climdex_data,
                                         file = file_path,
-                                        row.names = FALSE),
+                                        row.names = FALSE,
+                                        col.names = FALSE),
                                    list(...))
   
   if (file_type == "csv"){
