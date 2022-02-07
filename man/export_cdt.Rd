@@ -6,10 +6,13 @@
 \usage{
 export_cdt(
   data,
-  date,
-  year,
   station,
   element,
+  type = c("dekad", "daily"),
+  date = NULL,
+  year = NULL,
+  month = NULL,
+  dekad = NULL,
   metadata = NULL,
   latitude,
   longitude,
@@ -21,13 +24,19 @@ export_cdt(
 \arguments{
 \item{data}{The data.frame to calculate from.}
 
-\item{date}{The name of the date column in \code{data}.}
-
-\item{year}{The name of the year column in \code{data}.}
-
 \item{station}{The name of the station column in \code{data}.}
 
 \item{element}{The name of the element column in \code{data}.}
+
+\item{type}{Whether \code{dekad} or \code{daily} data is used.}
+
+\item{date}{The name of the date column in \code{data}. Required if \code{type = "daily"}. If \code{type = "dekad"} this is only needed if \code{year}, \code{month}, and \code{dekad} are not specified.}
+
+\item{year}{The name of the year column in \code{data}. Only needed if \code{type = "dekad"}. If \code{NULL} it will be created using \code{lubridate::year(data[[date]])}.}
+
+\item{month}{The name of the month column in \code{data}. Only needed if \code{type = "dekad"}. If \code{NULL} it will be created using \code{lubridate::month(data[[date]])}.}
+
+\item{dekad}{The name of the dekad column in \code{data}. Only needed if \code{type = "dekad"}. If \code{NULL} it will be created using \code{dekad} function.}
 
 \item{metadata}{The metadata data.frame.}
 
