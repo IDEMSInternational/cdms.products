@@ -36,7 +36,7 @@ export_climdex <- function(data, date = NULL, year = NULL, month = NULL, day = N
   file_type <- match.arg(file_type)
   
   if(is.null(year)) {
-    year <- ".year"
+    year <- "year"
     data[[year]] <- lubridate::year(data[[date]])
   }
   if(is.null(month)) {
