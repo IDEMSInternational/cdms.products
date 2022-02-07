@@ -10,7 +10,6 @@ prepare_cdt(
   year,
   element,
   metadata = NULL,
-  join_by = NULL,
   station,
   latitude,
   longitude,
@@ -27,8 +26,6 @@ prepare_cdt(
 \item{element}{The name of the element column in \code{data}.}
 
 \item{metadata}{The metadata data.frame.}
-
-\item{join_by}{The variable to join the two data frames.}
 
 \item{station}{The name of the station column in \code{data}.}
 
@@ -54,6 +51,6 @@ dplyr::summarise(date = dplyr::first(date), sum = sum(tmax))
 
 prepare_cdt(data = summary_data, date = "date", year = "year",
             station = "station_name",
-            element = "sum", metadata = stations_niger, join_by = "station_name",
+            element = "sum", metadata = stations_niger, 
             latitude = "lat", longitude = "long", altitude = "alt")
 }

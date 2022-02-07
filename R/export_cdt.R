@@ -11,13 +11,13 @@
 #' 
 #' 
 export_cdt <- function(data, date, year, station, element, metadata = NULL,
-                           join_by = NULL, latitude, longitude, altitude,
+                           latitude, longitude, altitude,
                            file_path = paste0("CDT-", element, ".csv"),
                            ...) {
   checkmate::check_string(file)
   cdt_data <- 
      prepare_cdt(data = data, date = date, year = year, station = station,
-                 element = element, metadata = metadata, join_by = join_by,
+                 element = element, metadata = metadata,
                  latitude = latitude, longitude = longitude, altitude = altitude)
   
   csv_params <- utils::modifyList(list(x = cdt_data,

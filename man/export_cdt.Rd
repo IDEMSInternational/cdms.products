@@ -11,7 +11,6 @@ export_cdt(
   station,
   element,
   metadata = NULL,
-  join_by = NULL,
   latitude,
   longitude,
   altitude,
@@ -31,8 +30,6 @@ export_cdt(
 \item{element}{The name of the element column in \code{data}.}
 
 \item{metadata}{The metadata data.frame.}
-
-\item{join_by}{The variable to join the two data frames.}
 
 \item{latitude}{The name of the latitude column in \code{metadata}.}
 
