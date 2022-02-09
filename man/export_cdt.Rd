@@ -59,6 +59,4 @@ Export data in CDT format
 \examples{
 # TODO
 
-
-
 }

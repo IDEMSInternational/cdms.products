@@ -14,6 +14,9 @@
 #' @param total_precip TODO
 #' @param total_sunshine TODO
 #' @param folder TODO
+#' @param total_snow_depth Daily total snow depth in cm column name
+#' @param max_ws Daily maximum wind speed in m/s column name
+#' @param min_h_vis Daily minimum horizontal visibility in m column name
 #'
 #' @export
 #'
@@ -28,6 +31,9 @@ export_climat_messages <- function(data, date_time, station_id, year = NULL,
                                    mean_vapour_pressure = NULL, 
                                    total_precip = NULL, 
                                    total_sunshine = NULL, 
+                                   total_snow_depth = NULL,
+                                   max_ws = NULL,
+                                   min_h_vis = NULL,
                                    folder = getwd()) {
   
   checkmate::assert_data_frame(data)
@@ -97,6 +103,9 @@ export_climat_messages <- function(data, date_time, station_id, year = NULL,
   unused_months <- setdiff(levels(data[[month]]), unique(data[[month]]))
   year_levels <- unique(data[[year]])
   station_levels <- unique(data[[station_id]])
+  figs <- function(x, n, na = "/") {
+    ifelse(is.na(x), strrep(na, n), sprintf(paste0("%0", n, "d"), x))
+  }
   monthly_data <- list()
   data_grp <- data %>%
     dplyr::group_by(.data[[station_id]], .data[[year]], .data[[month]])
@@ -125,19 +134,67 @@ export_climat_messages <- function(data, date_time, station_id, year = NULL,
     monthly_data[["monthly_sd"]] <- data_monthly_sd
     sd_mean_temp_col <- "sd_mean_temp"
   }
+  if (!is.null(mean_max_temp)) {
+    data_monthly_tmax <- data_grp %>%
+      dplyr::summarise(
+        t25 = figs(sum(.data[[mean_max_temp]] >= 25), 2),
+        t30 = figs(sum(.data[[mean_max_temp]] >= 30), 2),
+        t35 = figs(sum(.data[[mean_max_temp]] >= 35), 2),
+        t40 = figs(sum(.data[[mean_max_temp]] >= 40), 2),
+        tx0 = figs(sum(.data[[mean_max_temp]] < 0), 2)
+        )
+    monthly_data[["monthly_tmax"]] <- data_monthly_tmax
+  }
+  if (!is.null(mean_min_temp)) {
+    data_monthly_tmin <- data_grp %>%
+      dplyr::summarise(
+        tn0 = figs(sum(.data[[mean_min_temp]] < 0), 2)
+        )
+    monthly_data[["monthly_tmin"]] <- data_monthly_tmin
+  }
   if (!is.null(total_precip)) {
     data_monthly_precip <- data_grp %>%
       dplyr::summarise(sum_total_precip = sum(.data[[total_precip]]),
-                       n1_total_precip = sum(.data[[total_precip]] >= 1))
+                       r01 = figs(sum(.data[[total_precip]] >= 1), 2),
+                       r05 = figs(sum(.data[[total_precip]] >= 5), 2),
+                       r10 = figs(sum(.data[[total_precip]] >= 10), 2),
+                       r50 = figs(sum(.data[[total_precip]] >= 50), 2),
+                       r100 = figs(sum(.data[[total_precip]] >= 100), 2),
+                       r150 = figs(sum(.data[[total_precip]] >= 150), 2)
+      )
     monthly_data[["monthly_precip"]] <- data_monthly_precip
     sum_precip_col <- "sum_total_precip"
-    n1_precip_col <- "n1_total_precip"
   }
   if (!is.null(total_sunshine)) {
     data_monthly_sunshine <- data_grp %>%
       dplyr::summarise(sum_total_sunshine = sum(.data[[total_sunshine]]))
     monthly_data[["monthly_sunshine"]] <- data_monthly_sunshine
     sum_sunshine_col <- "sum_total_sunshine"
+  }
+  if (!is.null(total_snow_depth)) {
+    data_monthly_snow <- data_grp %>%
+      dplyr::summarise(s00 = figs(sum(.data[[total_snow_depth]] > 0), 2),
+                       s01 = figs(sum(.data[[total_snow_depth]] > 1), 2),
+                       s10 = figs(sum(.data[[total_snow_depth]] > 10), 2),
+                       s50 = figs(sum(.data[[total_snow_depth]] > 50), 2)
+      )
+    monthly_data[["monthly_snow"]] <- data_monthly_snow
+  }
+  if (!is.null(max_ws)) {
+    data_monthly_ws <- data_grp %>%
+      dplyr::summarise(f10 = figs(sum(.data[[max_ws]] > 10), 2),
+                       f20 = figs(sum(.data[[max_ws]] > 20), 2),
+                       f30 = figs(sum(.data[[max_ws]] > 30), 2)
+      )
+    monthly_data[["monthly_ws"]] <- data_monthly_ws
+  }
+  if (!is.null(min_h_vis)) {
+    data_monthly_vis <- data_grp %>%
+      dplyr::summarise(v1 = figs(sum(.data[[min_h_vis]] < 50), 2),
+                       v2 = figs(sum(.data[[min_h_vis]] < 100), 2),
+                       v3 = figs(sum(.data[[min_h_vis]] < 1000), 2)
+      )
+    monthly_data[["monthly_vis"]] <- data_monthly_vis
   }
   data_monthly <- 
     Reduce(function(x, y) dplyr::left_join(x, y, 
@@ -230,7 +287,6 @@ export_climat_messages <- function(data, date_time, station_id, year = NULL,
         sum_total_precip = ifelse(.data[[sum_precip_col]] == -1, 
                                   9999, .data[[sum_precip_col]]),
         sum_total_precip = sprintf("%04d", .data$sum_total_precip),
-        n1_total_precip = sprintf("%02d", .data[[n1_precip_col]]),
         na_total_precip = sprintf("%02d", .data[[na_precip_col]])
       )
   }
@@ -251,9 +307,13 @@ export_climat_messages <- function(data, date_time, station_id, year = NULL,
     mm <- which(m == month_levels)
     mm <- sprintf("%02d", mm)
     lines <- c()
+    
+    # Section 0
     sec0 <- paste0("CLIMAT", " ", mm, jjj, " ", s)
     lines <- append(lines, sec0)
-    sec1 <- c()
+    
+    # Section 1
+    sec1 <- "111"
     grp_8 <- "8"
     grp_9 <- "9"
     if (!is.null(mean_pressure_station) && 
@@ -303,7 +363,7 @@ export_climat_messages <- function(data, date_time, station_id, year = NULL,
                              data_monthly$sum_total_precip[i],
                              # TODO Implement relative position in 30 year climatology
                              "/",
-                             data_monthly$n1_total_precip[i]))
+                             data_monthly$r01[i]))
       grp_9 <- paste0(grp_9, data_monthly$na_total_precip[i])
     } else grp_9 <- paste0(grp_9, "00")
     if (!is.null(total_sunshine) && 
@@ -319,7 +379,62 @@ export_climat_messages <- function(data, date_time, station_id, year = NULL,
     sec1 <- append(sec1, grp_8)
     sec1 <- append(sec1, grp_9)
     lines <- append(lines, paste(sec1, collapse = " "))
-    # TODO Add optional sections 2, 3 & 4 to function.
+    
+    # Section 3
+    sec3 <- "333"
+    if (!is.null(mean_max_temp) && !is.null(mean_min_temp)) {
+      if (data_monthly$t25[i] != "00" || data_monthly$t30 != "00") {
+        sec3 <- append(sec3, 
+                       paste0("0", data_monthly$t25[i], data_monthly$t30[i]))
+      }
+      if (data_monthly$t35[i] != "00" || data_monthly$t40 != "00") {
+        sec3 <- append(sec3, 
+                       paste0("1", data_monthly$t35[i], data_monthly$t40[i]))
+      }
+      if (data_monthly$tn0[i] != "00" || data_monthly$tx0 != "00") {
+        sec3 <- append(sec3, 
+                       paste0("2", data_monthly$t35[i], data_monthly$t40[i]))
+      }
+    }
+    if (!is.null(total_precip)) {
+      if (data_monthly$r01[i] != "00" || data_monthly$r05 != "00") {
+        sec3 <- append(sec3, 
+                       paste0("3", data_monthly$r01[i], data_monthly$r05[i]))
+      }
+      if (data_monthly$r10[i] != "00" || data_monthly$r50 != "00") {
+        sec3 <- append(sec3, 
+                       paste0("4", data_monthly$r10[i], data_monthly$r50[i]))
+      }
+      if (data_monthly$r100[i] != "00" || data_monthly$r150 != "00") {
+        sec3 <- append(sec3, 
+                       paste0("5", data_monthly$r100[i], data_monthly$r150[i]))
+      }
+    }
+    if (!is.null(total_snow_depth)) {
+      if (data_monthly$s00[i] != "00" || data_monthly$s01 != "00") {
+        sec3 <- append(sec3, 
+                       paste0("6", data_monthly$s00[i], data_monthly$s01[i]))
+      }
+      if (data_monthly$s10[i] != "00" || data_monthly$s50 != "00") {
+        sec3 <- append(sec3, 
+                       paste0("7", data_monthly$s10[i], data_monthly$s50[i]))
+      }
+    }
+    if (!is.null(max_ws)) {
+      if (data_monthly$f10[i] != "00" || data_monthly$f20 != "00" || data_monthly$f30 != "00") {
+        sec3 <- append(sec3, 
+                       paste0("8", data_monthly$f10[i], data_monthly$f20[i], data_monthly$f30[i]))
+      }
+    }
+    if (!is.null(min_h_vis)) {
+      if (data_monthly$v1[i] != "00" || data_monthly$v2 != "00" || data_monthly$v3 != "00") {
+        sec3 <- append(sec3, 
+                       paste0("9", data_monthly$v1[i], data_monthly$v2[i], data_monthly$v3[i]))
+      }
+    }
+    lines <- append(lines, paste(sec3, collapse = " "))
+    
+    # TODO Add optional sections 2 & 4 to function.
     file_path <- paste0(folder, "/", "climat", s, y, mm, ".a")
     writeLines(lines, file_path)
     message("CLIMAT Message saved at: '", file_path, "'")
