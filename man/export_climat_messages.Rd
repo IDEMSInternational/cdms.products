@@ -18,6 +18,9 @@ export_climat_messages(
   mean_vapour_pressure = NULL,
   total_precip = NULL,
   total_sunshine = NULL,
+  total_snow_depth = NULL,
+  max_ws = NULL,
+  min_h_vis = NULL,
   folder = getwd()
 )
 }
@@ -47,6 +50,12 @@ export_climat_messages(
 \item{total_precip}{TODO}
 
 \item{total_sunshine}{TODO}
+
+\item{total_snow_depth}{Daily total snow depth in cm column name}
+
+\item{max_ws}{Daily maximum wind speed in m/s column name}
+
+\item{min_h_vis}{Daily minimum horizontal visibility in m column name}
 
 \item{folder}{TODO}
 }
