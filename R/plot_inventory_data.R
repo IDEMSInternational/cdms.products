@@ -47,7 +47,7 @@ plot_inventory_data <- function(data, station = NULL, elements, y = c("count", "
   }
   if ((columns == "stations") & is.null(station)){
     warning("columns set to `elements` since no stations are given in data")
-    columns = "elements"
+    columns <- "elements"
   }
   if ((fill == "stations") & is.null(station)){
     warning("fill set to `none` since no stations are given in data")
