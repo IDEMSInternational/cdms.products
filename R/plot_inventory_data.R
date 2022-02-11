@@ -43,7 +43,7 @@ plot_inventory_data <- function(data, station = NULL, elements, y = c("count", "
 
   if ((facets == "stations") & is.null(station)){
     warning("facets set to none since no stations are given in data")
-    facets = "none"
+    facets <- "none"
   }
   if ((columns == "stations") & is.null(station)){
     warning("columns set to `elements` since no stations are given in data")
