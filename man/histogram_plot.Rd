@@ -16,7 +16,7 @@ histogram_plot(
   bins = NULL,
   na.rm = FALSE,
   orientation = NA,
-  show.legend = NA,
+  show_legend = NA,
   breaks = NULL
 )
 }
@@ -44,7 +44,7 @@ Histogram plots are calculated separately for each station.}
 
 \item{orientation}{The orientation of the layer. The default (\code{NA}) automatically determines the orientation from the aesthetic mapping. In the rare event that this fails it can be given explicitly by setting \code{orientation} to either "x" or "y".}
 
-\item{show.legend}{logical. Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.}
+\item{show_legend}{logical. Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.}
 
 \item{breaks}{A numeric vector giving the bin boundaries. Overrides \code{binwidth} and \code{bins}.}
 }
