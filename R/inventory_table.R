@@ -15,8 +15,6 @@
 #' @export
 #'
 #' @examples # TODO
-#' data(niger_daily_date)
-#' inventory_table(data = niger_daily_date, station = "Name", date = "date", elements = "tmax")
 inventory_table <- function(data, date, elements, station = NULL, year = NULL, month = NULL,  
                             day = NULL, missing_indicator = "M", observed_indicator = "X") {
   

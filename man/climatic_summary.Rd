@@ -19,7 +19,7 @@ climatic_summary(
   doy = NULL,
   doy_first = 1,
   doy_last = 366,
-  summaries,
+  summaries = c(n = "dplyr::n"),
   na_rm = FALSE,
   na_prop = NULL,
   na_n = NULL,
