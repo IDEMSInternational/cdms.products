@@ -51,7 +51,7 @@ plot_inventory_data <- function(data, station = NULL, elements, y = c("count", "
   }
   if ((fill == "stations") & is.null(station)){
     warning("fill set to `none` since no stations are given in data")
-    fill = "none"
+    fill <- "none"
   }
   
   summary_table <- summarise_inventory_data(data = data, station = station, elements = elements)
