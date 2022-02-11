@@ -8,7 +8,7 @@ climatic_summary(
   data,
   date_time,
   station = NULL,
-  elements,
+  elements = NULL,
   year = NULL,
   month = NULL,
   dekad = NULL,

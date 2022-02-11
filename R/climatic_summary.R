@@ -37,7 +37,7 @@
 #'
 #' @examples # TODO
 #' @importFrom rlang .data
-climatic_summary <- function(data, date_time, station = NULL, elements, 
+climatic_summary <- function(data, date_time, station = NULL, elements = NULL, 
                              year = NULL, month = NULL, dekad = NULL, 
                              pentad = NULL,
                              to = c("hourly", "daily", "pentad", "dekadal", 
