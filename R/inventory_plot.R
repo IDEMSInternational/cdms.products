@@ -78,11 +78,11 @@ inventory_plot <- function(data, date, elements, station = NULL, year = NULL, do
   # Add year and doy columns if doing year_doy plot
   if(year_doy_plot) {
     if(is.null(year)) {
-      year <- ".year"
+      year <- "year"
       data[[year]] <- lubridate::year(data[[date]])
     }
     if(is.null(doy)) {
-      doy <- ".doy"
+      doy <- "doy"
       data[[doy]] <- yday_366(data[[date]])
     }
   }
@@ -96,7 +96,7 @@ inventory_plot <- function(data, date, elements, station = NULL, year = NULL, do
     multi_elements <- TRUE
   } else multi_elements <- FALSE
   
-  key_name <- ".key"
+  key_name <- "key"
   data[[key_name]] <- factor(ifelse(is.na(data[[elements]]), missing_label, present_label), levels = c(present_label, missing_label))
   
   key <- c(missing_colour, present_colour)

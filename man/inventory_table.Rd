@@ -44,4 +44,5 @@ Inventory Table
 }
 \examples{
 # TODO
+inventory_table(data = niger_daily_date, station = "Name", date = "date", elements = "tmax")
 }
