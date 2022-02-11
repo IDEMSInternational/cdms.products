@@ -16,8 +16,8 @@ inventory_plot(
   facet_x_size = 7,
   facet_y_size = 11,
   title = "Inventory Plot",
-  plot.title_size = NULL,
-  plot.title_hjust = 0.5,
+  plot_title_size = NULL,
+  plot_title_hjust = 0.5,
   x_title = NULL,
   y_title = NULL,
   x_scale_from = NULL,
@@ -67,9 +67,9 @@ If \code{doy} is \code{NULL} then it can be calculated as \code{yday_366(data[[d
 
 \item{title}{The text for the title.}
 
-\item{plot.title_size}{TODO}
+\item{plot_title_size}{TODO}
 
-\item{plot.title_hjust}{TODO}
+\item{plot_title_hjust}{TODO}
 
 \item{x_title}{The text for the x-axis.}
 
