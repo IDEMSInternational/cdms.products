@@ -20,7 +20,7 @@ climatic_summary(
   doy_first = 1,
   doy_last = 366,
   summaries,
-  na.rm = FALSE,
+  na_rm = FALSE,
   na_prop = NULL,
   na_n = NULL,
   na_consec = NULL,
@@ -28,7 +28,7 @@ climatic_summary(
   first_date = FALSE,
   n_dates = FALSE,
   last_date = FALSE,
-  summaries.params = list(),
+  summaries_params = list(),
   names = "{.fn}_{.col}"
 )
 }
@@ -64,7 +64,7 @@ the used as the column names in the results. The values can be any function
 name as a string. e.g. c(mean = "mean", st_dv = "sd", n_na =
 "naflex::na_n")}
 
-\item{na.rm}{If \code{TRUE} all \code{na_} parameters are ignored and missing
+\item{na_rm}{If \code{TRUE} all \code{na_} parameters are ignored and missing
 values are removed. If \code{FALSE} missing values are not removed unless
 any \code{na_} parameters are specified.}
 
@@ -82,7 +82,7 @@ any \code{na_} parameters are specified.}
 
 \item{last_date}{If \code{TRUE} the last instance of \code{date_time} when the value equals the summary value is included. Generally only used for extreme summaries i.e. last \code{date_time} when the maximum occurred.}
 
-\item{summaries.params}{Additional parameters to pass to \code{summaries}.
+\item{summaries_params}{Additional parameters to pass to \code{summaries}.
 Must be a list of lists with the same names as \code{summaries}.}
 
 \item{names}{Format of column names. Passed to \code{.names} in
