@@ -30,15 +30,15 @@ inventory_table <- function(data, date, elements, station = NULL, year = NULL, m
   if (!is.null(day)) assert_column_names(data, day)
   
   if(is.null(year)) {
-    year <- ".year"
+    year <- "year"
     data[[year]] <- lubridate::year(data[[date]])
   }
   if(is.null(month)) {
-    month <- ".month"
+    month <- "month"
     data[[month]] <- lubridate::month(data[[date]])
   }
   if(is.null(day)) {
-    day <- ".day"
+    day <- "day"
     data[[day]] <- lubridate::day(data[[date]])
   }
   
@@ -48,7 +48,6 @@ inventory_table <- function(data, date, elements, station = NULL, year = NULL, m
     selected_cols <- c(station, year, month)
   }
   
-
     inventory_data <- data %>%
         tidyr::pivot_longer(cols = tidyselect::all_of(elements), names_to = "element") %>%
         dplyr::select(c(tidyselect::all_of(selected_cols), .data[[day]], .data$element, .data$value)) %>%

@@ -14,7 +14,7 @@
 #' @param facet_x_size TODO
 #' @param facet_y_size TODO
 #' @param title The text for the title.
-#' @param plot.title_size TODO
+#' @param plot_title_size TODO
 #' @param x_title The text for the x-axis.
 #' @param y_title The text for the y-axis.
 #' @param x_scale_from TODO - see ?scale_continuous 
@@ -37,7 +37,7 @@
 #' @param rain TODO
 #' @param rain_cats TODO 
 #' @param coord_flip TODO
-#' @param plot.title_hjust TODO
+#' @param plot_title_hjust TODO
 #'
 #' @return
 #' @export
@@ -46,7 +46,7 @@
 inventory_plot <- function(data, date, elements, station = NULL, year = NULL, doy = NULL,  
                            year_doy_plot = FALSE, facet_by = NULL, 
                            facet_x_size = 7, facet_y_size = 11,
-                           title = "Inventory Plot", plot.title_size = NULL, plot.title_hjust = 0.5,
+                           title = "Inventory Plot", plot_title_size = NULL, plot_title_hjust = 0.5,
                            x_title = NULL, y_title = NULL, 
                            x_scale_from = NULL, x_scale_to = NULL, x_scale_by = NULL, 
                            y_date_format = NULL, y_date_scale_by = NULL, y_date_scale_step = 1,
@@ -78,11 +78,11 @@ inventory_plot <- function(data, date, elements, station = NULL, year = NULL, do
   # Add year and doy columns if doing year_doy plot
   if(year_doy_plot) {
     if(is.null(year)) {
-      year <- ".year"
+      year <- "year"
       data[[year]] <- lubridate::year(data[[date]])
     }
     if(is.null(doy)) {
-      doy <- ".doy"
+      doy <- "doy"
       data[[doy]] <- yday_366(data[[date]])
     }
   }
@@ -96,7 +96,7 @@ inventory_plot <- function(data, date, elements, station = NULL, year = NULL, do
     multi_elements <- TRUE
   } else multi_elements <- FALSE
   
-  key_name <- ".key"
+  key_name <- "key"
   data[[key_name]] <- factor(ifelse(is.na(data[[elements]]), missing_label, present_label), levels = c(present_label, missing_label))
   
   key <- c(missing_colour, present_colour)
@@ -261,6 +261,6 @@ inventory_plot <- function(data, date, elements, station = NULL, year = NULL, do
     ggplot2::labs(title = title) + 
     ggplot2::theme(strip.text.x = ggplot2::element_text(margin = facet_x_margin, size = facet_x_size), 
                    strip.text.y = ggplot2::element_text(margin = facet_y_margin, size = facet_y_size), 
-                   plot.title = ggplot2::element_text(hjust = plot.title_hjust, size = plot.title_size))
+                   plot.title = ggplot2::element_text(hjust = plot_title_hjust, size = plot_title_size))
   return(g)
 }

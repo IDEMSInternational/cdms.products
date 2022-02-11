@@ -7,7 +7,7 @@
 #' Histogram plots are calculated separately for each station.
 #' @param facets How to split the histograms. Default \code{"station"}. Can be one of \code{"elements"}, \code{"both"}, or \code{"none"}.
 #' @param na.rm If \code{FALSE}, the default, missing values are removed with a warning. If \code{TRUE}, missing values are silently removed.
-#' @param show.legend logical. Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.
+#' @param show_legend logical. Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @param plot_type Type of plot to display. Can be one of \code{"histogram"}, \code{"density"}, or \code{"frequency"}.
 #' @param binwidth The width of the bins. Can be specified as a numeric value or as a function that calculates width from unscaled x. Here, "unscaled x" refers to the original x values in the data, before application of any scale transformation. When specifying a function along with a grouping structure, the function will be called once per group. The default is to use the number of bins in \code{bins}, covering the range of the data. You should always override this value, exploring multiple widths to find the best to illustrate the stories in your data.
@@ -22,7 +22,7 @@
 histogram_plot <- function(data, date_time, elements, station = NULL, facets = c("stations", "elements", "both", "none"),
                            position = c("identity", "dodge", "dodge2", "stack"), # others?
                            plot_type = c("histogram", "density", "frequency"), # ridges is in geom_density_ridges in ggridges pkg.
-                           binwidth = NULL, bins = NULL, na.rm = FALSE, orientation = NA, show.legend = NA, breaks = NULL){
+                           binwidth = NULL, bins = NULL, na.rm = FALSE, orientation = NA, show_legend = NA, breaks = NULL){
   
   checkmate::assert_data_frame(data)
   # date_time can be a date, factor, or character.
@@ -32,7 +32,7 @@ histogram_plot <- function(data, date_time, elements, station = NULL, facets = c
   position <- match.arg(position)
   plot_type <- match.arg(plot_type)
   checkmate::assert_logical(na.rm)
-  checkmate::assert_logical(show.legend)
+  checkmate::assert_logical(show_legend)
   
   # todo: checks for binwidth, bins, orientation
   
@@ -80,11 +80,11 @@ histogram_plot <- function(data, date_time, elements, station = NULL, facets = c
   }
   
   if (plot_type == "histogram"){
-    base_plot <- base_plot + ggplot2::geom_histogram(position = position, binwidth = binwidth, bins = bins, na.rm = na.rm, orientation = orientation, show.legend = show.legend, breaks = breaks)
+    base_plot <- base_plot + ggplot2::geom_histogram(position = position, binwidth = binwidth, bins = bins, na.rm = na.rm, orientation = orientation, show.legend = show_legend, breaks = breaks)
   } else if (plot_type == "frequency"){
-    base_plot <- base_plot + ggplot2::geom_freqpoly(position = position, na.rm = na.rm, show.legend = show.legend)
+    base_plot <- base_plot + ggplot2::geom_freqpoly(position = position, na.rm = na.rm, show.legend = show_legend)
   } else if (plot_type == "density"){
-    base_plot <- base_plot + ggplot2::geom_density(position = position, na.rm = na.rm, orientation = orientation, show.legend = show.legend)
+    base_plot <- base_plot + ggplot2::geom_density(position = position, na.rm = na.rm, orientation = orientation, show.legend = show_legend)
   }
   
   return(base_plot)

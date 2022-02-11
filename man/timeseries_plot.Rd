@@ -15,8 +15,8 @@ timeseries_plot(
   se = TRUE,
   add_path = FALSE,
   add_step = FALSE,
-  na.rm = FALSE,
-  show.legend = NA
+  na_rm = FALSE,
+  show_legend = NA
 )
 }
 \arguments{
@@ -41,9 +41,9 @@ Timeseries plots are calculated separately for each station.}
 
 \item{add_step}{logical. If \code{TRUE}, steps are added to the plot using  \code{"ggplot2::geom_step()"}.}
 
-\item{na.rm}{If \code{FALSE}, the default, missing values are removed with a warning. If \code{TRUE}, missing values are silently removed.}
+\item{na_rm}{If \code{FALSE}, the default, missing values are removed with a warning. If \code{TRUE}, missing values are silently removed.}
 
-\item{show.legend}{logical. Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.}
+\item{show_legend}{logical. Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.}
 }
 \value{
 

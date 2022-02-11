@@ -24,7 +24,7 @@ climatic_extremes(
   first_date = FALSE,
   n_dates = FALSE,
   last_date = FALSE,
-  na.rm = FALSE,
+  na_rm = FALSE,
   na_prop = NULL,
   na_n = NULL,
   na_consec = NULL,
@@ -69,7 +69,7 @@ climatic_extremes(
 
 \item{last_date}{If \code{TRUE} the last instance of \code{date_time} when the value equals the summary value is included. Generally only used for extreme summaries i.e. last \code{date_time} when the maximum occurred.}
 
-\item{na.rm}{If \code{TRUE} all \code{na_} parameters are ignored and missing
+\item{na_rm}{If \code{TRUE} all \code{na_} parameters are ignored and missing
 values are removed. If \code{FALSE} missing values are not removed unless
 any \code{na_} parameters are specified.}
 

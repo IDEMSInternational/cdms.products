@@ -17,7 +17,7 @@
 #'   the used as the column names in the results. The values can be any function
 #'   name as a string. e.g. c(mean = "mean", st_dv = "sd", n_na =
 #'   "naflex::na_n")
-#' @param na.rm If \code{TRUE} all \code{na_} parameters are ignored and missing
+#' @param na_rm If \code{TRUE} all \code{na_} parameters are ignored and missing
 #'   values are removed. If \code{FALSE} missing values are not removed unless
 #'   any \code{na_} parameters are specified.
 #' @param na_prop Max proportion of missing values allowed
@@ -26,7 +26,7 @@
 #' @param na_n_non Min number of non-missing values required
 #' @param names Format of column names. Passed to \code{.names} in
 #'   \code{dplyr::across}
-#' @param summaries.params Additional parameters to pass to \code{summaries}.
+#' @param summaries_params Additional parameters to pass to \code{summaries}.
 #'   Must be a list of lists with the same names as \code{summaries}.
 #' @param first_date If \code{TRUE} the first instance of \code{date_time} when the value equals the summary value is included. Generally only used for extreme summaries i.e. first \code{date_time} when the maximum occurred.
 #' @param n_dates If \code{TRUE} the number of \code{date_time} points when the value equals the summary value is included. Generally only used for extreme summaries i.e. number of days in which the minimum occurred.
@@ -37,7 +37,7 @@
 #'
 #' @examples # TODO
 #' @importFrom rlang .data
-climatic_summary <- function(data, date_time, station = NULL, elements, 
+climatic_summary <- function(data, date_time, station = NULL, elements = NULL, 
                              year = NULL, month = NULL, dekad = NULL, 
                              pentad = NULL,
                              to = c("hourly", "daily", "pentad", "dekadal", 
@@ -47,11 +47,11 @@ climatic_summary <- function(data, date_time, station = NULL, elements,
                                     "overall"),
                              by = NULL,
                              doy = NULL, doy_first = 1, doy_last = 366, 
-                             summaries, na.rm = FALSE,
+                             summaries = c(n = "dplyr::n"), na_rm = FALSE,
                              na_prop = NULL, na_n = NULL, na_consec = NULL, 
                              na_n_non = NULL,
                              first_date = FALSE, n_dates = FALSE, last_date = FALSE,
-                             summaries.params = list(), names = "{.fn}_{.col}") {
+                             summaries_params = list(), names = "{.fn}_{.col}") {
   
   checkmate::assert_data_frame(data)
   assert_column_names(data, date_time)
@@ -70,7 +70,7 @@ climatic_summary <- function(data, date_time, station = NULL, elements,
   to <- match.arg(to)
   checkmate::assert_character(summaries)
 
-  checkmate::assert_logical(na.rm)
+  checkmate::assert_logical(na_rm)
   checkmate::assert_number(na_prop, lower = 0, upper = 1, null.ok = TRUE)
   checkmate::assert_int(na_n, lower = 0, null.ok = TRUE)
   checkmate::assert_int(na_consec, lower = 0, null.ok = TRUE)
@@ -82,9 +82,9 @@ climatic_summary <- function(data, date_time, station = NULL, elements,
 
   any_na_params <- !is.null(na_prop) || !is.null(na_n) || 
     !is.null(na_consec) || !is.null(na_n_non)
-  if (na.rm) {
+  if (na_rm) {
     if (any_na_params) {
-      warning("'na.rm = TRUE' will override na_prop, 
+      warning("'na_rm = TRUE' will override na_prop, 
             na_n, na_consec and na_n_non")
     }
     na_prop <- 1
@@ -93,7 +93,7 @@ climatic_summary <- function(data, date_time, station = NULL, elements,
     na_n_non <- NULL
     any_na_params <- TRUE
   }
-  checkmate::assert_list(summaries.params, types = "list", names = "unique")
+  checkmate::assert_list(summaries_params, types = "list", names = "unique")
   
   checkmate::assert_int(doy_first, lower = 1, upper = 366)
   checkmate::assert_int(doy_last, lower = 1, upper = 366)
@@ -199,7 +199,7 @@ climatic_summary <- function(data, date_time, station = NULL, elements,
   for (i in seq_along(summaries)) {
     fn_exp <- summaries[[i]]
     fn_exp <- paste0(fn_exp, "(", .x_call)
-    add_params <- summaries.params[[names(summaries)[i]]]
+    add_params <- summaries_params[[names(summaries)[i]]]
     fn_exp <- add_params(fn_exp, add_params)
     fn_exp <- paste0(fn_exp, ")")
     exp_summaries[[i]] <- fn_exp
