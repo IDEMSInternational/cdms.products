@@ -3,15 +3,15 @@
 #' @param data The data.frame to calculate from.
 #' @param station The name of the station column in \code{data}.
 #' @param element The name of the element column in \code{data}.
+#' @param latitude The name of the latitude column in \code{metadata}.
+#' @param longitude The name of the longitude column in \code{metadata}.
+#' @param altitude The name of the altitude column in \code{metadata}.
 #' @param type Whether \code{dekad} or \code{daily} data is used.
 #' @param date The name of the date column in \code{data}. Required if \code{type = "daily"}. If \code{type = "dekad"} this is only needed if \code{year}, \code{month}, and \code{dekad} are not specified.
 #' @param year The name of the year column in \code{data}. Only needed if \code{type = "dekad"}. If \code{NULL} it will be created using \code{lubridate::year(data[[date]])}.
 #' @param month The name of the month column in \code{data}. Only needed if \code{type = "dekad"}. If \code{NULL} it will be created using \code{lubridate::month(data[[date]])}.
 #' @param dekad The name of the dekad column in \code{data}. Only needed if \code{type = "dekad"}. If \code{NULL} it will be created using \code{dekad} function.
 #' @param metadata The metadata data.frame.
-#' @param latitude The name of the latitude column in \code{metadata}.
-#' @param longitude The name of the longitude column in \code{metadata}.
-#' @param altitude The name of the altitude column in \code{metadata}.
 #'
 #' @return
 #' @export
@@ -30,9 +30,10 @@
 #'             latitude = "lat", longitude = "long", altitude = "alt")
 
 
-prepare_cdt <- function(data, station, element, type = c("dekad", "daily"),
-                        date = NULL, year = NULL, month = NULL, dekad = NULL, 
-                        metadata = NULL, latitude, longitude, altitude) {
+prepare_cdt <- function(data, station, element, latitude, longitude, 
+                        altitude, type = c("dekad", "daily"), date = NULL, 
+                        year = NULL, month = NULL, dekad = NULL, 
+                        metadata = NULL) {
   
   checkmate::assert_data_frame(data)
   checkmate::assert_string(element)

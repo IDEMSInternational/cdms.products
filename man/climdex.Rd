@@ -24,7 +24,7 @@ climdex(
   max.missing.days = c(annual = 15, monthly = 3),
   min.base.data.fraction.present = 0.1,
   spells.can.span.years = FALSE,
-  gsl.mode = "GSL",
+  gsl.mode = c("GSL", "GSL_first", "GSL_max", "GSL_sum"),
   threshold = 1
 )
 }

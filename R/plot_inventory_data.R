@@ -1,9 +1,9 @@
 #' Title
 #'
 #' @param data The data.frame to calculate from
+#' @param elements The name of the columns in \code{data} to apply the summary calculation to.
 #' @param station The name of the station column in \code{data}, if the data are for multiple station. 
 #' The summary table is calculated separately for each station.
-#' @param elements The name of the columns in \code{data} to apply the summary calculation to.
 #' @param y Whether to display counts or percentages.
 #' @param columns Whether to display stations or elements on the columns.
 #' @param fill Whether to fill by stations, elements, or neither.
@@ -29,11 +29,11 @@
 #'                     elements = c("tmin", "tmax"), display_perc = TRUE,
 #'                     display_count = TRUE)
 
-plot_inventory_data <- function(data, station = NULL, elements, y = c("count", "percentage"),
+plot_inventory_data <- function(data, elements, station = NULL, y = c("count", "percentage"),
                                 columns = c("elements", "stations"),
                                 fill = c("none", "stations", "elements"),
                                 facets = c("stations", "elements", "none"),
-                                display_perc = FALSE, display_count = FALSE){
+                                display_perc = FALSE, display_count = FALSE) {
   checkmate::assert_logical(display_perc)
   checkmate::assert_logical(display_count)
   y <- match.arg(y)

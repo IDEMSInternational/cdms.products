@@ -6,6 +6,6 @@
 #' @export
 #'
 #' @examples # TODO
-get_lon_from_data <- function(datafile){
+get_lon_from_data <- function(datafile) {
   return(stats::na.omit(as.numeric(unique(t(datafile[5,2:ncol(datafile)])))))
 }

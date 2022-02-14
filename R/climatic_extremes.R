@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples # TODO
-climatic_extremes <- function(data, date_time, station = NULL, elements, 
+climatic_extremes <- function(data, date_time, elements, station = NULL,
                               year = NULL, month = NULL, dekad = NULL, 
                               pentad = NULL,
                               to = c("hourly", "daily", "pentad", "dekadal", 

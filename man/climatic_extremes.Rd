@@ -7,8 +7,8 @@
 climatic_extremes(
   data,
   date_time,
-  station = NULL,
   elements,
+  station = NULL,
   year = NULL,
   month = NULL,
   dekad = NULL,
@@ -37,9 +37,9 @@ climatic_extremes(
 
 \item{date_time}{The name of the date column in \code{data}.}
 
-\item{station}{The name of the station column in \code{data}, if the data are for multiple station.}
-
 \item{elements}{The name of the column in \code{data} to apply the spell condition to}
+
+\item{station}{The name of the station column in \code{data}, if the data are for multiple station.}
 
 \item{year}{The name of the year column in \code{data}.}
 

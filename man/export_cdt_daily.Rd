@@ -9,10 +9,10 @@ export_cdt_daily(
   station,
   element,
   date,
-  metadata = NULL,
   latitude,
   longitude,
   altitude,
+  metadata = NULL,
   file_path = paste0("CDT-", element, ".csv"),
   ...
 )
@@ -26,13 +26,13 @@ export_cdt_daily(
 
 \item{date}{The name of the date column in \code{data}. Required if \code{type = "daily"}. If \code{type = "dekad"} this is only needed if \code{year}, \code{month}, and \code{dekad} are not specified.}
 
-\item{metadata}{The metadata data.frame.}
-
 \item{latitude}{The name of the latitude column in \code{metadata}.}
 
 \item{longitude}{The name of the longitude column in \code{metadata}.}
 
 \item{altitude}{The name of the altitude column in \code{metadata}.}
+
+\item{metadata}{The metadata data.frame.}
 
 \item{file_path}{TODO}
 
