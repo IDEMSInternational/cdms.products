@@ -9,11 +9,11 @@ prepare_geoclim_dekad(
   year,
   dekad,
   element,
-  metadata = NULL,
-  join_by = NULL,
   station_id,
   latitude,
   longitude,
+  metadata = NULL,
+  join_by = NULL,
   add_cols = NULL
 )
 }
@@ -26,15 +26,15 @@ prepare_geoclim_dekad(
 
 \item{element}{The name of the column in \code{data} to apply the function to.}
 
-\item{metadata}{TODO}
-
-\item{join_by}{TODO}
-
 \item{station_id}{TODO}
 
 \item{latitude}{TODO}
 
 \item{longitude}{TODO}
+
+\item{metadata}{TODO}
+
+\item{join_by}{TODO}
 
 \item{add_cols}{TODO}
 }

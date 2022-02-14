@@ -4,10 +4,10 @@
 #' @param year The name of the year column in \code{data}. 
 #' @param month The name of the month column in \code{data}.
 #' @param element The name of the column in \code{data} to apply the function to.
-#' @param metadata TODO
+#' @param station_id TODO
 #' @param latitude TODO
 #' @param longitude TODO
-#' @param station_id TODO
+#' @param metadata TODO
 #' @param join_by TODO
 #' @param add_cols TODO
 #'
@@ -15,9 +15,9 @@
 #' @export
 #'
 #' @examples # TODO
-prepare_geoclim_month <- function(data, year, month, element, metadata = NULL,
-                                  join_by = NULL, station_id, 
-                                  latitude, longitude, add_cols = NULL) {
+prepare_geoclim_month <- function(data, year, month, element, station_id, 
+                                  latitude, longitude, metadata = NULL,
+                                  join_by = NULL, add_cols = NULL) {
   checkmate::assert_data_frame(data)
   checkmate::assert_string(year)
   assert_column_names(data, year)

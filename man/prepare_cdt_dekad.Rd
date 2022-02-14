@@ -47,3 +47,6 @@ prepare_cdt_dekad(
 \description{
 Prepare CDT for dekad data
 }
+\examples{
+# TODO
+}

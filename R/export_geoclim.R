@@ -7,19 +7,18 @@
 #' @export
 #'
 #' @examples # TODO
-export_geoclim <- function(data, year, type = c("dekad", "pentad"),
-                           type_col, element, metadata = NULL,
-                           join_by = NULL, station_id,
-                           latitude, longitude, add_cols = NULL,
+export_geoclim <- function(data, year, type_col, element, station_id, 
+                           latitude, longitude, type = c("dekad", "pentad"),
+                           metadata = NULL, join_by = NULL, add_cols = NULL,
                            file_path = paste0("GEOCLIM-", element, ".csv"),
                            ...) {
   checkmate::check_string(file)
   geomclim_data <- 
-    prepare_geoclim(data = data, year = year, type = type, 
-                    type_col = type_col, element = element, 
+    prepare_geoclim(data = data, year = year, type_col = type_col, 
+                    element = element, station_id = station_id, 
+                    latitude = latitude, longitude = longitude, type = type, 
                     metadata = metadata, join_by = join_by, 
-                    station_id = station_id, latitude = latitude, 
-                    longitude = longitude, add_cols = add_cols)
+                    add_cols = add_cols)
   csv_params <- utils::modifyList(list(x = geomclim_data,
                                        file = file_path,
                                        row.names = FALSE),

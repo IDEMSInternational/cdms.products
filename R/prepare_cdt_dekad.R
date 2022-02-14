@@ -5,7 +5,7 @@
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples # TODO
 prepare_cdt_dekad <- function(data, station, element, date = NULL, year = NULL, month = NULL,
                               dekad = NULL, metadata = NULL, latitude, longitude, altitude) {
   prepare_cdt(data = data, station = station, element = element, type = "dekad",

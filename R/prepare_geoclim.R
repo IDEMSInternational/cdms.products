@@ -2,24 +2,23 @@
 #'
 #' @param data The data.frame to calculate from.
 #' @param year The name of the year column in \code{data}.
+#' @param type_col TODO
 #' @param element The name of the column in \code{data} to apply the function to.
-#' @param metadata TODO
+#' @param station_id TODO
 #' @param latitude TODO
 #' @param longitude TODO
-#' @param station_id TODO
+#' @param type TODO
+#' @param metadata TODO
 #' @param join_by TODO
 #' @param add_cols TODO
-#' @param type TODO
-#' @param type_col TODO
 #'
 #' @return
 #' @export
 #'
 #' @examples # TODO
-prepare_geoclim <- function(data, year, type = c("dekad", "pentad"),
-                            type_col, element, metadata = NULL,
-                            join_by = NULL, station_id,
-                            latitude, longitude, add_cols = NULL) {
+prepare_geoclim <- function(data, year, type_col, element, station_id, 
+                            latitude, longitude, type = c("dekad", "pentad"), 
+                            metadata = NULL, join_by = NULL, add_cols = NULL) {
   checkmate::assert_data_frame(data)
   checkmate::assert_string(year)
   assert_column_names(data, year)

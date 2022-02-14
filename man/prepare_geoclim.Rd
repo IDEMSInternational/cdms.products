@@ -7,14 +7,14 @@
 prepare_geoclim(
   data,
   year,
-  type = c("dekad", "pentad"),
   type_col,
   element,
-  metadata = NULL,
-  join_by = NULL,
   station_id,
   latitude,
   longitude,
+  type = c("dekad", "pentad"),
+  metadata = NULL,
+  join_by = NULL,
   add_cols = NULL
 )
 }
@@ -23,21 +23,21 @@ prepare_geoclim(
 
 \item{year}{The name of the year column in \code{data}.}
 
-\item{type}{TODO}
-
 \item{type_col}{TODO}
 
 \item{element}{The name of the column in \code{data} to apply the function to.}
-
-\item{metadata}{TODO}
-
-\item{join_by}{TODO}
 
 \item{station_id}{TODO}
 
 \item{latitude}{TODO}
 
 \item{longitude}{TODO}
+
+\item{type}{TODO}
+
+\item{metadata}{TODO}
+
+\item{join_by}{TODO}
 
 \item{add_cols}{TODO}
 }
