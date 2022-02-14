@@ -10,15 +10,17 @@
 #'
 #' @examples # TODO
 #' 
-export_climdex <- function(data, date = NULL, year = NULL, month = NULL, day = NULL, prcp, tmax, tmin,
+export_climdex <- function(data, prcp, tmax, tmin, date = NULL, year = NULL, 
+                           month = NULL, day = NULL, 
                            file_type = c("csv", "txt"),
                            file_path = paste0("climdex-", Sys.Date()),
                            ...) {
   checkmate::check_string(file)
   file_type <- match.arg(file_type)
   
-  climdex_data <- prepare_climdex(data = data, date = date, year = year, month = month, day = day, prcp = prcp,
-                                  tmax = tmax, tmin = tmin)
+  climdex_data <- prepare_climdex(data = data, prcp = prcp, tmax = tmax, 
+                                  tmin = tmin, date = date, year = year, 
+                                  month = month, day = day)
   
   file_path <- paste(file_path, file_type, sep = ".")
 

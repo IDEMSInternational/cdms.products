@@ -11,7 +11,7 @@
 #' @examples
 #' data(daily_niger)
 #' summarise_inventory_data(data = daily_niger, station = "station_name", elements = c("tmax", "tmin"))
-summarise_inventory_data <- function(data, station, elements){
+summarise_inventory_data <- function(data, station, elements) {
   checkmate::assert_data_frame(data)
   checkmate::assert_character(elements)
   checkmate::assert_character(station, null.ok = TRUE)

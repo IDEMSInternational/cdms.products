@@ -13,14 +13,14 @@
 #'
 #' @examples # TODO
 climatic_missing <- function(data, date, elements, stations,
-                             start = TRUE, end = FALSE){
+                             start = TRUE, end = FALSE) {
   
   
-  if (missing(date)){
+  if (missing(date)) {
     stop('argument "date" is missing, with no default')
   }
   
-  if (missing(elements)){
+  if (missing(elements)) {
     stop('argument "elements" is missing, with no default')
   }
   
@@ -33,23 +33,23 @@ climatic_missing <- function(data, date, elements, stations,
   # sort start/end times
   
   # set start date
-  if (start){
+  if (start) {
     data.stack <- data.stack %>%
       dplyr::group_by({{ stations }}, .data$Element) %>%
       dplyr::mutate(start = ({{ date }})[which.min(is.na( .data$value ))])
     
-  }else{
+  } else {
     data.stack <- data.stack %>%
       dplyr::group_by({{ stations }}) %>%
       dplyr::mutate(start = dplyr::first( {{ date }} ))
   }
   
   # set end date
-  if (end){
+  if (end) {
     data.stack <- data.stack %>%
       dplyr::group_by({{ stations }}, .data$Element ) %>%
       dplyr::mutate(end = ({{ date }} )[dplyr::last(which(!is.na( .data$value )))])
-  }else{
+  } else {
     data.stack <- data.stack %>%
       dplyr::group_by({{ stations }} ) %>%
       dplyr::mutate(end = dplyr::last({{ date }}))
@@ -78,7 +78,7 @@ climatic_missing <- function(data, date, elements, stations,
   # bind together
   summary.data <- merge(summary.data, complete.years)
   
-  if (missing(stations)){
+  if (missing(stations)) {
     summary.data$stations <- NULL
   }
   

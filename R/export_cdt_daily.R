@@ -10,10 +10,12 @@
 #' 
 #' 
 #' 
-export_cdt_daily <- function(data, station, element, date, metadata = NULL,
-                             latitude, longitude, altitude, file_path = paste0("CDT-", element, ".csv"),
+export_cdt_daily <- function(data, station, element, date, latitude, longitude,
+                             altitude, metadata = NULL,
+                             file_path = paste0("CDT-", element, ".csv"),
                              ...) {
-  export_cdt(data = data, station = station, element = element, type = "daily",
-             date = date, metadata = metadata, latitude = latitude, longitude = longitude,
-             altitude = altitude, file_path = file_path)
+  export_cdt(data = data, station = station, element = element, 
+             latitude = latitude, longitude = longitude, altitude = altitude, 
+             type = "daily", date = date, metadata = metadata, 
+             file_path = file_path)
 }

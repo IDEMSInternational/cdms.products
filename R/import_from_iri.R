@@ -13,18 +13,18 @@
 #' @export
 #'
 #' @examples # TODO
-import_from_iri <- function(download_from, data_file, path, X1, X2,Y1,Y2, get_area_point){
-  if(path == ""){
+import_from_iri <- function(download_from, data_file, path, X1, X2, Y1, Y2, get_area_point) {
+  if(path == "") {
     gaugelocdir = getwd()
   }
   else {
-    if(!dir.exists(path)){
+    if(!dir.exists(path)) {
       dir.create(path)
     }
     gaugelocdir = path
   }
   
-  if(download_from == "CHIRPS_V2P0"){
+  if(download_from == "CHIRPS_V2P0") {
     prexyaddress <- "https://iridl.ldeo.columbia.edu/SOURCES/.UCSB/.CHIRPS/.v2p0"
     if(data_file == "daily_0p05") {
       extension <- ".daily/.global/.0p05/.prcp"

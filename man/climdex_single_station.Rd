@@ -6,25 +6,25 @@
 \usage{
 climdex_single_station(
   ci,
-  freq = "annual",
   indices,
   year,
   month,
+  freq = "annual",
   spells.can.span.years = FALSE,
-  gsl.mode = gsl.mode,
+  gsl.mode = c("GSL", "GSL_first", "GSL_max", "GSL_sum"),
   threshold = 1
 )
 }
 \arguments{
 \item{ci}{TODO}
 
-\item{freq}{TODO}
-
 \item{indices}{TODO}
 
 \item{year}{TODO}
 
 \item{month}{TODO}
+
+\item{freq}{TODO}
 
 \item{spells.can.span.years}{TODO}
 

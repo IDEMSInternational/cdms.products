@@ -4,7 +4,7 @@
 \alias{convert_to_dec_deg}
 \title{Title}
 \usage{
-convert_to_dec_deg(dd, mm = 0, ss = 0, dir)
+convert_to_dec_deg(dd, mm = 0, ss = 0, dir = c("n", "e", "s", "w"))
 }
 \arguments{
 \item{dd}{TODO}
@@ -13,7 +13,7 @@ convert_to_dec_deg(dd, mm = 0, ss = 0, dir)
 
 \item{ss}{TODO}
 
-\item{dir}{Direction to --- to. Takes values \code{"N"}, \code{"E"}, \code{"S"}, or \code{"W"}}
+\item{dir}{Direction to --- to. Takes values \code{"n"}, \code{"e"}, \code{"s"}, or \code{"w"}}
 }
 \value{
 

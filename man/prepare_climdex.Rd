@@ -6,17 +6,23 @@
 \usage{
 prepare_climdex(
   data,
+  prcp,
+  tmax,
+  tmin,
   date = NULL,
   year = NULL,
   month = NULL,
-  day = NULL,
-  prcp,
-  tmax,
-  tmin
+  day = NULL
 )
 }
 \arguments{
 \item{data}{The data.frame to calculate from}
+
+\item{prcp}{The name of the rainfall column in \code{data}.}
+
+\item{tmax}{The name of the maximum temperature column in \code{data}.}
+
+\item{tmin}{The name of the minimum temperature column in \code{data}.}
 
 \item{date}{The name of the date column in \code{data}. This is only needed if \code{year}, \code{month}, and \code{day} are not specified.}
 
@@ -25,12 +31,6 @@ prepare_climdex(
 \item{month}{The name of the month column in \code{data}. If \code{NULL} it will be created using \code{lubridate::month(data[[date]])}.}
 
 \item{day}{The name of the day column in \code{data}. If \code{NULL} it will be created using \code{lubridate::day(data[[date]])}.}
-
-\item{prcp}{The name of the rainfall column in \code{data}.}
-
-\item{tmax}{The name of the maximum temperature column in \code{data}.}
-
-\item{tmin}{The name of the minimum temperature column in \code{data}.}
 }
 \value{
 Invisibly returns the file path of the saved data

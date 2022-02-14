@@ -8,12 +8,13 @@
 #'
 #' @examples # TODO
 #' 
-export_cdt_dekad <- function(data, station, element, date, year = NULL, 
-                             month = NULL, dekad = NULL, metadata = NULL,
-                             latitude, longitude, altitude, 
+export_cdt_dekad <- function(data, station, element, date, latitude, 
+                             longitude, altitude, year = NULL, month = NULL, 
+                             dekad = NULL, metadata = NULL,
                              file_path = paste0("CDT-", element, ".csv"),
                              ...) {
-  export_cdt(data = data, station = station, element = element, type = "dekad",
-             date = date, year = year, month = month, dekad = dekad, metadata = metadata,
-             latitude = latitude, longitude = longitude, altitude = altitude, file_path = file_path)
+  export_cdt(data = data, station = station, element = element, 
+             latitude = latitude, longitude = longitude, altitude = altitude, 
+             type = "dekad", date = date, year = year, month = month, 
+             dekad = dekad, metadata = metadata, file_path = file_path)
 }

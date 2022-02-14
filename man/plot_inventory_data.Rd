@@ -6,8 +6,8 @@
 \usage{
 plot_inventory_data(
   data,
-  station = NULL,
   elements,
+  station = NULL,
   y = c("count", "percentage"),
   columns = c("elements", "stations"),
   fill = c("none", "stations", "elements"),
@@ -19,10 +19,10 @@ plot_inventory_data(
 \arguments{
 \item{data}{The data.frame to calculate from}
 
+\item{elements}{The name of the columns in \code{data} to apply the summary calculation to.}
+
 \item{station}{The name of the station column in \code{data}, if the data are for multiple station.
 The summary table is calculated separately for each station.}
-
-\item{elements}{The name of the columns in \code{data} to apply the summary calculation to.}
 
 \item{y}{Whether to display counts or percentages.}
 

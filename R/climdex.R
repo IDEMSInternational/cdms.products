@@ -26,12 +26,15 @@
 #' @export
 #'
 #' @examples # TODO
-climdex <- function(data, station, date, year, month, prec, tmax, tmin, indices, freq = "annual",
-                    base.range = c(1961, 1990), n = 5, northern.hemisphere = TRUE,
-                    quantiles = NULL, temp.qtiles = c(0.1, 0.9), 
-                    prec.qtiles = c(0.95, 0.99), max.missing.days = c(annual = 15, monthly = 3), 
-                    min.base.data.fraction.present = 0.1, spells.can.span.years = FALSE,
-                    gsl.mode = "GSL", threshold = 1) {
+climdex <- function(data, station, date, year, month, prec, tmax, tmin, 
+                    indices, freq = "annual", base.range = c(1961, 1990), 
+                    n = 5, northern.hemisphere = TRUE, quantiles = NULL, 
+                    temp.qtiles = c(0.1, 0.9), prec.qtiles = c(0.95, 0.99), 
+                    max.missing.days = c(annual = 15, monthly = 3), 
+                    min.base.data.fraction.present = 0.1, 
+                    spells.can.span.years = FALSE,
+                    gsl.mode = c("GSL", "GSL_first", "GSL_max", "GSL_sum"), 
+                    threshold = 1) {
   stopifnot(freq %in% c("annual", "monthly"))
   if (freq == "monthly" && missing(month)) stop("month is required for freq = 'monthly'.")
   

@@ -8,15 +8,15 @@ prepare_cdt(
   data,
   station,
   element,
+  latitude,
+  longitude,
+  altitude,
   type = c("dekad", "daily"),
   date = NULL,
   year = NULL,
   month = NULL,
   dekad = NULL,
-  metadata = NULL,
-  latitude,
-  longitude,
-  altitude
+  metadata = NULL
 )
 }
 \arguments{
@@ -25,6 +25,12 @@ prepare_cdt(
 \item{station}{The name of the station column in \code{data}.}
 
 \item{element}{The name of the element column in \code{data}.}
+
+\item{latitude}{The name of the latitude column in \code{metadata}.}
+
+\item{longitude}{The name of the longitude column in \code{metadata}.}
+
+\item{altitude}{The name of the altitude column in \code{metadata}.}
 
 \item{type}{Whether \code{dekad} or \code{daily} data is used.}
 
@@ -37,12 +43,6 @@ prepare_cdt(
 \item{dekad}{The name of the dekad column in \code{data}. Only needed if \code{type = "dekad"}. If \code{NULL} it will be created using \code{dekad} function.}
 
 \item{metadata}{The metadata data.frame.}
-
-\item{latitude}{The name of the latitude column in \code{metadata}.}
-
-\item{longitude}{The name of the longitude column in \code{metadata}.}
-
-\item{altitude}{The name of the altitude column in \code{metadata}.}
 }
 \value{
 

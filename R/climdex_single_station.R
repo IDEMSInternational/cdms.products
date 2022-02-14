@@ -16,8 +16,10 @@
 #' @export
 #'
 #' @examples # TODO
-climdex_single_station <- function(ci, freq = "annual", indices, year, month,
-                                   spells.can.span.years = FALSE, gsl.mode = gsl.mode,
+climdex_single_station <- function(ci, indices, year, month, freq = "annual", 
+                                   spells.can.span.years = FALSE, 
+                                   gsl.mode = c("GSL", "GSL_first", 
+                                                "GSL_max", "GSL_sum"),
                                    threshold = 1) {
   stopifnot(freq %in% c("annual", "monthly"))
   if (freq == "monthly" && missing(month)) stop("month is required for freq = 'monthly'.")

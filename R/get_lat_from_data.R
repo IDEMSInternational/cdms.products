@@ -6,6 +6,6 @@
 #' @export
 #'
 #' @examples # TODO
-get_lat_from_data <- function(datafile){
+get_lat_from_data <- function(datafile) {
   return(unique(stats::na.omit(as.numeric(as.character(datafile[5:nrow(datafile),1])))))
 }
