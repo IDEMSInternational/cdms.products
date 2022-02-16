@@ -2,7 +2,7 @@
 % Please edit documentation in R/export_cdt_daily.R
 \name{export_cdt_daily}
 \alias{export_cdt_daily}
-\title{Export data in CDT format for daily data}
+\title{Export daily data in the format for CDT}
 \usage{
 export_cdt_daily(
   data,
@@ -18,23 +18,30 @@ export_cdt_daily(
 )
 }
 \arguments{
-\item{data}{The data.frame to calculate from.}
+\item{data}{data.frame of daily climatic data in tidy format i.e. one row
+per day (per station) and one column per element.}
 
-\item{station}{The name of the station column in \code{data}.}
+\item{station}{Name of the station identifying column in \code{data}.}
 
-\item{element}{The name of the element column in \code{data}.}
+\item{element}{Name of the element column in \code{data}.}
 
-\item{date}{The name of the date column in \code{data}. Required if \code{type = "daily"}. If \code{type = "dekad"} this is only needed if \code{year}, \code{month}, and \code{dekad} are not specified.}
+\item{date}{Name of the date column in \code{data}. Required if \code{type =
+  "daily"}. If \code{type = "dekad"} this is only needed if \code{year},
+\code{month}, and \code{dekad} are not specified.}
 
-\item{latitude}{The name of the latitude column in \code{metadata}.}
+\item{latitude}{Name of the latitude column in \code{metadata}.}
 
-\item{longitude}{The name of the longitude column in \code{metadata}.}
+\item{longitude}{Name of the longitude column in \code{metadata}.}
 
-\item{altitude}{The name of the altitude column in \code{metadata}.}
+\item{altitude}{Name of the altitude column in \code{metadata}.}
 
-\item{metadata}{The metadata data.frame.}
+\item{metadata}{data.frame of station metadata. Use this is the station
+details are in a separate data.frame with one row per station. If
+specified, \code{latitude}, \code{longitude} and \code{altitude} are
+assumed to be in \code{metadata} and \code{station} must be in both
+\code{data} and \code{metadata} to facilitate joining.}
 
-\item{file_path}{TODO}
+\item{file_path}{A character specifying the file path and file name to export}
 
 \item{...}{Other parameters passed to \code{write.csv()}}
 }
@@ -42,7 +49,7 @@ export_cdt_daily(
 Invisibly returns the file path of the saved data
 }
 \description{
-Export data in CDT format for daily data
+Export daily data in the format for CDT
 }
 \examples{
 # TODO

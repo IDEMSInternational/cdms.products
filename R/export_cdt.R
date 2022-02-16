@@ -1,6 +1,7 @@
-#' Export data in CDT format
+#' Export daily or dekadal data in the format for CDT
+#' 
 #' @inheritParams prepare_cdt
-#' @param file_path TODO
+#' @param file_path A character specifying the file path and file name to export
 #' @param ... Other parameters passed to \code{write.csv()}
 #'
 #' @return Invisibly returns the file path of the saved data

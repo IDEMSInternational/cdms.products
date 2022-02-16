@@ -1,5 +1,6 @@
-#' Export data in CDT format for daily data
+#' Export daily data in the format for CDT
 #' 
+#' @inheritParams prepare_cdt_daily
 #' @inheritParams export_cdt
 #' @param ... Other parameters passed to \code{write.csv()}
 #'

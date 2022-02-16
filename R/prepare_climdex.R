@@ -1,15 +1,20 @@
-#' Prepare ClimDex data for export
+#' Prepare data in the format for RClimDex
 #' 
-#' @param data The data.frame to calculate from
-#' @param prcp The name of the rainfall column in \code{data}.
-#' @param tmax The name of the maximum temperature column in \code{data}.
-#' @param tmin The name of the minimum temperature column in \code{data}.
-#' @param date The name of the date column in \code{data}. This is only needed if \code{year}, \code{month}, and \code{day} are not specified.
-#' @param year The name of the year column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[date]])}.
-#' @param month The name of the month column in \code{data}. If \code{NULL} it will be created using \code{lubridate::month(data[[date]])}.
-#' @param day The name of the day column in \code{data}. If \code{NULL} it will be created using \code{lubridate::day(data[[date]])}.
+#' @param data data.frame of daily climatic data in tidy format i.e. one row per
+#'   day and one column per element.
+#' @param prcp Name of the precipitation/rainfall column in \code{data}.
+#' @param tmax Name of the maximum temperature column in \code{data}.
+#' @param tmin Name of the minimum temperature column in \code{data}.
+#' @param date Name of the date column in \code{data}. This is only needed if
+#'   \code{year}, \code{month}, and \code{day} are not specified.
+#' @param year Name of the year column in \code{data}. If \code{NULL} it will be
+#'   created using \code{lubridate::year(data[[date]])}.
+#' @param month Name of the month column in \code{data}. If \code{NULL} it will
+#'   be created using \code{lubridate::month(data[[date]])}.
+#' @param day Name of the day of the month column in \code{data}. If \code{NULL}
+#'   it will be created using \code{lubridate::day(data[[date]])}.
 #'
-#' @return Invisibly returns the file path of the saved data
+#' @return A data.frame formatted for use in RClimDex
 #' @export
 #'
 #' @examples # Preparing the daily_niger data for export to ClimDex
