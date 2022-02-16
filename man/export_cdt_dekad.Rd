@@ -21,29 +21,42 @@ export_cdt_dekad(
 )
 }
 \arguments{
-\item{data}{The data.frame to calculate from.}
+\item{data}{data.frame of dekadal climatic data in tidy format i.e. one row
+per dekad (per station) and one column per element.}
 
-\item{station}{The name of the station column in \code{data}.}
+\item{station}{Name of the station identifying column in \code{data}.}
 
-\item{element}{The name of the element column in \code{data}.}
+\item{element}{Name of the element column in \code{data}.}
 
-\item{date}{The name of the date column in \code{data}. Required if \code{type = "daily"}. If \code{type = "dekad"} this is only needed if \code{year}, \code{month}, and \code{dekad} are not specified.}
+\item{date}{Name of the date column in \code{data}. Required if \code{type =
+  "daily"}. If \code{type = "dekad"} this is only needed if \code{year},
+\code{month}, and \code{dekad} are not specified.}
 
-\item{latitude}{The name of the latitude column in \code{metadata}.}
+\item{latitude}{Name of the latitude column in \code{metadata}.}
 
-\item{longitude}{The name of the longitude column in \code{metadata}.}
+\item{longitude}{Name of the longitude column in \code{metadata}.}
 
-\item{altitude}{The name of the altitude column in \code{metadata}.}
+\item{altitude}{Name of the altitude column in \code{metadata}.}
 
-\item{year}{The name of the year column in \code{data}. Only needed if \code{type = "dekad"}. If \code{NULL} it will be created using \code{lubridate::year(data[[date]])}.}
+\item{year}{Name of the year column in \code{data}. Only needed if \code{type
+  = "dekad"}. If \code{NULL} it will be created using
+\code{lubridate::year(data[[date]])}.}
 
-\item{month}{The name of the month column in \code{data}. Only needed if \code{type = "dekad"}. If \code{NULL} it will be created using \code{lubridate::month(data[[date]])}.}
+\item{month}{Name of the month column in \code{data}. Only needed if
+\code{type = "dekad"}. If \code{NULL} it will be created using
+\code{lubridate::month(data[[date]])}.}
 
-\item{dekad}{The name of the dekad column in \code{data}. Only needed if \code{type = "dekad"}. If \code{NULL} it will be created using \code{dekad} function.}
+\item{dekad}{Name of the dekad column in \code{data}. Only needed if
+\code{type = "dekad"}. If \code{NULL} it will be created using \code{dekad}
+function.}
 
-\item{metadata}{The metadata data.frame.}
+\item{metadata}{data.frame of station metadata. Use this is the station
+details are in a separate data.frame with one row per station. If
+specified, \code{latitude}, \code{longitude} and \code{altitude} are
+assumed to be in \code{metadata} and \code{station} must be in both
+\code{data} and \code{metadata} to facilitate joining.}
 
-\item{file_path}{TODO}
+\item{file_path}{A character specifying the file path and file name to export}
 
 \item{...}{Other parameters passed to \code{write.csv()}}
 }

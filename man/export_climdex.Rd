@@ -2,7 +2,7 @@
 % Please edit documentation in R/export_climdex.R
 \name{export_climdex}
 \alias{export_climdex}
-\title{Export ClimDex data}
+\title{Export data in the format for RClimDex}
 \usage{
 export_climdex(
   data,
@@ -19,33 +19,38 @@ export_climdex(
 )
 }
 \arguments{
-\item{data}{The data.frame to calculate from}
+\item{data}{data.frame of daily climatic data in tidy format i.e. one row per
+day and one column per element.}
 
-\item{prcp}{The name of the rainfall column in \code{data}.}
+\item{prcp}{Name of the precipitation/rainfall column in \code{data}.}
 
-\item{tmax}{The name of the maximum temperature column in \code{data}.}
+\item{tmax}{Name of the maximum temperature column in \code{data}.}
 
-\item{tmin}{The name of the minimum temperature column in \code{data}.}
+\item{tmin}{Name of the minimum temperature column in \code{data}.}
 
-\item{date}{The name of the date column in \code{data}. This is only needed if \code{year}, \code{month}, and \code{day} are not specified.}
+\item{date}{Name of the date column in \code{data}. This is only needed if
+\code{year}, \code{month}, and \code{day} are not specified.}
 
-\item{year}{The name of the year column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[date]])}.}
+\item{year}{Name of the year column in \code{data}. If \code{NULL} it will be
+created using \code{lubridate::year(data[[date]])}.}
 
-\item{month}{The name of the month column in \code{data}. If \code{NULL} it will be created using \code{lubridate::month(data[[date]])}.}
+\item{month}{Name of the month column in \code{data}. If \code{NULL} it will
+be created using \code{lubridate::month(data[[date]])}.}
 
-\item{day}{The name of the day column in \code{data}. If \code{NULL} it will be created using \code{lubridate::day(data[[date]])}.}
+\item{day}{Name of the day of the month column in \code{data}. If \code{NULL}
+it will be created using \code{lubridate::day(data[[date]])}.}
 
-\item{file_type}{Whether to convert to \code{csv} or `\code{txt} format.}
+\item{file_type}{A character specifying the file type to export as, either \code{"csv"} or `\code{"txt"}.}
 
-\item{file_path}{Default name of the file}
+\item{file_path}{A character specifying the file path and file name to export}
 
-\item{...}{Other parameters passed to \code{write.csv()}}
+\item{...}{Other parameters passed to \code{write.table()}}
 }
 \value{
 Invisibly returns the file path of the saved data
 }
 \description{
-Export ClimDex data
+Export data in the format for RClimDex
 }
 \examples{
 # TODO

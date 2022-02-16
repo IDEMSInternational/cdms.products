@@ -2,7 +2,7 @@
 % Please edit documentation in R/prepare_climdex.R
 \name{prepare_climdex}
 \alias{prepare_climdex}
-\title{Prepare ClimDex data for export}
+\title{Prepare data in the format for RClimDex}
 \usage{
 prepare_climdex(
   data,
@@ -16,27 +16,32 @@ prepare_climdex(
 )
 }
 \arguments{
-\item{data}{The data.frame to calculate from}
+\item{data}{data.frame of daily climatic data in tidy format i.e. one row per
+day and one column per element.}
 
-\item{prcp}{The name of the rainfall column in \code{data}.}
+\item{prcp}{Name of the precipitation/rainfall column in \code{data}.}
 
-\item{tmax}{The name of the maximum temperature column in \code{data}.}
+\item{tmax}{Name of the maximum temperature column in \code{data}.}
 
-\item{tmin}{The name of the minimum temperature column in \code{data}.}
+\item{tmin}{Name of the minimum temperature column in \code{data}.}
 
-\item{date}{The name of the date column in \code{data}. This is only needed if \code{year}, \code{month}, and \code{day} are not specified.}
+\item{date}{Name of the date column in \code{data}. This is only needed if
+\code{year}, \code{month}, and \code{day} are not specified.}
 
-\item{year}{The name of the year column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[date]])}.}
+\item{year}{Name of the year column in \code{data}. If \code{NULL} it will be
+created using \code{lubridate::year(data[[date]])}.}
 
-\item{month}{The name of the month column in \code{data}. If \code{NULL} it will be created using \code{lubridate::month(data[[date]])}.}
+\item{month}{Name of the month column in \code{data}. If \code{NULL} it will
+be created using \code{lubridate::month(data[[date]])}.}
 
-\item{day}{The name of the day column in \code{data}. If \code{NULL} it will be created using \code{lubridate::day(data[[date]])}.}
+\item{day}{Name of the day of the month column in \code{data}. If \code{NULL}
+it will be created using \code{lubridate::day(data[[date]])}.}
 }
 \value{
-Invisibly returns the file path of the saved data
+A data.frame formatted for use in RClimDex
 }
 \description{
-Prepare ClimDex data for export
+Prepare data in the format for RClimDex
 }
 \examples{
 # Preparing the daily_niger data for export to ClimDex

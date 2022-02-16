@@ -2,19 +2,20 @@
 % Please edit documentation in R/dekad.R
 \name{dekad}
 \alias{dekad}
-\title{Title}
+\title{Get the dekad component of a date-time}
 \usage{
 dekad(date)
 }
 \arguments{
-\item{date}{A date variable.}
+\item{date}{A date-time object}
 }
 \value{
 
 }
 \description{
-Title
+Get the dekad component of a date-time
 }
 \examples{
-# TODO
+dekad(as.Date("2020/12/25"))
+dekad(as.Date("1999/01/01"))
 }

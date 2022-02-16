@@ -1,13 +1,13 @@
 #' Prepare CDT for Daily data
 #'
 #' @inheritParams prepare_cdt
-#'
-#' @return
+#' @param data data.frame of daily climatic data in tidy format i.e. one row
+#'   per day (per station) and one column per element.
+#'   
+#' @return A data.frame formatted for use in CDT
 #' @export
 #'
 #' @examples
-#' # With daily_niger data:
-#' data("daily_niger"); data("stations_niger")
 #' prepare_cdt_daily(data = daily_niger, date = "date", station = "station_name",
 #'                   element = "tmax", metadata = stations_niger, 
 #'                   latitude = "lat", longitude = "long", altitude = "alt")

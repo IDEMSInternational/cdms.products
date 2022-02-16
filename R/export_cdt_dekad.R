@@ -1,5 +1,6 @@
 #' Export data in CDT format for dekad data
 #' 
+#' @inheritParams prepare_cdt_dekad
 #' @inheritParams export_cdt
 #' @param ... Other parameters passed to \code{write.csv()}
 #'

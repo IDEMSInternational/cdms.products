@@ -1,9 +1,9 @@
-#' Export ClimDex data
+#' Export data in the format for RClimDex
 #' 
 #' @inheritParams prepare_climdex
-#' @param file_type Whether to convert to \code{csv} or `\code{txt} format.
-#' @param file_path Default name of the file
-#' @param ... Other parameters passed to \code{write.csv()}
+#' @param file_type A character specifying the file type to export as, either \code{"csv"} or `\code{"txt"}.
+#' @param file_path A character specifying the file path and file name to export
+#' @param ... Other parameters passed to \code{write.table()}
 #'
 #' @return Invisibly returns the file path of the saved data
 #' @export

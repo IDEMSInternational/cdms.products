@@ -2,7 +2,7 @@
 % Please edit documentation in R/climatic_extremes.R
 \name{climatic_extremes}
 \alias{climatic_extremes}
-\title{Calculate extremes}
+\title{Calculate extremes from climatic data}
 \usage{
 climatic_extremes(
   data,
@@ -59,9 +59,9 @@ climatic_extremes(
 
 \item{doy_last}{The last day of the year}
 
-\item{max_val}{If \code{TRUE} calculate the extreme maximum}
+\item{max_val}{Logical, if \code{TRUE} the extreme maximum is calculated}
 
-\item{min_val}{If \code{TRUE} calculate the extreme minimum}
+\item{min_val}{Logical, if \code{TRUE} the extreme minimum is calculated}
 
 \item{first_date}{If \code{TRUE} the first instance of \code{date_time} when the value equals the summary value is included. Generally only used for extreme summaries i.e. first \code{date_time} when the maximum occurred.}
 
@@ -88,7 +88,7 @@ any \code{na_} parameters are specified.}
 
 }
 \description{
-Calculate extremes
+Calculate extremes from climatic data
 }
 \examples{
 # TODO

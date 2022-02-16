@@ -1,9 +1,9 @@
-#' Calculate extremes
+#' Calculate extremes from climatic data
 #' 
 #' @inheritParams climatic_summary
 #' 
-#' @param max_val If \code{TRUE} calculate the extreme maximum
-#' @param min_val If \code{TRUE} calculate the extreme minimum
+#' @param max_val Logical, if \code{TRUE} the extreme maximum is calculated
+#' @param min_val Logical, if \code{TRUE} the extreme minimum is calculated
 #'
 #' @return
 #' @export
