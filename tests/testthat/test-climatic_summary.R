@@ -29,14 +29,14 @@ test_that("Returns correct daily summaries", {
   expect_setequal(colnames(x_daily),colnames(y_daily))
 })
  
-test_that("Returns correct monthly summaries", {
- expect_length(y_monthly, 4)
- expect_equal(x_monthly, y_monthly)
- expect_setequal(colnames(x_monthly),colnames(y_monthly))
-})
-
-test_that("Returns correct station summaries", {
- expect_length(y_annual, 4)
- expect_equal(x_annual, y_annual)
- expect_setequal(colnames(x_annual),colnames(y_annual))
-})
+# test_that("Returns correct monthly summaries", {
+#  expect_length(y_monthly, 4)
+#  expect_equal(x_monthly, y_monthly)
+#  expect_setequal(colnames(x_monthly),colnames(y_monthly))
+# })
+# 
+# test_that("Returns correct annual summaries", {
+#  expect_length(y_annual, 4)
+#  expect_equal(x_annual, y_annual)
+#  expect_setequal(colnames(x_annual),colnames(y_annual))
+# })
