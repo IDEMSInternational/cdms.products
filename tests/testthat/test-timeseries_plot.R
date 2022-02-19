@@ -53,6 +53,18 @@ test_that("multiple element single station graphs are correct", {
   expect_equal(gg_data(t1), gg_data(r1))
 })
 
+test_that("multiple element single station facet by elements graphs are correct", {
+  t1 <- timeseries_plot(data = agades, date_time = "date", 
+                        elements = c("tmin", "tmax"), 
+                        facets = "elements")
+  d1 <- agades %>%
+    pivot_longer(c(tmin, tmax), names_to = "element")
+  r1 <- ggplot(d1, aes(x = date, y = value)) +
+    geom_line() +
+    facet_wrap(vars(element))
+  expect_equal(gg_data(t1), gg_data(r1))
+})
+
 test_that("multiple element & multiple stations with both as facets graphs are correct", {
   t1 <- timeseries_plot(data = niger50, date_time = "date",
                         station = "station_name",
@@ -76,6 +88,32 @@ test_that("multiple element & multiple stations facet by elements graphs are cor
   r1 <- ggplot(d1, aes(x = date, y = value, colour = station_name)) +
     geom_line() +
     facet_wrap(vars(element))
+  expect_equal(gg_data(t1), gg_data(r1))
+})
+
+test_that("multiple element & multiple stations facet by stations graphs are correct", {
+  t1 <- timeseries_plot(data = niger50, date_time = "date",
+                        station = "station_name",
+                        elements = c("tmin", "tmax"), 
+                        facets = "stations")
+  d1 <- niger50 %>%
+    pivot_longer(c(tmin, tmax), names_to = "element")
+  r1 <- ggplot(d1, aes(x = date, y = value, colour = element)) +
+    geom_line() +
+    facet_wrap(vars(station_name))
+  expect_equal(gg_data(t1), gg_data(r1))
+})
+
+test_that("multiple element & multiple stations no facet graphs are correct", {
+  t1 <- timeseries_plot(data = niger50, date_time = "date",
+                        station = "station_name",
+                        elements = c("tmin", "tmax"), 
+                        facets = "none")
+  d1 <- niger50 %>%
+    pivot_longer(c(tmin, tmax), names_to = "element") %>%
+    mutate(station_elements = paste(station_name, element, sep = "_"))
+  r1 <- ggplot(d1, aes(x = date, y = value, colour = station_elements)) +
+    geom_line()
   expect_equal(gg_data(t1), gg_data(r1))
 })
 
@@ -103,4 +141,9 @@ test_that("points, LOBF, path and step are correctly added", {
   expect_equal(gg_data(t1_lobf), gg_data(r1_lobf))
   expect_equal(gg_data(t1_path), gg_data(r1_path))
   expect_equal(gg_data(t1_step), gg_data(r1_step))
+})
+
+test_that("facet warning is displayed", {
+  expect_warning(timeseries_plot(data = niger50, date_time = "date", elements = "tmax", 
+                 facets = "stations"))
 })
