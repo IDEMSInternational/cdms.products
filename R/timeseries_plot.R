@@ -6,6 +6,7 @@
 #' @param station The name of the station column in \code{data}, if the data are for multiple station.
 #' Timeseries plots are calculated separately for each station.
 #' @param facets How to split the time series plots. Default \code{"station"}. Can be one of \code{"elements"}, \code{"both"}, or \code{"none"}.
+#' @param type The type of plot, either "line" or line graphs or "bar" for bar graphs.
 #' @param add_points logical. If \code{TRUE}, points are added to the plot using  \code{"ggplot2::geom_point()"}.
 #' @param add_line_of_best_fit logical. If \code{TRUE}, points are added to the plot using  \code{"ggplot2::geom_smooth(method = "lm")"}.
 #' @param se logical. If \code{TRUE}, the standard error is are added to the line of best fit. Only works if \code{add_line_of_best_fit = TRUE}. 
@@ -19,6 +20,7 @@
 #'
 #' @examples # TODO
 timeseries_plot <- function(data, date_time, elements, station = NULL, facets = c("stations", "elements", "both", "none"),
+                            type = c("line", "bar"),
                             add_points = FALSE, add_line_of_best_fit = FALSE,
                             se = TRUE, add_path = FALSE, add_step = FALSE,
                             na_rm = FALSE, show_legend = NA){
@@ -28,6 +30,7 @@ timeseries_plot <- function(data, date_time, elements, station = NULL, facets = 
   checkmate::assert_character(elements)
   checkmate::assert_character(station, null.ok = TRUE)
   facets <- match.arg(facets)
+  type <- match.arg(type)
   checkmate::assert_logical(add_points)
   checkmate::assert_logical(add_line_of_best_fit)
   checkmate::assert_logical(se)
@@ -41,26 +44,29 @@ timeseries_plot <- function(data, date_time, elements, station = NULL, facets = 
     facets <- "none"
   }
   
-  data_longer <- data %>% tidyr::pivot_longer(cols = tidyselect::all_of(elements), names_to = "elements_list")
+  data_longer <- data %>% 
+    tidyr::pivot_longer(cols = tidyselect::all_of(elements), 
+                        names_to = "element",
+                        values_to = "value")
 
   if (facets == "elements"){
     if (is.null(station)){
       base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value)) +
-        ggplot2::facet_grid(cols = ggplot2::vars(.data$elements_list))
+        ggplot2::facet_grid(cols = ggplot2::vars(.data$element))
     } else {
       base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data[[station]])) +
-        ggplot2::facet_grid(cols = ggplot2::vars(.data$elements_list))
+        ggplot2::facet_grid(cols = ggplot2::vars(.data$element))
     }
   } else if (facets == "stations"){
     if (length(elements) == 1){
       base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[date_time]], y = .data[[elements]]))
     } else {
-      base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data$elements_list))
+      base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data$element))
     }
     base_plot <- base_plot + ggplot2::facet_grid(cols = ggplot2::vars(.data[[station]]))
   } else if (facets == "both"){
     base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value)) +
-      ggplot2::facet_grid(rows = ggplot2::vars(.data[[station]]), cols = ggplot2::vars(.data$elements_list))
+      ggplot2::facet_grid(rows = ggplot2::vars(.data[[station]]), cols = ggplot2::vars(.data$element))
   } else { # if "none", or NULL
     if (length(elements) == 1){
       if (is.null(station)) {
@@ -70,16 +76,21 @@ timeseries_plot <- function(data, date_time, elements, station = NULL, facets = 
       }
     } else {
       if (is.null(station)){
-        base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data$elements_list))
+        base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data$element))
       } else {
         data_longer <- data_longer %>%
-          dplyr::mutate(station_elements = paste(.data[[station]], .data$elements_list, sep = "_"))
+          dplyr::mutate(station_elements = paste(.data[[station]], .data$element, sep = "_"))
         base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data$station_elements))
       }
     }
   }
-  
-  base_plot <- base_plot + ggplot2::geom_line(na.rm = na_rm, show.legend = show_legend)
+  if (type == "line") {
+    base_plot <- base_plot + 
+      ggplot2::geom_line(na.rm = na_rm, show.legend = show_legend)
+  } else {
+    base_plot <- base_plot + 
+      ggplot2::geom_col(na.rm = na_rm, show.legend = show_legend)
+  }
   
   # color by viridis?
   # base_plot <- base_plot + viridis::scale_colour_viridis(discrete = TRUE, option = "C") # colour blind friendly
@@ -89,7 +100,7 @@ timeseries_plot <- function(data, date_time, elements, station = NULL, facets = 
   }
   
   if (add_line_of_best_fit){
-    base_plot <- base_plot + ggplot2::geom_smooth(method = "lm", se = se)
+    base_plot <- base_plot + ggplot2::geom_smooth(method = "lm", se = se, formula = y ~ x)
   }
   
   if (add_path){

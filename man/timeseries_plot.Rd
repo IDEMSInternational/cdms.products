@@ -10,6 +10,7 @@ timeseries_plot(
   elements,
   station = NULL,
   facets = c("stations", "elements", "both", "none"),
+  type = c("line", "bar"),
   add_points = FALSE,
   add_line_of_best_fit = FALSE,
   se = TRUE,
@@ -30,6 +31,8 @@ timeseries_plot(
 Timeseries plots are calculated separately for each station.}
 
 \item{facets}{How to split the time series plots. Default \code{"station"}. Can be one of \code{"elements"}, \code{"both"}, or \code{"none"}.}
+
+\item{type}{The type of plot, either "line" or line graphs or "bar" for bar graphs.}
 
 \item{add_points}{logical. If \code{TRUE}, points are added to the plot using  \code{"ggplot2::geom_point()"}.}
 
