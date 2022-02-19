@@ -5,9 +5,9 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/IDEMSInternational/RInstatClimatic/workflows/R-CMD-check/badge.svg)](https://github.com/IDEMSInternational/RInstatClimatic/actions)
+[![R-CMD-check](https://github.com/IDEMSInternational/cdms.products/workflows/R-CMD-check/badge.svg)](https://github.com/IDEMSInternational/cdms.products/actions)
 [![Codecov test
-coverage](https://codecov.io/gh/IDEMSInternational/RInstatClimatic/branch/main/graph/badge.svg)](https://app.codecov.io/gh/IDEMSInternational/RInstatClimatic?branch=main)
+coverage](https://codecov.io/gh/IDEMSInternational/cdms.products/branch/main/graph/badge.svg)](https://app.codecov.io/gh/IDEMSInternational/cdms.products?branch=main)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/cdms.products)](https://CRAN.R-project.org/package=cdms.products)
 [![Project Status: WIP – Initial development is in progress, but there
@@ -25,5 +25,5 @@ with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("IDEMSInternational/RInstatClimatic")
+devtools::install_github("IDEMSInternational/cdms.products")
 ```
