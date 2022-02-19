@@ -1,4 +1,4 @@
-library(RInstatClimatic)
+library(cdms.products)
 
 positive_int <- 3
 negative_int <- -3

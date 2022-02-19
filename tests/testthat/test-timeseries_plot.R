@@ -1,4 +1,4 @@
-# library(RInstatClimatic)
+# library(cdms.products)
 # library(openair)
 # 
 # # Get the data --------------------------------------------------------------------------------------------------------
