@@ -99,9 +99,11 @@ climatic_summary <- function(data, date_time, station = NULL, elements = NULL,
   checkmate::assert_int(doy_last, lower = 1, upper = 366)
   if (doy_first > doy_last) 
     stop("doy_first must be less than or equal to doy_last")
-  if (is.null(doy)) {
-    doy <- ".doy"
-    data[[doy]] <- yday_366(data[[date_time]])
+  if (doy_first > 1 || doy_last < 366) {
+    if (is.null(doy)) {
+      doy <- "doy"
+      data[[doy]] <- yday_366(data[[date_time]])
+    }
   }
   
   if (to == "station" && is.null(station)) {
@@ -183,7 +185,10 @@ climatic_summary <- function(data, date_time, station = NULL, elements = NULL,
         dplyr::group_by(.data[[by[i]]], .add = TRUE)
     }
   }
-  
+  if (doy_first > 1 || doy_last < 366) {
+    grp_data <- grp_data %>%
+      filter(.data[[doy]] >= doy_first & .data[[doy]] <= doy_last, .preserve = TRUE)
+  }
   if (!any_na_params) .x_call <- ".x"
   else {
     na_params <- c(null_to_string(na_prop), null_to_string(na_n),
