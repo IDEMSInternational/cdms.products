@@ -27,7 +27,7 @@ climatic_extremes <- function(data, date_time, elements, station = NULL,
                               names = "{.fn}_{.col}") {
   summaries <- c()
   if (max_val) summaries <- c(max = "max")
-  if (min_val) summaries <- c(min = "min")
+  if (min_val) summaries <- c(summaries, min = "min")
   climatic_summary(data = data, date_time = date_time, station = station, 
                    elements = elements, year = year, month = month, 
                    dekad = dekad, pentad = pentad,

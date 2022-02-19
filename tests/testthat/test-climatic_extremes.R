@@ -13,7 +13,7 @@ test_that("Max and min are correcty calculated", {
   y_monthly <- climatic_extremes(data = niger, date_time = "date", year = "year", month = "month",
                                  to = "monthly", station = "station_name",
                                  elements = "tmax", max_val = TRUE, min_val = TRUE)
-  expect_equal(x_station, y_station)
+  expect_equal(x_monthly, y_monthly)
 })
 
 test_that("Date cols are correctly calculated", {

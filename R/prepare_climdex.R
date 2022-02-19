@@ -21,7 +21,8 @@
 #' prepare_climdex(data = daily_niger, date = "date", prcp = "rain", tmax = "tmax", tmin = "tmin")
 #' 
 prepare_climdex <- function(data, prcp, tmax, tmin, date = NULL, year = NULL,
-                            month = NULL, day = NULL) {
+                            month = NULL, day = NULL, na = -99.9) {
+  
   checkmate::assert_data_frame(data)
   checkmate::assert_character(prcp)
   assert_column_names(data, prcp)
@@ -47,8 +48,16 @@ prepare_climdex <- function(data, prcp, tmax, tmin, date = NULL, year = NULL,
     data[[day]] <- lubridate::day(data[[date]])
   }
   
+  #TODO Add check for missing dates and add rows if needed.
+  
   climdex_data <- data %>%
-    dplyr::select(c(.data[[year]], .data[[month]], .data[[day]], .data[[prcp]], .data[[tmax]], .data[[tmin]]))
+    dplyr::select(c(.data[[year]], .data[[month]], .data[[day]], .data[[prcp]], .data[[tmax]], .data[[tmin]])) %>%
+    dplyr::arrange(.data[[year]], .data[[month]], .data[[day]])
+  
+  replace <- as.list(rep(-99.9, 3))
+  names(replace) <- c(prcp, tmax, tmin)
+  climdex_data <- climdex_data %>%
+    replace_na(replace)
 
   return(climdex_data)
 }
