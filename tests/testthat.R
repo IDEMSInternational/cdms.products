@@ -1,4 +1,4 @@
 library(testthat)
-library(RInstatClimatic)
+library(cdms.products)
 
-test_check("RInstatClimatic")
+test_check("cdms.products")

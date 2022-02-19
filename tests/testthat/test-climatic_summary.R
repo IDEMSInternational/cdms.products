@@ -1,4 +1,5 @@
-library(RInstatClimatic)
+library(cdms.products)
+
 x_daily <- daily_niger %>% dplyr::group_by(date) %>% dplyr::summarize(mean_rain = mean(rain), st_dv_rain = sd(rain), n_na_rain = naflex::na_n(rain))
 x_monthly <- daily_niger %>% dplyr::group_by(month) %>% dplyr::summarize(mean_rain = mean(rain), st_dv_rain = sd(rain), n_na_rain = naflex::na_n(rain))
 x_annual <- daily_niger %>% dplyr::group_by(year) %>% dplyr::summarize(mean_rain = mean(rain), st_dv_rain = sd(rain), n_na_rain = naflex::na_n(rain))

@@ -130,14 +130,14 @@ climatic_summary <- function(data, date_time, station = NULL, elements = NULL,
   if (to == "pentad") {
     if (is.null(pentad)) {
       pentad <- "pentad"
-      data[[pentad]] <- RInstatClimatic::pentad(data[[date_time]])
+      data[[pentad]] <- cdms.products::pentad(data[[date_time]])
     }
     to <- "annual-within-year"
     by <- pentad
   } else if (to == "dekadal") {
     if (is.null(pentad)) {
       dekad <- "dekad"
-      data[[dekad]] <- RInstatClimatic::dekad(data[[date_time]])
+      data[[dekad]] <- cdms.products::dekad(data[[date_time]])
     }
     to <- "annual-within-year"
     by <- dekad
