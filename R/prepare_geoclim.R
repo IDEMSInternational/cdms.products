@@ -10,7 +10,7 @@
 #' @param type TODO
 #' @param metadata TODO
 #' @param join_by TODO
-#' @param add_cols TODO
+#' @param add_cols Names of additional metadata columns that should be included in the output
 #'
 #' @return
 #' @export
@@ -63,25 +63,30 @@ prepare_geoclim <- function(data, year, type_col, element, station_id,
   type_levels <- levels(data[[type_col]])
   
   if (!is.null(metadata)) {
+    # Check that metadata has all stations in data
     data_by <- unique(data[[names(join_by)]])
     metadata_by <- unique(metadata[[as.vector(join_by)]])
     if (!all(data_by %in% metadata_by)) {
       stop("metadata is missing some values of '", join_by, "' found in data.")
     }
+    # column names without the joining columns
     names_data <- setdiff(names(data), names(join_by))
     names_metadata <- setdiff(names(metadata), as.vector(join_by))
+    # names that are the same other than joining columns
+    # this will cause renaming issues when merging
     same_names <- intersect(names_data, names_metadata)
+    # rename columns that are the same before joining 
+    # to prevent renaming issues
     for (col in c(station_id, latitude, longitude)) {
       if (col %in% same_names) {
         names(data)[names(data) == col] <- paste0(col, "_x")
       }
     }
     data_with_meta <- dplyr::left_join(data, metadata, by = join_by)
-    id_cols <- c(names(metadata), year)
   } else {
     data_with_meta <- data
-    id_cols <- c(station_id, latitude, longitude, add_cols, year)
   }
+  id_cols <- c(station_id, latitude, longitude, add_cols, year)
   data_with_meta[[element]] <- tidyr::replace_na(data_with_meta[[element]], -999)
   geoclim_data <- 
     tidyr::pivot_wider(data_with_meta,

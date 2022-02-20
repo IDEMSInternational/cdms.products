@@ -187,7 +187,7 @@ climatic_summary <- function(data, date_time, station = NULL, elements = NULL,
   }
   if (doy_first > 1 || doy_last < 366) {
     grp_data <- grp_data %>%
-      filter(.data[[doy]] >= doy_first & .data[[doy]] <= doy_last, .preserve = TRUE)
+      dplyr::filter(.data[[doy]] >= doy_first & .data[[doy]] <= doy_last, .preserve = TRUE)
   }
   if (!any_na_params) .x_call <- ".x"
   else {

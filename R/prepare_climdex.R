@@ -13,6 +13,8 @@
 #'   be created using \code{lubridate::month(data[[date]])}.
 #' @param day Name of the day of the month column in \code{data}. If \code{NULL}
 #'   it will be created using \code{lubridate::day(data[[date]])}.
+#' @param na The value to replace missing values with. The default (-99.9)
+#'   should be used to comply with the RClimDex format requirements.
 #'
 #' @return A data.frame formatted for use in RClimDex
 #' @export
@@ -57,7 +59,7 @@ prepare_climdex <- function(data, prcp, tmax, tmin, date = NULL, year = NULL,
   replace <- as.list(rep(-99.9, 3))
   names(replace) <- c(prcp, tmax, tmin)
   climdex_data <- climdex_data %>%
-    replace_na(replace)
+    tidyr::replace_na(replace)
 
   return(climdex_data)
 }

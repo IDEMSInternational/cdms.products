@@ -12,7 +12,8 @@ prepare_climdex(
   date = NULL,
   year = NULL,
   month = NULL,
-  day = NULL
+  day = NULL,
+  na = -99.9
 )
 }
 \arguments{
@@ -36,6 +37,9 @@ be created using \code{lubridate::month(data[[date]])}.}
 
 \item{day}{Name of the day of the month column in \code{data}. If \code{NULL}
 it will be created using \code{lubridate::day(data[[date]])}.}
+
+\item{na}{The value to replace missing values with. The default (-99.9)
+should be used to comply with the RClimDex format requirements.}
 }
 \value{
 A data.frame formatted for use in RClimDex

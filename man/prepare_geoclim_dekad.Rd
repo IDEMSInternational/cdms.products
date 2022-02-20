@@ -36,7 +36,7 @@ prepare_geoclim_dekad(
 
 \item{join_by}{TODO}
 
-\item{add_cols}{TODO}
+\item{add_cols}{Names of additional metadata columns that should be included in the output}
 }
 \value{
 
