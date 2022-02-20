@@ -92,3 +92,15 @@ test_that("Returns correct annual summaries", {
  expect_equal(x_annual, y_annual)
  expect_setequal(colnames(x_annual), colnames(y_annual))
 })
+
+test_that("climatic_summary filters by day of year correctly", {
+  t_annual_doy <- climatic_summary(data = niger, date_time = "date", by = "station_name", 
+                               station = "station_name", to = "annual", elements ="rain", 
+                               summaries = c(mean = "mean"), doy = "doy", doy_first = 30,
+                               doy_last = 200)
+  r_annual_doy <- niger %>% 
+    group_by(station_name, year) %>% 
+    filter(doy >= 30 & doy <= 200, .preserve = TRUE) %>%
+    summarise(mean_rain = mean(rain))
+  expect_equal(t_annual_doy, r_annual_doy)
+})
