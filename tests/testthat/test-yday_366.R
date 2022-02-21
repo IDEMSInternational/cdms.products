@@ -1,4 +1,4 @@
-library(RInstatClimatic)
+library(cdms.products)
 
 x <- as.Date("1999-03-01")
 x_yday <- lubridate::yday(x) + 1

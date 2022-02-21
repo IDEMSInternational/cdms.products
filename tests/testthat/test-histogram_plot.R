@@ -1,49 +1,15 @@
-# library(RInstatClimatic)
-# library(openair)
-# 
-# # Get the data --------------------------------------------------------------------------------------------------------
-# data("mydata")
-# mydata$station_var <- ifelse(mydata$ws < 5, "A", "B")
-# 
-# ggplot(mydata, aes(x = date, fill = factor(station_var))) +
-#   geom_histogram(data = mydata, aes(y = ..count..*10)) +
-#   geom_histogram(data = mydata, )
-# ggplot(mydata, aes(x = date, fill = factor(station_var))) + geom_histogram()
-# 
-# 
-# ggplot(mydata,aes(date))+geom_histogram(aes(y=..count..*10))
-# 
-# 
-# # Test the data -------------------------------------------------------------------------------------------------------
-# # no station
-# histogram_plot(mydata, date_time = "date", elements = c("nox"), facets = "none")
-# histogram_plot(mydata, date_time = "date", elements = c("nox"), facets = "elements")
-# histogram_plot(mydata, date_time = "date", elements = c("nox"), facets = "stations")
-# histogram_plot(mydata, date_time = "date", elements = c("nox"), facets = "both")
-# 
-# # station
-# histogram_plot(mydata, date_time = "date", elements = c("nox"), station = "station_var", facets = "none")
-# histogram_plot(mydata, date_time = "date", elements = c("nox"), station = "station_var", facets = "elements")
-# histogram_plot(mydata, date_time = "date", elements = c("nox"), station = "station_var")
-# histogram_plot(mydata, date_time = "date", elements = c("nox"), station = "station_var", facets = "both")
-# 
-# # no station
-# histogram_plot(mydata, date_time = "date", elements = c("nox", "no2"), facets = "none", show.legend = FALSE) +
-#   viridis::scale_color_viridis(discrete = TRUE, option = "C")
-# histogram_plot(mydata, date_time = "date", elements = c("nox", "no2"), facets = "elements")
-# 
-# # station
-# histogram_plot(mydata, date_time = "date", elements = c("nox", "no2"), station = "station_var", facets = "none")
-# histogram_plot(mydata, date_time = "date", elements = c("nox", "no2"), station = "station_var", facets = "elements")
-# histogram_plot(mydata, date_time = "date", elements = c("nox", "no2"), station = "station_var", facets = "stations")
-# histogram_plot(mydata, date_time = "date", elements = c("nox", "no2"), station = "station_var", facets = "both")
+library(cdms.products)
+library(dplyr)
+library(ggplot2)
 
-
-
-# Should throw error
-#histogram_plot("mydata", date_time = "date", elements = c("nox", "no2"), station = "station_var", facets = "none")
-#histogram_plot(mydata, date_time = year, elements = c("nox", "no2"), station = "station_var", facets = "none")
-#histogram_plot(mydata, date_time = "date", elements = c("no"), station = "station_var", facets = "none")
-#histogram_plot(mydata, date_time = "date", elements = c("nox"), facets = "none")
-#histogram_plot(mydata, date_time = "date", elements = c("nox"), facets = "nonxe")
-#histogram_plot(mydata, date_time = "date", elements = c("nox"))
+# niger50 <- daily_niger %>%
+#   dplyr::filter(year %in% 1950:1952)
+# 
+# histogram_plot(data = niger50, date_time = "date", elements = "rain", station = "station_name", facets = "stations")
+# 
+# test_that("yday_366 is giving the correct day", {
+#   expect_equal(yday_366(x), x_yday)
+#   expect_equal(yday_366(y), y_yday)
+#   expect_equal(yday_366(z), z_yday)
+#   expect_equal(yday_366(w[1]), yday_366(w[2]))
+# })
