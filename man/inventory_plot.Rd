@@ -54,8 +54,7 @@ inventory_plot(
 
 \item{year}{The name of the year column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[date]])}.}
 
-\item{doy}{The name of the day of the year (1-366) column in \code{data}.
-If \code{doy} is \code{NULL} then it can be calculated as \code{yday_366(data[[date]])} if \code{date} is provided.}
+\item{doy}{The name of the day of the year (1-366) column in \code{data}. If \code{doy} is \code{NULL} then it can be calculated as \code{yday_366(data[[date]])} if \code{date} is provided.}
 
 \item{year_doy_plot}{logical. Whether the day of year should be on the y-axis on the plot.}
 
@@ -70,7 +69,7 @@ In \code{"station-elements"}, stations are given as rows and elements as columns
 
 \item{plot_title_size}{Text size for the title in pts.}
 
-\item{plot_title_hjust}{Horizontal justification (in \link{0, 1}) for title.}
+\item{plot_title_hjust}{Horizontal justification for title. Value between 0 and 1.}
 
 \item{x_title}{The text for the x-axis.}
 
