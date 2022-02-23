@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_inventory_data.R
 \name{plot_inventory_data}
 \alias{plot_inventory_data}
-\title{Bar chart of frequency of missing data}
+\title{Produce an bar chart of frequencies of missing data}
 \usage{
 plot_inventory_data(
   data,
@@ -11,9 +11,13 @@ plot_inventory_data(
   y = c("count", "percentage"),
   columns = c("elements", "stations"),
   fill = c("none", "stations", "elements"),
-  facets = c("stations", "elements", "none"),
+  facet_by = c("stations", "elements", "none"),
   display_perc = FALSE,
-  display_count = FALSE
+  display_count = FALSE,
+  title = "Inventory Plot",
+  x_title = NULL,
+  y_title = NULL,
+  coord_flip = FALSE
 )
 }
 \arguments{
@@ -30,11 +34,19 @@ The summary table is calculated separately for each station.}
 
 \item{fill}{Whether to fill by stations, elements, or neither.}
 
-\item{facets}{Whether to facet by stations, elements, or neither}
+\item{facet_by}{Whether to facet by stations, elements, or neither}
 
 \item{display_perc}{logical. Whether to display percentage values on the plot.}
 
 \item{display_count}{logical. Whether to display the count values on the plot.}
+
+\item{title}{The text for the title.}
+
+\item{x_title}{The text for the x-axis.}
+
+\item{y_title}{The text for the y-axis.}
+
+\item{coord_flip}{logical. Whether to switch the x and y axes.}
 }
 \value{
 A plot of type \code{ggplot} to the default plot device
@@ -48,7 +60,7 @@ Creates a graph using \code{ggplot2} and returns a bar plot.
 data(daily_niger) 
 plot_inventory_data(data = daily_niger, station = "station_name",
                     elements = c("tmin", "tmax"),
-                    columns = "stations", facets = "elements")
+                    columns = "stations", facet_by = "elements")
                     
 # can omit station argument
 plot_inventory_data(data = daily_niger, 

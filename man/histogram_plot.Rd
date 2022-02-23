@@ -2,14 +2,15 @@
 % Please edit documentation in R/histogram_plot.R
 \name{histogram_plot}
 \alias{histogram_plot}
-\title{Histogram Plot}
+\title{Produce a histogram of elements by station.}
 \usage{
 histogram_plot(
   data,
   date_time,
   elements,
   station = NULL,
-  facets = c("stations", "elements", "both", "none"),
+  facet_by = c("stations", "elements", "stations-elements", "elements-stations",
+    "none"),
   position = c("identity", "dodge", "dodge2", "stack"),
   plot_type = c("histogram", "density", "frequency"),
   binwidth = NULL,
@@ -17,11 +18,14 @@ histogram_plot(
   na.rm = FALSE,
   orientation = NA,
   show_legend = NA,
-  breaks = NULL
+  breaks = NULL,
+  title = "Histogram Plot",
+  x_title = NULL,
+  y_title = NULL
 )
 }
 \arguments{
-\item{data}{The data.frame to calculate from}
+\item{data}{The data.frame to calculate from.}
 
 \item{date_time}{The name of the date column in \code{data}.}
 
@@ -30,7 +34,7 @@ histogram_plot(
 \item{station}{The name of the station column in \code{data}, if the data are for multiple station.
 Histogram plots are calculated separately for each station.}
 
-\item{facets}{How to split the histograms. Default \code{"station"}. Can be one of \code{"elements"}, \code{"both"}, or \code{"none"}.}
+\item{facet_by}{Whether to facet by stations, elements, both, or neither. Options are \code{"stations"}, \code{"elements"}, \code{"station-elements"}, \code{"elements-stations"}, or \code{"none"}.}
 
 \item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.}
 
@@ -47,13 +51,31 @@ Histogram plots are calculated separately for each station.}
 \item{show_legend}{logical. Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.}
 
 \item{breaks}{A numeric vector giving the bin boundaries. Overrides \code{binwidth} and \code{bins}.}
+
+\item{title}{The text for the title.}
+
+\item{x_title}{The text for the x-axis.}
+
+\item{y_title}{The text for the y-axis.}
 }
 \value{
-
+A plot of type \code{ggplot} to the default plot device
 }
 \description{
-Histogram Plot
+Produce a histogram of elements by station.
 }
 \examples{
-# TODO
+data("daily_niger")
+
+# Create a histogram plot with facets by both elements and stations
+histogram_plot(data = daily_niger, date_time = "date",
+               facet_by = "stations-elements",
+               elements = c("tmax", "tmin"), station = "station_name")
+               
+# Can make additional changes to the plot since the returned object is a \code{ggplot2} object
+# for example, to edit the colours in the plot:
+require(ggplot2)
+t1 <- histogram_plot(data = daily_niger, date_time = "date", elements = c("rain", "tmax"),
+               plot_type = "frequency", position = "dodge", station = "station_name")
+t1 + ggplot2::scale_colour_discrete(type = c("red", "black"))
 }

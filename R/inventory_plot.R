@@ -1,10 +1,9 @@
-#' Produces an inventory of available and missing data
+#' Produce an inventory of available and missing data
 #' 
 #' @description 
 #' Creates an inventory plot displaying whether a value is observed or missing for each element and station given.
 #' Takes a data frame as an input and the relevant columns to create the plot.
 #' Creates a graph using \code{ggplot2} and returns a inventory plot.
-#' 
 #'
 #' @param data The data.frame to calculate from.
 #' @param date The name of the date column in \code{data}.
@@ -33,6 +32,7 @@
 #' or do they vary across rows (\code{"free_x"}), columns (\code{"free_y"}), or both rows and columns (\code{"free"})?
 #' @param facet_dir TODO
 #' @param facet_x_margin Margin width around the text for the x-facets. See \code{ggplot2::margin()} for more details.
+#' @param facet_y_margin Margin width around the text for the y-facets. See \code{ggplot2::margin()} for more details.
 #' @param facet_nrow Number of rows for the facets if `facet_by` is one of \code{"stations"} or \code{"elements"}. Only if `facet_ncol` is given.
 #' @param facet_ncol Number of rows for the facets if `facet_by` is one of \code{"stations"} or \code{"elements"}. Only if `facet_nrow` is given.
 #' @param missing_colour Colour to represent the missing values. Default \code{"red"}.

@@ -1,5 +1,5 @@
-#' Bar chart of frequency of missing data
-#'
+#' Produce an bar chart of frequencies of missing data
+#' 
 #' @description 
 #' Creates a bar chart displaying the frequency of missing data for each element and station given.
 #' Takes a data frame as an input and the relevant columns to create the plot.
@@ -12,9 +12,13 @@
 #' @param y Whether to display counts or percentages.
 #' @param columns Whether to display stations or elements on the columns.
 #' @param fill Whether to fill by stations, elements, or neither.
-#' @param facets Whether to facet by stations, elements, or neither
+#' @param facet_by Whether to facet by stations, elements, or neither
 #' @param display_perc logical. Whether to display percentage values on the plot.
 #' @param display_count logical. Whether to display the count values on the plot.
+#' @param title The text for the title.
+#' @param x_title The text for the x-axis.
+#' @param y_title The text for the y-axis.
+#' @param coord_flip logical. Whether to switch the x and y axes.
 #'
 #' @return A plot of type \code{ggplot} to the default plot device
 #' @export
@@ -23,7 +27,7 @@
 #' data(daily_niger) 
 #' plot_inventory_data(data = daily_niger, station = "station_name",
 #'                     elements = c("tmin", "tmax"),
-#'                     columns = "stations", facets = "elements")
+#'                     columns = "stations", facet_by = "elements")
 #'                     
 #' # can omit station argument
 #' plot_inventory_data(data = daily_niger, 
@@ -37,18 +41,20 @@
 plot_inventory_data <- function(data, elements, station = NULL, y = c("count", "percentage"),
                                 columns = c("elements", "stations"),
                                 fill = c("none", "stations", "elements"),
-                                facets = c("stations", "elements", "none"),
-                                display_perc = FALSE, display_count = FALSE) {
+                                facet_by = c("stations", "elements", "none"),
+                                display_perc = FALSE, display_count = FALSE,
+                                title = "Inventory Plot", x_title = NULL, y_title = NULL,
+                                coord_flip = FALSE) {
   checkmate::assert_logical(display_perc)
   checkmate::assert_logical(display_count)
   y <- match.arg(y)
   columns <- match.arg(columns)
   fill <- match.arg(fill)
-  facets <- match.arg(facets)
+  facet_by <- match.arg(facet_by)
 
-  if ((facets == "stations") & is.null(station)){
-    warning("facets set to none since no stations are given in data")
-    facets <- "none"
+  if ((facet_by == "stations") & is.null(station)){
+    warning("facet_by set to none since no stations are given in data")
+    facet_by <- "none"
   }
   if ((columns == "stations") & is.null(station)){
     warning("columns set to `elements` since no stations are given in data")
@@ -81,9 +87,9 @@ plot_inventory_data <- function(data, elements, station = NULL, y = c("count", "
   } else {
     inv_plot <- inv_plot + ggplot2::geom_col(geom = "text")
   }
-  if (facets == "stations"){
+  if (facet_by == "stations"){
     inv_plot <- inv_plot + ggplot2::facet_grid(rows = ggplot2::vars(.data[[station]]))
-  } else if (facets == "elements"){
+  } else if (facet_by == "elements"){
     inv_plot <- inv_plot + ggplot2::facet_grid(rows = ggplot2::vars(.data$elements_list))
   } else {
     inv_plot <- inv_plot
@@ -101,6 +107,21 @@ plot_inventory_data <- function(data, elements, station = NULL, y = c("count", "
     inv_plot <- inv_plot  + 
       ggplot2::geom_label(data = summary_table, mapping = ggplot2::aes(label = .data$lab))  
   }
+  
+  if(title == "Inventory Plot") {
+    if (is.null(station)){
+      title <- paste0(title, ": ", elements)
+    } else {
+      title <- paste0(title, ": ", elements, " by: ", station)
+    }
+  }
+  if (coord_flip) {
+    inv_plot <- inv_plot + ggplot2::coord_flip()
+  }
+  inv_plot <- inv_plot + 
+    ggplot2::xlab(x_title) +
+    ggplot2::ylab(y_title) +
+    ggplot2::labs(title = title)
   
   return(inv_plot)  
 }
