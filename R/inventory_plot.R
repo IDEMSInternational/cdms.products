@@ -3,7 +3,7 @@
 #' @description 
 #' Creates an inventory plot displaying whether a value is observed or missing for each element and station given.
 #' Takes a data frame as an input and the relevant columns to create the plot.
-#' Creates a graph using \code{ggplot2} and returns a timeseries plot.
+#' Creates a graph using \code{ggplot2} and returns a inventory plot.
 #' 
 #'
 #' @param data The data.frame to calculate from.

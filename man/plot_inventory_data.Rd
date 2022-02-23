@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_inventory_data.R
 \name{plot_inventory_data}
 \alias{plot_inventory_data}
-\title{Title}
+\title{Bar chart of frequency of missing data}
 \usage{
 plot_inventory_data(
   data,
@@ -37,10 +37,12 @@ The summary table is calculated separately for each station.}
 \item{display_count}{logical. Whether to display the count values on the plot.}
 }
 \value{
-
+A plot of type \code{ggplot} to the default plot device
 }
 \description{
-Title
+Creates a bar chart displaying the frequency of missing data for each element and station given.
+Takes a data frame as an input and the relevant columns to create the plot.
+Creates a graph using \code{ggplot2} and returns a bar plot.
 }
 \examples{
 data(daily_niger) 

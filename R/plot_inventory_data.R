@@ -1,5 +1,10 @@
-#' Title
+#' Bar chart of frequency of missing data
 #'
+#' @description 
+#' Creates a bar chart displaying the frequency of missing data for each element and station given.
+#' Takes a data frame as an input and the relevant columns to create the plot.
+#' Creates a graph using \code{ggplot2} and returns a bar plot.
+#' 
 #' @param data The data.frame to calculate from
 #' @param elements The name of the columns in \code{data} to apply the summary calculation to.
 #' @param station The name of the station column in \code{data}, if the data are for multiple station. 
@@ -11,7 +16,7 @@
 #' @param display_perc logical. Whether to display percentage values on the plot.
 #' @param display_count logical. Whether to display the count values on the plot.
 #'
-#' @return
+#' @return A plot of type \code{ggplot} to the default plot device
 #' @export
 #'
 #' @examples
