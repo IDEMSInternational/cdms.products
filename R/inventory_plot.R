@@ -33,8 +33,8 @@
 #' or do they vary across rows (\code{"free_x"}), columns (\code{"free_y"}), or both rows and columns (\code{"free"})?
 #' @param facet_dir TODO
 #' @param facet_x_margin Margin width around the text for the x-facets. See \code{ggplot2::margin()} for more details.
-#' @param facet_nrow TODO
-#' @param facet_ncol TODO
+#' @param facet_nrow Number of rows for the facets if `facet_by` is one of \code{"stations"} or \code{"elements"}. Only if `facet_ncol` is given.
+#' @param facet_ncol Number of rows for the facets if `facet_by` is one of \code{"stations"} or \code{"elements"}. Only if `facet_nrow` is given.
 #' @param missing_colour Colour to represent the missing values. Default \code{"red"}.
 #' @param present_colour Colour to represent the observed values. Default \code{"grey"}.
 #' @param missing_label Colour to give in legend for missing values. Default \code{"Missing"}.
