@@ -2,14 +2,15 @@
 % Please edit documentation in R/timeseries_plot.R
 \name{timeseries_plot}
 \alias{timeseries_plot}
-\title{Plot a timeseries graph using \code{ggplot2}}
+\title{Produce an timeseries graph}
 \usage{
 timeseries_plot(
   data,
   date_time,
   elements,
   station = NULL,
-  facets = c("stations", "elements", "both", "none"),
+  facet_by = c("stations", "elements", "stations-elements", "elements-stations",
+    "none"),
   type = c("line", "bar"),
   add_points = FALSE,
   add_line_of_best_fit = FALSE,
@@ -17,7 +18,10 @@ timeseries_plot(
   add_path = FALSE,
   add_step = FALSE,
   na_rm = FALSE,
-  show_legend = NA
+  show_legend = NA,
+  title = "Timeseries Plot",
+  x_title = NULL,
+  y_title = NULL
 )
 }
 \arguments{
@@ -30,7 +34,7 @@ timeseries_plot(
 \item{station}{The name of the station column in \code{data}, if the data are for multiple station.
 Timeseries plots are calculated separately for each station.}
 
-\item{facets}{How to split the time series plots. Default \code{"station"}. Can be one of \code{"elements"}, \code{"both"}, or \code{"none"}.}
+\item{facet_by}{Whether to facet by stations, elements, both, or neither. Options are \code{"stations"}, \code{"elements"}, \code{"station-elements"}, \code{"elements-stations"}, or \code{"none"}.}
 
 \item{type}{The type of plot, either "line" or line graphs or "bar" for bar graphs.}
 
@@ -47,9 +51,15 @@ Timeseries plots are calculated separately for each station.}
 \item{na_rm}{If \code{FALSE}, the default, missing values are removed with a warning. If \code{TRUE}, missing values are silently removed.}
 
 \item{show_legend}{logical. Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.}
+
+\item{title}{The text for the title.}
+
+\item{x_title}{The text for the x-axis.}
+
+\item{y_title}{The text for the y-axis.}
 }
 \value{
-A plot of type ggplot to the default plot device
+A plot of type \code{ggplot} to the default plot device
 }
 \description{
 Creates a timeseries graph for each element and station given. Takes a data frame as an input and the relevant columns to create the plot.
@@ -59,12 +69,12 @@ Creates a graph using \code{ggplot2} and returns a timeseries plot.
 # Create a time series plot with two elements and facet by station.
 data(daily_niger)
 timeseries_plot(data = daily_niger, date_time = "date", elements = c("tmax", "tmin"), 
-                station = "station_name", facets = "stations")
+                station = "station_name", facet_by = "stations")
 
 # Can make additional changes to the plot since the returned object is a \code{ggplot2} object
 # for example, to add colour-blind friendly colours instead of the default colours
 require(ggplot2)
 t1 <- timeseries_plot(data = daily_niger, date_time = "date", elements = c("tmax", "tmin"), 
-                      station = "station_name", facets = "stations")
+                      station = "station_name", facet_by = "stations")
 t1 + ggplot2::scale_colour_discrete(type = c("#E69F00", "#56B4E9"))
 }

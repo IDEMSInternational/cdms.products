@@ -1,11 +1,11 @@
-#' Histogram Plot
+#' Produce a histogram of elements by station.
 #'
-#' @param data The data.frame to calculate from
+#' @param data The data.frame to calculate from.
 #' @param date_time The name of the date column in \code{data}.
 #' @param elements The name of the elements column in \code{data}.
 #' @param station The name of the station column in \code{data}, if the data are for multiple station. 
 #' Histogram plots are calculated separately for each station.
-#' @param facets How to split the histograms. Default \code{"station"}. Can be one of \code{"elements"}, \code{"both"}, or \code{"none"}.
+#' @param facet_by Whether to facet by stations, elements, both, or neither. Options are \code{"stations"}, \code{"elements"}, \code{"station-elements"}, \code{"elements-stations"}, or \code{"none"}.
 #' @param na.rm If \code{FALSE}, the default, missing values are removed with a warning. If \code{TRUE}, missing values are silently removed.
 #' @param show_legend logical. Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
@@ -14,54 +14,67 @@
 #' @param bins Number of bins. Overridden by \code{binwidth}. Defaults to 30.
 #' @param orientation The orientation of the layer. The default (\code{NA}) automatically determines the orientation from the aesthetic mapping. In the rare event that this fails it can be given explicitly by setting \code{orientation} to either "x" or "y".
 #' @param breaks A numeric vector giving the bin boundaries. Overrides \code{binwidth} and \code{bins}.
+#' @param title The text for the title.
+#' @param x_title The text for the x-axis.
+#' @param y_title The text for the y-axis.
 #'
-#' @return
+#' @return A plot of type \code{ggplot} to the default plot device
 #' @export
 #'
-#' @examples # TODO
-histogram_plot <- function(data, date_time, elements, station = NULL, facets = c("stations", "elements", "both", "none"),
-                           position = c("identity", "dodge", "dodge2", "stack"), # others?
-                           plot_type = c("histogram", "density", "frequency"), # ridges is in geom_density_ridges in ggridges pkg.
-                           binwidth = NULL, bins = NULL, na.rm = FALSE, orientation = NA, show_legend = NA, breaks = NULL){
-  
+#' @examples
+#' data("daily_niger")
+#' 
+#' # Create a histogram plot with facets by both elements and stations
+#' histogram_plot(data = daily_niger, date_time = "date",
+#'                facet_by = "stations-elements",
+#'                elements = c("tmax", "tmin"), station = "station_name")
+#'                
+#' # Can make additional changes to the plot since the returned object is a \code{ggplot2} object
+#' # for example, to edit the colours in the plot:
+#' require(ggplot2)
+#' t1 <- histogram_plot(data = daily_niger, date_time = "date", elements = c("rain", "tmax"),
+#'                plot_type = "frequency", position = "dodge", station = "station_name")
+#' t1 + ggplot2::scale_colour_discrete(type = c("red", "black"))
+
+histogram_plot <- function(data, date_time, elements, station = NULL,
+                           facet_by = c("stations", "elements", "stations-elements", "elements-stations", "none"),
+                           position = c("identity", "dodge", "dodge2", "stack"),
+                           plot_type = c("histogram", "density", "frequency"),
+                           binwidth = NULL, bins = NULL, na.rm = FALSE, orientation = NA, show_legend = NA, breaks = NULL,
+                           title = "Histogram Plot", x_title = NULL, y_title = NULL){
   checkmate::assert_data_frame(data)
-  # date_time can be a date, factor, or character.
   checkmate::assert_character(elements)
   checkmate::assert_character(station, null.ok = TRUE)
-  facets <- match.arg(facets)
+  facet_by <- match.arg(facet_by)
   position <- match.arg(position)
   plot_type <- match.arg(plot_type)
   checkmate::assert_logical(na.rm)
   checkmate::assert_logical(show_legend)
-  
-  # todo: checks for binwidth, bins, orientation
-  
-  if ((facets == "stations" | facets == "both") & is.null(station)){
-    warning("facets set to none since no stations are given in data")
-    facets = "none"
+
+  if ((facet_by == "stations" | facet_by == "stations-elements" | facet_by == "elements-stations") & is.null(station)){
+    warning("facet_by set to none since no stations are given in data")
+    facet_by = "none"
   }
   data_longer <- data %>% tidyr::pivot_longer(cols = tidyselect::all_of(elements), names_to = "elements_list")
   data_longer$elements_list <- as.factor(data_longer$elements_list)
-  
-  if (facets == "elements"){
+    
+  if (facet_by == "elements"){
     if (is.null(station)){
-      base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]])) +
-        ggplot2::facet_grid(cols = ggplot2::vars(.data$elements_list))
+      base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]]))
     } else {
-      base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], fill = .data[[station]])) +
-        ggplot2::facet_grid(cols = ggplot2::vars(.data$elements_list))
+      base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], fill = .data[[station]], colour = .data[[station]]))
     }
-  } else if (facets == "stations"){
+    base_plot <- base_plot + 
+      ggplot2::facet_grid(cols = ggplot2::vars(.data$elements_list))
+  } else if (facet_by == "stations"){
     if (length(elements) == 1){
-      base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[date_time]], ))
+      base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[date_time]]))
     } else {
-      base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], fill = .data$elements_list))
+      base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], fill = .data$elements_list, colour = .data$elements_list))
     }
-    base_plot <- base_plot + ggplot2::facet_grid(cols = ggplot2::vars(.data[[station]]))
-  } else if (facets == "both"){
-    base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]])) +
-      ggplot2::facet_grid(rows = ggplot2::vars(.data[[station]]), cols = ggplot2::vars(.data$elements_list))
-  } else { # if "none", or NULL
+    base_plot <- base_plot +
+      ggplot2::facet_grid(cols = ggplot2::vars(.data[[station]]))
+  } else if (facet_by == "none"){
     if (length(elements) == 1){
       if (is.null(station)) {
         base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[date_time]]))
@@ -77,6 +90,15 @@ histogram_plot <- function(data, date_time, elements, station = NULL, facets = c
         base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], fill = .data$station_elements))
       }
     }
+  } else {
+    base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]]))
+    if (facet_by == "stations-elements"){
+      base_plot <- base_plot +
+        ggplot2::facet_grid(rows = ggplot2::vars(.data[[station]]), cols = ggplot2::vars(.data$elements_list))
+    } else {
+      base_plot <- base_plot +
+        ggplot2::facet_grid(rows = ggplot2::vars(.data$elements_list), cols = ggplot2::vars(.data[[station]]))
+    }
   }
   
   if (plot_type == "histogram"){
@@ -87,5 +109,18 @@ histogram_plot <- function(data, date_time, elements, station = NULL, facets = c
     base_plot <- base_plot + ggplot2::geom_density(position = position, na.rm = na.rm, orientation = orientation, show.legend = show_legend)
   }
   
+  if(title == "Histogram Plot") {
+    if (is.null(station)){
+      title <- paste0(title, ": ", elements)
+    } else {
+      title <- paste0(title, ": ", elements, " by: ", station)
+    }
+  }
+  base_plot <- base_plot + 
+    ggplot2::xlab(x_title) +
+    ggplot2::ylab(y_title) +
+    ggplot2::labs(title = title)
+  
   return(base_plot)
 }
+

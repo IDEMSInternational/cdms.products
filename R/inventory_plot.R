@@ -1,22 +1,20 @@
-#' Produces an inventory of available and missing data
+#' Produce an inventory of available and missing data
 #' 
 #' @description 
 #' Creates an inventory plot displaying whether a value is observed or missing for each element and station given.
 #' Takes a data frame as an input and the relevant columns to create the plot.
-#' Creates a graph using \code{ggplot2} and returns a timeseries plot.
-#' 
+#' Creates a graph using \code{ggplot2} and returns a inventory plot.
 #'
 #' @param data The data.frame to calculate from.
 #' @param date The name of the date column in \code{data}.
 #' @param elements The name of the column in \code{data} to apply the function to.
 #' @param station The name of the station column in \code{data}, if the data are for multiple station. 
 #' @param year The name of the year column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[date]])}.
-#' @param doy The name of the day of the year (1-366) column in \code{data}. 
-#' If \code{doy} is \code{NULL} then it can be calculated as \code{yday_366(data[[date]])} if \code{date} is provided.
+#' @param doy The name of the day of the year (1-366) column in \code{data}. If \code{doy} is \code{NULL} then it can be calculated as \code{yday_366(data[[date]])} if \code{date} is provided.
 #' @param year_doy_plot logical. Whether the day of year should be on the y-axis on the plot.
 #' @param title The text for the title.
 #' @param plot_title_size Text size for the title in pts.
-#' @param plot_title_hjust Horizontal justification (in [0, 1]) for title.
+#' @param plot_title_hjust Horizontal justification for title. Value between 0 and 1.
 #' @param x_title The text for the x-axis.
 #' @param y_title The text for the y-axis.
 #' @param x_scale_from The year to display the inventory plot from.
@@ -32,9 +30,10 @@
 #' @param facet_scales Are scales shared across all facets (the default, \code{"fixed"}),
 #' or do they vary across rows (\code{"free_x"}), columns (\code{"free_y"}), or both rows and columns (\code{"free"})?
 #' @param facet_dir TODO
-#' @param facet_x_margin Margin width around the text for the x-facets. See \code{ggplot2::margin()} for more details.
-#' @param facet_nrow Number of rows for the facets if `facet_by` is one of \code{"stations"} or \code{"elements"}. Only if `facet_ncol` is given.
-#' @param facet_ncol Number of rows for the facets if `facet_by` is one of \code{"stations"} or \code{"elements"}. Only if `facet_nrow` is given.
+#' @param facet_x_margin Margin width around the text for the x-facets.
+#' @param facet_y_margin Margin width around the text for the y-facets.
+#' @param facet_nrow Number of rows for the facets if `facet_by` is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_ncol} is given.
+#' @param facet_ncol Number of rows for the facets if `facet_by` is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_nrow} is given.
 #' @param missing_colour Colour to represent the missing values. Default \code{"red"}.
 #' @param present_colour Colour to represent the observed values. Default \code{"grey"}.
 #' @param missing_label Colour to give in legend for missing values. Default \code{"Missing"}.

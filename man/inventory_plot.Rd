@@ -2,7 +2,7 @@
 % Please edit documentation in R/inventory_plot.R
 \name{inventory_plot}
 \alias{inventory_plot}
-\title{Produces an inventory of available and missing data}
+\title{Produce an inventory of available and missing data}
 \usage{
 inventory_plot(
   data,
@@ -54,8 +54,7 @@ inventory_plot(
 
 \item{year}{The name of the year column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[date]])}.}
 
-\item{doy}{The name of the day of the year (1-366) column in \code{data}.
-If \code{doy} is \code{NULL} then it can be calculated as \code{yday_366(data[[date]])} if \code{date} is provided.}
+\item{doy}{The name of the day of the year (1-366) column in \code{data}. If \code{doy} is \code{NULL} then it can be calculated as \code{yday_366(data[[date]])} if \code{date} is provided.}
 
 \item{year_doy_plot}{logical. Whether the day of year should be on the y-axis on the plot.}
 
@@ -70,7 +69,7 @@ In \code{"station-elements"}, stations are given as rows and elements as columns
 
 \item{plot_title_size}{Text size for the title in pts.}
 
-\item{plot_title_hjust}{Horizontal justification (in \link{0, 1}) for title.}
+\item{plot_title_hjust}{Horizontal justification for title. Value between 0 and 1.}
 
 \item{x_title}{The text for the x-axis.}
 
@@ -93,7 +92,9 @@ or do they vary across rows (\code{"free_x"}), columns (\code{"free_y"}), or bot
 
 \item{facet_dir}{TODO}
 
-\item{facet_x_margin}{Margin width around the text for the x-facets. See \code{ggplot2::margin()} for more details.}
+\item{facet_x_margin}{Margin width around the text for the x-facets.}
+
+\item{facet_y_margin}{Margin width around the text for the y-facets.}
 
 \item{facet_nrow}{Number of rows for the facets if \code{facet_by} is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_ncol} is given.}
 
@@ -125,7 +126,7 @@ A plot of type \code{ggplot} to the default plot device
 \description{
 Creates an inventory plot displaying whether a value is observed or missing for each element and station given.
 Takes a data frame as an input and the relevant columns to create the plot.
-Creates a graph using \code{ggplot2} and returns a timeseries plot.
+Creates a graph using \code{ggplot2} and returns a inventory plot.
 }
 \examples{
 # Create an inventory plot with two elements and by station.
