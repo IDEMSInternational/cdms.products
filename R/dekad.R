@@ -1,8 +1,10 @@
 #' Get the dekad component of a date-time
 #'
+#' @description Convert a date or date-time object to a yearly dekad (10-day period)
+#'
 #' @param date A date-time object
 #'
-#' @return
+#' @return a numerical vector of dekad objects corresponding to date variable.
 #' @export
 #'
 #' @examples 
