@@ -14,35 +14,37 @@
 #' @param doy The name of the day of the year (1-366) column in \code{data}. 
 #' If \code{doy} is \code{NULL} then it can be calculated as \code{yday_366(data[[date]])} if \code{date} is provided.
 #' @param year_doy_plot logical. Whether the day of year should be on the y-axis on the plot.
+#' @param title The text for the title.
+#' @param plot_title_size Text size for the title in pts.
+#' @param plot_title_hjust Horizontal justification (in [0, 1]) for title.
+#' @param x_title The text for the x-axis.
+#' @param y_title The text for the y-axis.
+#' @param x_scale_from The year to display the inventory plot from.
+#' @param x_scale_to The year to display the inventory plot to.
+#' @param x_scale_by The different, in years, to give the x tick marks between from and to.
+#' @param y_date_format TODO
+#' @param y_date_scale_by TODO
+#' @param y_date_scale_step TODO
 #' @param facet_by Whether to facet by stations, elements, or both. Options are \code{"stations"}, \code{"elements"}, \code{"station-elements"}, \code{"elements-stations"}.
 #' In \code{"station-elements"}, stations are given as rows and elements as columns. In \code{"elements-stations"}, elements are given as rows and stations as columns.
 #' @param facet_x_size Text size for the facets on the x-axis in pts.
 #' @param facet_y_size Text size for the facets on the y-axis in pts.
-#' @param title The text for the title.
-#' @param plot_title_size Text size for the title in pts.
-#' @param x_title The text for the x-axis.
-#' @param y_title The text for the y-axis.
-#' @param x_scale_from TODO - see ?scale_continuous 
-#' @param x_scale_to TODO
-#' @param x_scale_by TODO
-#' @param y_date_format TODO
-#' @param y_date_scale_by TODO
-#' @param y_date_scale_step TODO
-#' @param facet_scales TODO
+#' @param facet_scales Are scales shared across all facets (the default, \code{"fixed"}),
+#' or do they vary across rows (\code{"free_x"}), columns (\code{"free_y"}), or both rows and columns (\code{"free"})?
 #' @param facet_dir TODO
-#' @param facet_x_margin TODO
-#' @param facet_y_margin TODO
+#' @param facet_x_margin Margin width around the text for the x-facets. See \code{ggplot2::margin()} for more details.
 #' @param facet_nrow TODO
 #' @param facet_ncol TODO
-#' @param missing_colour TODO
-#' @param present_colour TODO
-#' @param missing_label TODO
-#' @param present_label TODO
-#' @param display_rain_days TODO
-#' @param rain TODO
+#' @param missing_colour Colour to represent the missing values. Default \code{"red"}.
+#' @param present_colour Colour to represent the observed values. Default \code{"grey"}.
+#' @param missing_label Colour to give in legend for missing values. Default \code{"Missing"}.
+#' @param present_label Colour to give in legend for observed values. Default \code{"Present"}.
+#' @param display_rain_days logical. If \code{rain} parameter is not \code{NULL}, and \code{rain} is not an element in the \code{elements} parameter, whether to include dry and rainy days.
+#' @param rain The name of the rain column in \code{data}. 
 #' @param rain_cats TODO 
-#' @param coord_flip TODO
-#' @param plot_title_hjust TODO
+#' @param labels If \code{display_rain_days = TRUE}, the labels in the key for dry and rainy days. By default, \code{c("Dry", "Rain")}
+#' @param key_colours If \code{display_rain_days = TRUE}, the colours for dry and rainy days. By default, \code{c("tan3", "blue"))}
+#' @param coord_flip logical. Whether to switch the x and y axes.
 #'
 #' @return A plot of type \code{ggplot} to the default plot device
 #' @export 
@@ -50,14 +52,16 @@
 #' @examples
 #' # Create an inventory plot with two elements and by station.
 #' data(daily_niger)
-#' p1 <- inventory_plot(data = daily_niger, station = "station_name", elements = c("tmax", "tmin"),
+#' inventory_plot(data = daily_niger, station = "station_name", elements = c("tmax", "tmin"),
 #'                date = "date")
-#' p1
-#' # since it is a ggplot2 object, additional layers can be added
 #'
-#' create an inventory plot by year and day of year
+#' # Create an inventory plot by year and day of year
 #' inventory_plot(data = daily_niger, station = "station_name", elements = c("tmax", "tmin"),
 #'                date = "date", year_doy_plot = TRUE)
+#'
+#' # Can add in rainy/dry days into the plot
+#' inventory_plot(data = daily_niger, station = "station_name", elements = c("tmax", "tmin"),
+#'                date = "date", rain = "rain", display_rain_days = TRUE)
 inventory_plot <- function(data, date, elements, station = NULL, year = NULL, doy = NULL,  
                            year_doy_plot = FALSE, facet_by = NULL, 
                            facet_x_size = 7, facet_y_size = 11,
