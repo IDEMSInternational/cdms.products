@@ -1,4 +1,4 @@
-#' Get the dekad component of a date-time
+#' Get the dekad component of a date-time object
 #'
 #' @description Convert a date or date-time object to a yearly dekad (10-day period)
 #'
