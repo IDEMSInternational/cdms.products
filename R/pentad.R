@@ -1,4 +1,4 @@
-#' Get the pentad component of a date-time
+#' Get the pentad component of a date-time object
 #'
 #' @description Convert a date or date-time object to a yearly pentad (5-day period)
 #' 
