@@ -2,7 +2,7 @@
 % Please edit documentation in R/inventory_plot.R
 \name{inventory_plot}
 \alias{inventory_plot}
-\title{Inventory Plot}
+\title{Produces an inventory of available and missing data}
 \usage{
 inventory_plot(
   data,
@@ -57,29 +57,30 @@ inventory_plot(
 \item{doy}{The name of the day of the year (1-366) column in \code{data}.
 If \code{doy} is \code{NULL} then it can be calculated as \code{yday_366(data[[date]])} if \code{date} is provided.}
 
-\item{year_doy_plot}{TODO}
+\item{year_doy_plot}{logical. Whether the day of year should be on the y-axis on the plot.}
 
-\item{facet_by}{TODO}
+\item{facet_by}{Whether to facet by stations, elements, or both. Options are \code{"stations"}, \code{"elements"}, \code{"station-elements"}, \code{"elements-stations"}.
+In \code{"station-elements"}, stations are given as rows and elements as columns. In \code{"elements-stations"}, elements are given as rows and stations as columns.}
 
-\item{facet_x_size}{TODO}
+\item{facet_x_size}{Text size for the facets on the x-axis in pts.}
 
-\item{facet_y_size}{TODO}
+\item{facet_y_size}{Text size for the facets on the y-axis in pts.}
 
 \item{title}{The text for the title.}
 
-\item{plot_title_size}{TODO}
+\item{plot_title_size}{Text size for the title in pts.}
 
-\item{plot_title_hjust}{TODO}
+\item{plot_title_hjust}{Horizontal justification (in \link{0, 1}) for title.}
 
 \item{x_title}{The text for the x-axis.}
 
 \item{y_title}{The text for the y-axis.}
 
-\item{x_scale_from}{TODO - see ?scale_continuous}
+\item{x_scale_from}{The year to display the inventory plot from.}
 
-\item{x_scale_to}{TODO}
+\item{x_scale_to}{The year to display the inventory plot to.}
 
-\item{x_scale_by}{TODO}
+\item{x_scale_by}{The different, in years, to give the x tick marks between from and to.}
 
 \item{y_date_format}{TODO}
 
@@ -87,40 +88,56 @@ If \code{doy} is \code{NULL} then it can be calculated as \code{yday_366(data[[d
 
 \item{y_date_scale_step}{TODO}
 
-\item{facet_scales}{TODO}
+\item{facet_scales}{Are scales shared across all facets (the default, \code{"fixed"}),
+or do they vary across rows (\code{"free_x"}), columns (\code{"free_y"}), or both rows and columns (\code{"free"})?}
 
 \item{facet_dir}{TODO}
 
-\item{facet_x_margin}{TODO}
+\item{facet_x_margin}{Margin width around the text for the x-facets. See \code{ggplot2::margin()} for more details.}
 
-\item{facet_y_margin}{TODO}
+\item{facet_nrow}{Number of rows for the facets if \code{facet_by} is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_ncol} is given.}
 
-\item{facet_nrow}{TODO}
+\item{facet_ncol}{Number of rows for the facets if \code{facet_by} is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_nrow} is given.}
 
-\item{facet_ncol}{TODO}
+\item{missing_colour}{Colour to represent the missing values. Default \code{"red"}.}
 
-\item{missing_colour}{TODO}
+\item{present_colour}{Colour to represent the observed values. Default \code{"grey"}.}
 
-\item{present_colour}{TODO}
+\item{missing_label}{Colour to give in legend for missing values. Default \code{"Missing"}.}
 
-\item{missing_label}{TODO}
+\item{present_label}{Colour to give in legend for observed values. Default \code{"Present"}.}
 
-\item{present_label}{TODO}
+\item{display_rain_days}{logical. If \code{rain} parameter is not \code{NULL}, and \code{rain} is not an element in the \code{elements} parameter, whether to include dry and rainy days.}
 
-\item{display_rain_days}{TODO}
-
-\item{rain}{TODO}
+\item{rain}{The name of the rain column in \code{data}.}
 
 \item{rain_cats}{TODO}
 
-\item{coord_flip}{TODO}
+\item{coord_flip}{logical. Whether to switch the x and y axes.}
+
+\item{labels}{If \code{display_rain_days = TRUE}, the labels in the key for dry and rainy days. By default, \code{c("Dry", "Rain")}}
+
+\item{key_colours}{If \code{display_rain_days = TRUE}, the colours for dry and rainy days. By default, \code{c("tan3", "blue"))}}
 }
 \value{
-
+A plot of type \code{ggplot} to the default plot device
 }
 \description{
-Produces an inventory of available and missing data
+Creates an inventory plot displaying whether a value is observed or missing for each element and station given.
+Takes a data frame as an input and the relevant columns to create the plot.
+Creates a graph using \code{ggplot2} and returns a timeseries plot.
 }
 \examples{
-# TODO
+# Create an inventory plot with two elements and by station.
+data(daily_niger)
+inventory_plot(data = daily_niger, station = "station_name", elements = c("tmax", "tmin"),
+               date = "date")
+
+# Create an inventory plot by year and day of year
+inventory_plot(data = daily_niger, station = "station_name", elements = c("tmax", "tmin"),
+               date = "date", year_doy_plot = TRUE)
+
+# Can add in rainy/dry days into the plot
+inventory_plot(data = daily_niger, station = "station_name", elements = c("tmax", "tmin"),
+               date = "date", rain = "rain", display_rain_days = TRUE)
 }

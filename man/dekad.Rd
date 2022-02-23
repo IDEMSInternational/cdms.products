@@ -2,7 +2,7 @@
 % Please edit documentation in R/dekad.R
 \name{dekad}
 \alias{dekad}
-\title{Get the dekad component of a date-time}
+\title{Get the dekad component of a date-time object}
 \usage{
 dekad(date)
 }
@@ -10,10 +10,10 @@ dekad(date)
 \item{date}{A date-time object}
 }
 \value{
-
+a numerical vector of dekad objects corresponding to date variable.
 }
 \description{
-Get the dekad component of a date-time
+Convert a date or date-time object to a yearly dekad (10-day period)
 }
 \examples{
 dekad(as.Date("2020/12/25"))

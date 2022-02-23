@@ -2,7 +2,7 @@
 % Please edit documentation in R/timeseries_plot.R
 \name{timeseries_plot}
 \alias{timeseries_plot}
-\title{Timeseries Plot}
+\title{Plot a timeseries graph using \code{ggplot2}}
 \usage{
 timeseries_plot(
   data,
@@ -49,11 +49,22 @@ Timeseries plots are calculated separately for each station.}
 \item{show_legend}{logical. Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.}
 }
 \value{
-
+A plot of type ggplot to the default plot device
 }
 \description{
-Timeseries Plot
+Creates a timeseries graph for each element and station given. Takes a data frame as an input and the relevant columns to create the plot.
+Creates a graph using \code{ggplot2} and returns a timeseries plot.
 }
 \examples{
-# TODO
+# Create a time series plot with two elements and facet by station.
+data(daily_niger)
+timeseries_plot(data = daily_niger, date_time = "date", elements = c("tmax", "tmin"), 
+                station = "station_name", facets = "stations")
+
+# Can make additional changes to the plot since the returned object is a \code{ggplot2} object
+# for example, to add colour-blind friendly colours instead of the default colours
+require(ggplot2)
+t1 <- timeseries_plot(data = daily_niger, date_time = "date", elements = c("tmax", "tmin"), 
+                      station = "station_name", facets = "stations")
+t1 + ggplot2::scale_colour_discrete(type = c("#E69F00", "#56B4E9"))
 }
