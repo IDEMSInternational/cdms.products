@@ -93,9 +93,9 @@ or do they vary across rows (\code{"free_x"}), columns (\code{"free_y"}), or bot
 
 \item{facet_dir}{TODO}
 
-\item{facet_x_margin}{Margin width around the text for the x-facets. See \code{ggplot2::margin()} for more details.}
+\item{facet_x_margin}{Margin width around the text for the x-facets.}
 
-\item{facet_y_margin}{Margin width around the text for the y-facets. See \code{ggplot2::margin()} for more details.}
+\item{facet_y_margin}{Margin width around the text for the y-facets.}
 
 \item{facet_nrow}{Number of rows for the facets if \code{facet_by} is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_ncol} is given.}
 

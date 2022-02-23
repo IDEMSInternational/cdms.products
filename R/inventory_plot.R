@@ -31,8 +31,8 @@
 #' @param facet_scales Are scales shared across all facets (the default, \code{"fixed"}),
 #' or do they vary across rows (\code{"free_x"}), columns (\code{"free_y"}), or both rows and columns (\code{"free"})?
 #' @param facet_dir TODO
-#' @param facet_x_margin Margin width around the text for the x-facets. See \code{ggplot2::margin()} for more details.
-#' @param facet_y_margin Margin width around the text for the y-facets. See \code{ggplot2::margin()} for more details.
+#' @param facet_x_margin Margin width around the text for the x-facets.
+#' @param facet_y_margin Margin width around the text for the y-facets.
 #' @param facet_nrow Number of rows for the facets if `facet_by` is one of \code{"stations"} or \code{"elements"}. Only if `facet_ncol` is given.
 #' @param facet_ncol Number of rows for the facets if `facet_by` is one of \code{"stations"} or \code{"elements"}. Only if `facet_nrow` is given.
 #' @param missing_colour Colour to represent the missing values. Default \code{"red"}.
