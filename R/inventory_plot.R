@@ -1,6 +1,10 @@
-#' Inventory Plot
-#' 
 #' Produces an inventory of available and missing data
+#' 
+#' @description 
+#' 
+#' Takes a data frame as an input and the relevant columns to create the plot.
+#' Creates a graph using \code{ggplot2} and returns a timeseries plot.
+#' 
 #'
 #' @param data The data.frame to calculate from.
 #' @param date The name of the date column in \code{data}.
@@ -9,8 +13,9 @@
 #' @param year The name of the year column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[date]])}.
 #' @param doy The name of the day of the year (1-366) column in \code{data}. 
 #' If \code{doy} is \code{NULL} then it can be calculated as \code{yday_366(data[[date]])} if \code{date} is provided.
-#' @param year_doy_plot TODO
-#' @param facet_by TODO
+#' @param year_doy_plot logical. Whether the day of year should be on the y-axis on the plot.
+#' @param facet_by Whether to facet by stations, elements, or both. Options are \code{"stations"}, \code{"elements"}, \code{"station-elements"}, \code{"elements-stations"}.
+#' In \code{"station-elements"}, stations are given as rows and elements as columns. In \code{"elements-stations"}, elements are given as rows and stations as columns.
 #' @param facet_x_size TODO
 #' @param facet_y_size TODO
 #' @param title The text for the title.
@@ -39,10 +44,20 @@
 #' @param coord_flip TODO
 #' @param plot_title_hjust TODO
 #'
-#' @return
-#' @export
+#' @return A plot of type \code{ggplot} to the default plot device
+#' @export 
 #'
-#' @examples # TODO
+#' @examples
+#' # Create an inventory plot with two elements and by station.
+#' data(daily_niger)
+#' p1 <- inventory_plot(data = daily_niger, station = "station_name", elements = c("tmax", "tmin"),
+#'                date = "date")
+#' p1
+#' # since it is a ggplot2 object, additional layers can be added
+#'
+#' create an inventory plot by year and day of year
+#' inventory_plot(data = daily_niger, station = "station_name", elements = c("tmax", "tmin"),
+#'                date = "date", year_doy_plot = TRUE)
 inventory_plot <- function(data, date, elements, station = NULL, year = NULL, doy = NULL,  
                            year_doy_plot = FALSE, facet_by = NULL, 
                            facet_x_size = 7, facet_y_size = 11,
