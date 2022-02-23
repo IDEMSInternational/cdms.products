@@ -1,4 +1,7 @@
-#' Timeseries Plot
+#' Plot a timeseries graph using \code{ggplot2}
+#' 
+#' @description Creates a timeseries graph for each element and station given. Takes a data frame as an input and the relevant columns to create the plot.
+#' Creates a graph using \code{ggplot2} and returns a timeseries plot.
 #'
 #' @param data The data.frame to calculate from.
 #' @param date_time The name of the date column in \code{data}.
@@ -15,10 +18,21 @@
 #' @param na_rm If \code{FALSE}, the default, missing values are removed with a warning. If \code{TRUE}, missing values are silently removed.
 #' @param show_legend logical. Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.
 #'
-#' @return
+#' @return A plot of type ggplot to the default plot device
 #' @export
 #'
-#' @examples # TODO
+#' @examples
+#' # Create a time series plot with two elements and facet by station.
+#' data(daily_niger)
+#' timeseries_plot(data = daily_niger, date_time = "date", elements = c("tmax", "tmin"), 
+#'                 station = "station_name", facets = "stations")
+#' 
+#' # Can make additional changes to the plot since the returned object is a \code{ggplot2} object
+#' # for example, to add colour-blind friendly colours instead of the default colours
+#' require(ggplot2)
+#' t1 <- timeseries_plot(data = daily_niger, date_time = "date", elements = c("tmax", "tmin"), 
+#'                       station = "station_name", facets = "stations")
+#' t1 + ggplot2::scale_colour_discrete(type = c("#E69F00", "#56B4E9"))
 timeseries_plot <- function(data, date_time, elements, station = NULL, facets = c("stations", "elements", "both", "none"),
                             type = c("line", "bar"),
                             add_points = FALSE, add_line_of_best_fit = FALSE,
@@ -91,10 +105,7 @@ timeseries_plot <- function(data, date_time, elements, station = NULL, facets = 
     base_plot <- base_plot + 
       ggplot2::geom_col(na.rm = na_rm, show.legend = show_legend)
   }
-  
-  # color by viridis?
-  # base_plot <- base_plot + viridis::scale_colour_viridis(discrete = TRUE, option = "C") # colour blind friendly
-  
+ 
   if (add_points){
     base_plot <- base_plot + ggplot2::geom_point()
   }
