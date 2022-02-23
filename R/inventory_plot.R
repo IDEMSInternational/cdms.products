@@ -16,10 +16,10 @@
 #' @param year_doy_plot logical. Whether the day of year should be on the y-axis on the plot.
 #' @param facet_by Whether to facet by stations, elements, or both. Options are \code{"stations"}, \code{"elements"}, \code{"station-elements"}, \code{"elements-stations"}.
 #' In \code{"station-elements"}, stations are given as rows and elements as columns. In \code{"elements-stations"}, elements are given as rows and stations as columns.
-#' @param facet_x_size TODO
-#' @param facet_y_size TODO
+#' @param facet_x_size Text size for the facets on the x-axis in pts.
+#' @param facet_y_size Text size for the facets on the y-axis in pts.
 #' @param title The text for the title.
-#' @param plot_title_size TODO
+#' @param plot_title_size Text size for the title in pts.
 #' @param x_title The text for the x-axis.
 #' @param y_title The text for the y-axis.
 #' @param x_scale_from TODO - see ?scale_continuous 
