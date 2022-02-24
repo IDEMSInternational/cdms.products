@@ -33,7 +33,7 @@
 #' # for example, to edit the colours in the plot:
 #' require(ggplot2)
 #' t1 <- histogram_plot(data = daily_niger, date_time = "date", elements = c("rain", "tmax"),
-#'                plot_type = "frequency", position = "dodge", station = "station_name")
+#'                      position = "dodge", station = "station_name")
 #' t1 + ggplot2::scale_colour_discrete(type = c("red", "black"))
 #' 
 #' # Can additionally layer elements in a single plot
