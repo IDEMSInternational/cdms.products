@@ -89,20 +89,21 @@ histogram_plot <- function(data, date_time, elements, station = NULL,
     if (facet_by == "none"){
       data_longer$elements_stations <- paste(data_longer$station_name, data_longer$elements_list, sep = "_")
       base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data$elements_stations, fill = .data$elements_stations))
-    } else if (facet_by == "elements"){
-      if (is.null(station)){
+    } else if (facet_by == "stations"){
+      if (length(elements) > 1){
         base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data$elements_list, fill = .data$elements_list))
       } else {
-        base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data[[station]], fill = .data[[station]]))
+        base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[date_time]], y = .data[[elements]]))
       }
-      base_plot <- base_plot +
-        ggplot2::facet_wrap(ggplot2::vars(.data$elements_list), nrow = facet_nrow, ncol = facet_ncol)
+      base_plot <- base_plot + 
+        ggplot2::facet_wrap(ggplot2::vars(data[[station]]), ncol = facet_ncol, nrow = facet_nrow)
+    } else if (facet_by == "elements"){
+        base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data[[station]], fill = .data[[station]]))
+        base_plot <- base_plot + 
+          ggplot2::facet_wrap(ggplot2::vars(.data$elements_list), ncol = facet_ncol, nrow = facet_nrow)
     } else {
       base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data$elements_list, fill = .data$elements_list))
-      if (facet_by == "stations"){
-        base_plot <- base_plot + 
-          ggplot2::facet_wrap(ggplot2::vars(.data[[station]]), nrow = facet_nrow, ncol = facet_ncol)
-      } else if (facet_by == "stations-elements"){
+      if (facet_by == "stations-elements"){
         base_plot <- base_plot + 
           ggplot2::facet_grid(cols = ggplot2::vars(.data$elements_list), rows = ggplot2::vars(.data[[station]]))
       } else {
@@ -112,7 +113,7 @@ histogram_plot <- function(data, date_time, elements, station = NULL,
     }
     base_plot <- base_plot + ggplot2::geom_bar(stat = "identity", position = position, width = width, na.rm = na.rm,
                                                orientation = orientation, show.legend = show_legend) #+
-      #ggplot2::scale_color_discrete(type = colour_bank)
+    #ggplot2::scale_color_discrete(type = colour_bank)
   }
   if(title == "Histogram Plot") {
     title <- paste0(title, ": ", elements)
@@ -123,3 +124,10 @@ histogram_plot <- function(data, date_time, elements, station = NULL,
     ggplot2::labs(title = title)
   return(base_plot)
 }
+
+
+
+daily_niger1 <- daily_niger %>% filter(year < 1950)
+histogram_plot(data = daily_niger1, date_time = "date",
+             facet_by = "stations",
+              elements = c("tmax"), station = "station_name")
