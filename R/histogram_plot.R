@@ -124,10 +124,3 @@ histogram_plot <- function(data, date_time, elements, station = NULL,
     ggplot2::labs(title = title)
   return(base_plot)
 }
-
-
-
-daily_niger1 <- daily_niger %>% filter(year < 1950)
-histogram_plot(data = daily_niger1, date_time = "date",
-             facet_by = "stations",
-              elements = c("tmax"), station = "station_name")
