@@ -60,7 +60,7 @@ histogram_plot <- function(data, date_time, elements, station = NULL,
     facet_by = "none"
   }
   if (is.null(colour_bank)){ 
-    colour_bank <- (ggplot2::luv_colours %>% dplyr::slice(which(row_number() %% 10 == 1)))$col
+    colour_bank <- (ggplot2::luv_colours %>% dplyr::slice(which(dplyr::row_number() %% 10 == 1)))$col
     if (length(elements) > length(colour_bank)) { colour_bank <- ggplot2::luv_colours$col }
   }
   if (position == "layer"){
