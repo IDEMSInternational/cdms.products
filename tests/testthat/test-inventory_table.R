@@ -1,4 +1,4 @@
-library(RInstatClimatic)
+library(cdms.products)
 data("daily_niger")
 all_elements <- c("tmax","tmin","rain","hmax","hmin","sunh","ws","wd")
 list_of_days <- c("day","doy")
