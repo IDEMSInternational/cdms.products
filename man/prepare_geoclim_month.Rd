@@ -22,7 +22,7 @@ prepare_geoclim_month(
 
 \item{year}{\code{character(1)} The name of the year column in \code{data}.}
 
-\item{month}{The name of the month column in \code{data}.}
+\item{month}{\code{character(1)} The name of the month column in \code{data}.}
 
 \item{element}{\code{character(1)} The name of the element column in \code{data} to apply the function to.}
 
