@@ -23,35 +23,37 @@ windrose(
 \arguments{
 \item{data}{\code{data.frame} The data.frame to calculate from.}
 
-\item{speed}{TODO}
+\item{speed}{\code{numeric} A vector containing wind speeds.}
 
-\item{direction}{TODO}
+\item{direction}{\code{numeric} A vector containing wind direction.}
 
-\item{facet_by}{\code{character(1)} TODO}
+\item{facet_by}{\code{character(1)} Facets used to plot the various windroses.}
 
-\item{n_directions}{TODO}
+\item{n_directions}{\code{integer(1)} The number of direction bins to plot (petals on the rose).
+The number of directions defaults to 12.}
 
-\item{n_speeds}{TODO}
+\item{n_speeds}{\code{numeric(1)} The number of equally spaced wind speed bins to plot.
+This is used if speed_cuts is NA (default 5).}
 
-\item{speed_cuts}{TODO}
+\item{speed_cuts}{\code{numeric} A vector containing the cut points for the wind speed intervals, or NA (default)}
 
-\item{col_pal}{TODO}
+\item{col_pal}{\code{character} String indicating the name of the \code{RColorBrewer} colour palette to be used for plotting.}
 
-\item{ggtheme}{TODO}
+\item{ggtheme}{\code{character(1)} String (partially) matching the \code{\link[ggplot2]{ggtheme}} to be used for plotting.}
 
-\item{legend_title}{TODO}
+\item{legend_title}{\code{character(1)} Legend title.}
 
-\item{calm_wind}{TODO}
+\item{calm_wind}{\code{numeric(1)} The upper limit for wind speed that is considered calm (default 0).}
 
-\item{variable_wind}{TODO}
+\item{variable_wind}{\code{numeric(1)} Variable winds (if applicable).}
 
-\item{n_col}{TODO}
+\item{n_col}{\code{integer(1)} The number of columns to plot (default 1).}
 }
 \value{
 
 }
 \description{
-A wrapper for plotting a windrose of wind speed and direction using ggplot2
+A wrapper for plotting a windrose of wind speed and direction using \code{ggplot2}
 }
 \examples{
 # TODO

@@ -13,8 +13,8 @@
 #' @param doy \code{character(1)} The name of the day of the year (1-366) column in \code{data}. If \code{doy} is \code{NULL} then it can be calculated as \code{yday_366(data[[date_time]])} if \code{date_time} is provided.
 #' @param year_doy_plot \code{logical(1)} Whether the day of year should be on the y-axis on the plot.
 #' @param title \code{character(1)} The text for the title.
-#' @param plot_title_size Text size for the title in pts.
-#' @param plot_title_hjust Horizontal justification for title. Value between 0 and 1.
+#' @param plot_title_size \code{numeric(1)} Text size for the title in pts.
+#' @param plot_title_hjust \code{numeric(1)} Horizontal justification for title. Value between 0 and 1.
 #' @param x_title \code{character(1)} The text for the x-axis.
 #' @param y_title \code{character(1)} The text for the y-axis.
 #' @param x_scale_from \code{integer(1)} The year to display the inventory plot from.
@@ -25,13 +25,13 @@
 #' @param y_date_scale_step TODO
 #' @param facet_by \code{character(1)} Whether to facet by stations, elements, or both. Options are \code{"stations"}, \code{"elements"}, \code{"station-elements"}, \code{"elements-stations"}.
 #' In \code{"station-elements"}, stations are given as rows and elements as columns. In \code{"elements-stations"}, elements are given as rows and stations as columns.
-#' @param facet_x_size Text size for the facets on the x-axis in pts.
-#' @param facet_y_size Text size for the facets on the y-axis in pts.
+#' @param facet_x_size \code{numeric(1)} Text size for the facets on the x-axis in pts.
+#' @param facet_y_size \code{numeric(1)} Text size for the facets on the y-axis in pts.
 #' @param facet_scales \code{character(1)} Are scales shared across all facets (the default, \code{"fixed"}),
 #' or do they vary across rows (\code{"free_x"}), columns (\code{"free_y"}), or both rows and columns (\code{"free"})?
 #' @param facet_dir TODO
-#' @param facet_x_margin Margin width around the text for the x-facets.
-#' @param facet_y_margin Margin width around the text for the y-facets.
+#' @param facet_x_margin \code{numeric} Margin width around the text for the x-facets.
+#' @param facet_y_margin \code{numeric} Margin width around the text for the y-facets.
 #' @param facet_nrow \code{integer(1)} Number of rows for the facets if `facet_by` is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_ncol} is given.
 #' @param facet_ncol \code{integer(1)} Number of rows for the facets if `facet_by` is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_nrow} is given.
 #' @param missing_colour \code{character(1)} Colour to represent the missing values. Default \code{"red"}.

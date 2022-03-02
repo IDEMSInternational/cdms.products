@@ -61,15 +61,15 @@ inventory_plot(
 \item{facet_by}{\code{character(1)} Whether to facet by stations, elements, or both. Options are \code{"stations"}, \code{"elements"}, \code{"station-elements"}, \code{"elements-stations"}.
 In \code{"station-elements"}, stations are given as rows and elements as columns. In \code{"elements-stations"}, elements are given as rows and stations as columns.}
 
-\item{facet_x_size}{Text size for the facets on the x-axis in pts.}
+\item{facet_x_size}{\code{numeric(1)} Text size for the facets on the x-axis in pts.}
 
-\item{facet_y_size}{Text size for the facets on the y-axis in pts.}
+\item{facet_y_size}{\code{numeric(1)} Text size for the facets on the y-axis in pts.}
 
 \item{title}{\code{character(1)} The text for the title.}
 
-\item{plot_title_size}{Text size for the title in pts.}
+\item{plot_title_size}{\code{numeric(1)} Text size for the title in pts.}
 
-\item{plot_title_hjust}{Horizontal justification for title. Value between 0 and 1.}
+\item{plot_title_hjust}{\code{numeric(1)} Horizontal justification for title. Value between 0 and 1.}
 
 \item{x_title}{\code{character(1)} The text for the x-axis.}
 
@@ -92,9 +92,9 @@ or do they vary across rows (\code{"free_x"}), columns (\code{"free_y"}), or bot
 
 \item{facet_dir}{TODO}
 
-\item{facet_x_margin}{Margin width around the text for the x-facets.}
+\item{facet_x_margin}{\code{numeric} Margin width around the text for the x-facets.}
 
-\item{facet_y_margin}{Margin width around the text for the y-facets.}
+\item{facet_y_margin}{\code{numeric} Margin width around the text for the y-facets.}
 
 \item{facet_nrow}{\code{integer(1)} Number of rows for the facets if \code{facet_by} is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_ncol} is given.}
 
