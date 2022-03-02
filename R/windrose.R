@@ -1,20 +1,22 @@
 #' Windrose from the clifro package
 #' 
-#' A wrapper for plotting a windrose of wind speed and direction using ggplot2
+#' A wrapper for plotting a windrose of wind speed and direction using \code{ggplot2}
 #'
 #' @param data \code{data.frame} The data.frame to calculate from.
-#' @param speed TODO
-#' @param direction TODO
-#' @param facet_by \code{character(1)} TODO
-#' @param n_directions TODO
-#' @param n_speeds TODO
-#' @param speed_cuts TODO
-#' @param col_pal TODO
-#' @param ggtheme TODO
-#' @param legend_title TODO
-#' @param calm_wind TODO
-#' @param variable_wind TODO
-#' @param n_col TODO
+#' @param speed \code{numeric} A vector containing wind speeds.
+#' @param direction \code{numeric} A vector containing wind direction.
+#' @param facet_by \code{character(1)} Facets used to plot the various windroses.
+#' @param n_directions \code{integer(1)} The number of direction bins to plot (petals on the rose).
+#' The number of directions defaults to 12.
+#' @param n_speeds \code{numeric(1)} The number of equally spaced wind speed bins to plot.
+#' This is used if speed_cuts is NA (default 5).
+#' @param speed_cuts \code{numeric} A vector containing the cut points for the wind speed intervals, or NA (default)
+#' @param col_pal \code{character} String indicating the name of the \code{RColorBrewer} colour palette to be used for plotting.
+#' @param ggtheme \code{character(1)} String (partially) matching the \code{\link[ggplot2]{ggtheme}} to be used for plotting.
+#' @param legend_title \code{character(1)} Legend title.
+#' @param calm_wind \code{numeric(1)} The upper limit for wind speed that is considered calm (default 0).
+#' @param variable_wind \code{numeric(1)} Variable winds (if applicable).
+#' @param n_col \code{integer(1)} The number of columns to plot (default 1).
 #'
 #' @return
 #' @export
