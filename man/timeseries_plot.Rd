@@ -2,7 +2,7 @@
 % Please edit documentation in R/timeseries_plot.R
 \name{timeseries_plot}
 \alias{timeseries_plot}
-\title{Produce an timeseries graph}
+\title{Produce a timeseries graph}
 \usage{
 timeseries_plot(
   data,
@@ -25,38 +25,38 @@ timeseries_plot(
 )
 }
 \arguments{
-\item{data}{The data.frame to calculate from.}
+\item{data}{\verb{[data frame]} The data.frame to calculate from.}
 
-\item{date_time}{The name of the date column in \code{data}.}
+\item{date_time}{\link{\code{\link[base]{Date}}} The name of the date column in \code{data}.}
 
-\item{elements}{The name of the column in \code{data} to apply the function to.}
+\item{elements}{\link{\code{character}} The name of the column in \code{data} to apply the function to.}
 
-\item{station}{The name of the station column in \code{data}, if the data are for multiple station.
+\item{station}{\link{\code{character(1)}} The name of the station column in \code{data}, if the data are for multiple station.
 Timeseries plots are calculated separately for each station.}
 
-\item{facet_by}{Whether to facet by stations, elements, both, or neither. Options are \code{"stations"}, \code{"elements"}, \code{"station-elements"}, \code{"elements-stations"}, or \code{"none"}.}
+\item{facet_by}{\link{\code{character(1)}} Whether to facet by stations, elements, both, or neither. Options are \code{"stations"}, \code{"elements"}, \code{"station-elements"}, \code{"elements-stations"}, or \code{"none"}.}
 
-\item{type}{The type of plot, either "line" or line graphs or "bar" for bar graphs.}
+\item{type}{\link{\code{character(1)}} The type of plot, either "line" or line graphs or "bar" for bar graphs.}
 
-\item{add_points}{logical. If \code{TRUE}, points are added to the plot using  \code{"ggplot2::geom_point()"}.}
+\item{add_points}{\link{\code{logical(1)}} If \code{TRUE}, points are added to the plot using  \code{"ggplot2::geom_point()"}.}
 
-\item{add_line_of_best_fit}{logical. If \code{TRUE}, points are added to the plot using  \code{"ggplot2::geom_smooth(method = "lm")"}.}
+\item{add_line_of_best_fit}{\link{\code{logical(1)}} If \code{TRUE}, points are added to the plot using  \code{"ggplot2::geom_smooth(method = "lm")"}.}
 
-\item{se}{logical. If \code{TRUE}, the standard error is are added to the line of best fit. Only works if \code{add_line_of_best_fit = TRUE}.}
+\item{se}{\link{\code{logical(1)}} If \code{TRUE}, the standard error is are added to the line of best fit. Only works if \code{add_line_of_best_fit = TRUE}.}
 
-\item{add_path}{logical. If \code{TRUE}, paths are added to the plot using  \code{"ggplot2::geom_path()"}.}
+\item{add_path}{\link{\code{logical(1)}} If \code{TRUE}, paths are added to the plot using  \code{"ggplot2::geom_path()"}.}
 
-\item{add_step}{logical. If \code{TRUE}, steps are added to the plot using  \code{"ggplot2::geom_step()"}.}
+\item{add_step}{\link{\code{logical(1)}} If \code{TRUE}, steps are added to the plot using  \code{"ggplot2::geom_step()"}.}
 
-\item{na_rm}{If \code{FALSE}, the default, missing values are removed with a warning. If \code{TRUE}, missing values are silently removed.}
+\item{na_rm}{\link{\code{logical(1)}} If \code{FALSE}, the default, missing values are removed with a warning. If \code{TRUE}, missing values are silently removed.}
 
-\item{show_legend}{logical. Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.}
+\item{show_legend}{\link{\code{logical(1)}} Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.}
 
-\item{title}{The text for the title.}
+\item{title}{\link{\code{character(1)}} The text for the title.}
 
-\item{x_title}{The text for the x-axis.}
+\item{x_title}{\link{\code{character(1)}} The text for the x-axis.}
 
-\item{y_title}{The text for the y-axis.}
+\item{y_title}{\link{\code{character(1)}} The text for the y-axis.}
 }
 \value{
 A plot of type \code{ggplot} to the default plot device
