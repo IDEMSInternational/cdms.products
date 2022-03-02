@@ -1,9 +1,9 @@
 #' Prepare dekad or pentad data in GeoCLIM format
 #'
-#' @param data The data.frame to calculate from.
-#' @param year The name of the year column in \code{data}.
+#' @param data \code{data.frame} The data.frame to calculate from.
+#' @param year \code{character(1)} The name of the year column in \code{data}.
 #' @param type_col TODO
-#' @param element The name of the column in \code{data} to apply the function to.
+#' @param element \code{character(1)} The name of the element column in \code{data} to apply the function to.
 #' @param station_id TODO
 #' @param latitude TODO
 #' @param longitude TODO

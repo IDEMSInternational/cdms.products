@@ -20,13 +20,13 @@ export_geoclim_month(
 )
 }
 \arguments{
-\item{data}{The data.frame to calculate from.}
+\item{data}{\code{data.frame} The data.frame to calculate from.}
 
-\item{year}{The name of the year column in \code{data}.}
+\item{year}{\code{character(1)} The name of the year column in \code{data}.}
 
 \item{month}{The name of the month column in \code{data}.}
 
-\item{element}{The name of the column in \code{data} to apply the function to.}
+\item{element}{\code{character(1)} The name of the element column in \code{data} to apply the function to.}
 
 \item{station_id}{TODO}
 

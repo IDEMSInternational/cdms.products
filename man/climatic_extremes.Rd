@@ -33,17 +33,17 @@ climatic_extremes(
 )
 }
 \arguments{
-\item{data}{The data.frame to calculate from}
+\item{data}{\code{data.frame} The data.frame to calculate from.}
 
-\item{date_time}{The name of the date column in \code{data}.}
+\item{date_time}{\code{\link[base]{Date}} The name of the date column in \code{data}.}
 
-\item{elements}{The name of the column in \code{data} to apply the spell condition to}
+\item{elements}{\code{character} The name of the elements column in \code{data} to apply the function to.}
 
-\item{station}{The name of the station column in \code{data}, if the data are for multiple station.}
+\item{station}{\code{character(1)} The name of the station column in \code{data}, if the data are for multiple station.}
 
-\item{year}{The name of the year column in \code{data}.}
+\item{year}{\code{character(1)} The name of the year column in \code{data}.}
 
-\item{month}{The name of the month column in \code{data}.}
+\item{month}{\code{character(1)} The name of the month column in \code{data}.}
 
 \item{dekad}{TODO}
 
@@ -53,33 +53,33 @@ climatic_extremes(
 
 \item{by}{TODO}
 
-\item{doy}{The name of the day of the year (1-366) column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[doy]])}.}
+\item{doy}{\code{character(1)} The name of the day of the year (1-366) column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[doy]])}.}
 
-\item{doy_first}{The first day of the year.}
+\item{doy_first}{\code{integer(1)} The first day of the year.}
 
-\item{doy_last}{The last day of the year}
+\item{doy_last}{\code{integer(1)} The last day of the year}
 
-\item{max_val}{Logical, if \code{TRUE} the extreme maximum is calculated}
+\item{max_val}{\code{logical(1)} If \code{TRUE} the extreme maximum is calculated}
 
-\item{min_val}{Logical, if \code{TRUE} the extreme minimum is calculated}
+\item{min_val}{\code{logical(1)} If \code{TRUE} the extreme minimum is calculated}
 
-\item{first_date}{If \code{TRUE} the first instance of \code{date_time} when the value equals the summary value is included. Generally only used for extreme summaries i.e. first \code{date_time} when the maximum occurred.}
+\item{first_date}{\code{logical(1)} If \code{TRUE} the first instance of \code{date_time} when the value equals the summary value is included. Generally only used for extreme summaries i.e. first \code{date_time} when the maximum occurred.}
 
-\item{n_dates}{If \code{TRUE} the number of \code{date_time} points when the value equals the summary value is included. Generally only used for extreme summaries i.e. number of days in which the minimum occurred.}
+\item{n_dates}{\code{logical(1)} If \code{TRUE} the number of \code{date_time} points when the value equals the summary value is included. Generally only used for extreme summaries i.e. number of days in which the minimum occurred.}
 
-\item{last_date}{If \code{TRUE} the last instance of \code{date_time} when the value equals the summary value is included. Generally only used for extreme summaries i.e. last \code{date_time} when the maximum occurred.}
+\item{last_date}{\code{logical(1)} If \code{TRUE} the last instance of \code{date_time} when the value equals the summary value is included. Generally only used for extreme summaries i.e. last \code{date_time} when the maximum occurred.}
 
-\item{na_rm}{If \code{TRUE} all \code{na_} parameters are ignored and missing
+\item{na_rm}{\code{logical(1)} If \code{TRUE} all \code{na_} parameters are ignored and missing
 values are removed. If \code{FALSE} missing values are not removed unless
 any \code{na_} parameters are specified.}
 
-\item{na_prop}{Max proportion of missing values allowed}
+\item{na_prop}{\code{integer(1)} Max proportion of missing values allowed}
 
-\item{na_n}{Max number of missing values allowed}
+\item{na_n}{\code{integer(1)} Max number of missing values allowed}
 
-\item{na_consec}{Max number of consecutive missing values allowed}
+\item{na_consec}{\code{integer(1)} Max number of consecutive missing values allowed}
 
-\item{na_n_non}{Min number of non-missing values required}
+\item{na_n_non}{\code{integer(1)} Min number of non-missing values required}
 
 \item{names}{Format of column names. Passed to \code{.names} in
 \code{dplyr::across}}

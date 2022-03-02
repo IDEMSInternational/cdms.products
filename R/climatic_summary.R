@@ -1,36 +1,36 @@
 #' Title
 #' 
-#' @param data The data.frame to calculate from
-#' @param date_time The name of the date column in \code{data}.
-#' @param station The name of the station column in \code{data}, if the data are for multiple station. 
-#' @param elements The name of the column in \code{data} to apply the spell condition to
-#' @param year The name of the year column in \code{data}.
-#' @param month The name of the month column in \code{data}. 
+#' @param data \code{data.frame} The data.frame to calculate from.
+#' @param date_time \code{\link[base]{Date}} The name of the date column in \code{data}.
+#' @param station \code{character(1)} The name of the station column in \code{data}, if the data are for multiple station.
+#' @param elements \code{character} The name of the elements column in \code{data} to apply the function to.
+#' @param year \code{character(1)} The name of the year column in \code{data}.
+#' @param month \code{character(1)} The name of the month column in \code{data}. 
 #' @param dekad TODO
 #' @param pentad TODO
 #' @param to TODO
 #' @param by TODO
-#' @param doy The name of the day of the year (1-366) column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[doy]])}.
-#' @param doy_first The first day of the year.
-#' @param doy_last The last day of the year
-#' @param summaries A named character vector of summary functions. The names are
+#' @param doy \code{character(1)} The name of the day of the year (1-366) column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[doy]])}.
+#' @param doy_first \code{integer(1)} The first day of the year.
+#' @param doy_last \code{integer(1)} The last day of the year
+#' @param summaries \code{character} A named character vector of summary functions. The names are
 #'   the used as the column names in the results. The values can be any function
 #'   name as a string. e.g. c(mean = "mean", st_dv = "sd", n_na =
 #'   "naflex::na_n")
-#' @param na_rm If \code{TRUE} all \code{na_} parameters are ignored and missing
+#' @param na_rm \code{logical(1)} If \code{TRUE} all \code{na_} parameters are ignored and missing
 #'   values are removed. If \code{FALSE} missing values are not removed unless
 #'   any \code{na_} parameters are specified.
-#' @param na_prop Max proportion of missing values allowed
-#' @param na_n Max number of missing values allowed
-#' @param na_consec Max number of consecutive missing values allowed
-#' @param na_n_non Min number of non-missing values required
+#' @param na_prop \code{integer(1)} Max proportion of missing values allowed
+#' @param na_n \code{integer(1)} Max number of missing values allowed
+#' @param na_consec \code{integer(1)} Max number of consecutive missing values allowed
+#' @param na_n_non \code{integer(1)} Min number of non-missing values required
 #' @param names Format of column names. Passed to \code{.names} in
 #'   \code{dplyr::across}
-#' @param summaries_params Additional parameters to pass to \code{summaries}.
+#' @param summaries_params \code{list} Additional parameters to pass to \code{summaries}.
 #'   Must be a list of lists with the same names as \code{summaries}.
-#' @param first_date If \code{TRUE} the first instance of \code{date_time} when the value equals the summary value is included. Generally only used for extreme summaries i.e. first \code{date_time} when the maximum occurred.
-#' @param n_dates If \code{TRUE} the number of \code{date_time} points when the value equals the summary value is included. Generally only used for extreme summaries i.e. number of days in which the minimum occurred.
-#' @param last_date If \code{TRUE} the last instance of \code{date_time} when the value equals the summary value is included. Generally only used for extreme summaries i.e. last \code{date_time} when the maximum occurred.
+#' @param first_date \code{logical(1)} If \code{TRUE} the first instance of \code{date_time} when the value equals the summary value is included. Generally only used for extreme summaries i.e. first \code{date_time} when the maximum occurred.
+#' @param n_dates \code{logical(1)} If \code{TRUE} the number of \code{date_time} points when the value equals the summary value is included. Generally only used for extreme summaries i.e. number of days in which the minimum occurred.
+#' @param last_date \code{logical(1)} If \code{TRUE} the last instance of \code{date_time} when the value equals the summary value is included. Generally only used for extreme summaries i.e. last \code{date_time} when the maximum occurred.
 #'
 #' @return
 #' @export

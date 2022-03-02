@@ -8,7 +8,7 @@ windrose(
   data,
   speed,
   direction,
-  facet = NULL,
+  facet_by = NULL,
   n_directions = 12,
   n_speeds = 5,
   speed_cuts = NA,
@@ -21,13 +21,13 @@ windrose(
 )
 }
 \arguments{
-\item{data}{The data.frame to calculate from.}
+\item{data}{\code{data.frame} The data.frame to calculate from.}
 
 \item{speed}{TODO}
 
 \item{direction}{TODO}
 
-\item{facet}{TODO}
+\item{facet_by}{\code{character(1)} TODO}
 
 \item{n_directions}{TODO}
 

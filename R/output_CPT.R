@@ -1,13 +1,13 @@
 #' Title
 #'
-#' @param data The data.frame to calculate from.
+#' @param data \code{data.frame} The data.frame to calculate from.
 #' @param lat_lon_data TODO
 #' @param station_latlondata TODO
 #' @param latitude TODO
 #' @param longitude TODO
-#' @param station The name of the station column in \code{data}, if the data are for multiple station. 
-#' @param year The name of the year column in \code{data}.
-#' @param element The name of the column in \code{data} to apply the function to.
+#' @param station \code{character(1)} The name of the station column in \code{data}, if the data are for multiple station.
+#' @param year \code{character(1)} The name of the year column in \code{data}.
+#' @param element \code{character(1)} The name of the element column in \code{data} to apply the function to.
 #' @param long.data TODO
 #' @param na_code TODO
 #'

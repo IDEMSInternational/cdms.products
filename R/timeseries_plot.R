@@ -1,25 +1,25 @@
-#' Produce an timeseries graph
+#' Produce a timeseries graph
 #' 
 #' @description Creates a timeseries graph for each element and station given. Takes a data frame as an input and the relevant columns to create the plot.
 #' Creates a graph using \code{ggplot2} and returns a timeseries plot.
 #'
-#' @param data The data.frame to calculate from.
-#' @param date_time The name of the date column in \code{data}.
-#' @param elements The name of the column in \code{data} to apply the function to.
-#' @param station The name of the station column in \code{data}, if the data are for multiple station.
+#' @param data \code{data.frame} The data.frame to calculate from.
+#' @param date_time \code{\link[base]{Date}} The name of the date column in \code{data}.
+#' @param elements \code{character} The name of the elements column in \code{data} to apply the function to.
+#' @param station \code{character(1)} The name of the station column in \code{data}, if the data are for multiple station.
 #' Timeseries plots are calculated separately for each station.
-#' @param facet_by Whether to facet by stations, elements, both, or neither. Options are \code{"stations"}, \code{"elements"}, \code{"station-elements"}, \code{"elements-stations"}, or \code{"none"}.
-#' @param type The type of plot, either "line" or line graphs or "bar" for bar graphs.
-#' @param add_points logical. If \code{TRUE}, points are added to the plot using  \code{"ggplot2::geom_point()"}.
-#' @param add_line_of_best_fit logical. If \code{TRUE}, points are added to the plot using  \code{"ggplot2::geom_smooth(method = "lm")"}.
-#' @param se logical. If \code{TRUE}, the standard error is are added to the line of best fit. Only works if \code{add_line_of_best_fit = TRUE}. 
-#' @param add_path logical. If \code{TRUE}, paths are added to the plot using  \code{"ggplot2::geom_path()"}.
-#' @param add_step logical. If \code{TRUE}, steps are added to the plot using  \code{"ggplot2::geom_step()"}.
-#' @param na_rm If \code{FALSE}, the default, missing values are removed with a warning. If \code{TRUE}, missing values are silently removed.
-#' @param show_legend logical. Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.
-#' @param title The text for the title.
-#' @param x_title The text for the x-axis.
-#' @param y_title The text for the y-axis.
+#' @param facet_by \code{character(1)} Whether to facet by stations, elements, both, or neither. Options are \code{"stations"}, \code{"elements"}, \code{"station-elements"}, \code{"elements-stations"}, or \code{"none"}.
+#' @param type \code{character(1)} The type of plot, either "line" or line graphs or "bar" for bar graphs.
+#' @param add_points \code{logical(1)} If \code{TRUE}, points are added to the plot using  \code{"ggplot2::geom_point()"}.
+#' @param add_line_of_best_fit \code{logical(1)} If \code{TRUE}, points are added to the plot using  \code{"ggplot2::geom_smooth(method = "lm")"}.
+#' @param se \code{logical(1)} If \code{TRUE}, the standard error is are added to the line of best fit. Only works if \code{add_line_of_best_fit = TRUE}. 
+#' @param add_path \code{logical(1)} If \code{TRUE}, paths are added to the plot using  \code{"ggplot2::geom_path()"}.
+#' @param add_step \code{logical(1)} If \code{TRUE}, steps are added to the plot using  \code{"ggplot2::geom_step()"}.
+#' @param na_rm \code{logical(1)} If \code{FALSE}, the default, missing values are removed with a warning. If \code{TRUE}, missing values are silently removed.
+#' @param show_legend \code{logical(1)} Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.
+#' @param title \code{character(1)} The text for the title.
+#' @param x_title \code{character(1)} The text for the x-axis.
+#' @param y_title \code{character(1)} The text for the y-axis.
 #' 
 #' @return A plot of type \code{ggplot} to the default plot device
 #' @export
@@ -27,13 +27,14 @@
 #' @examples
 #' # Create a time series plot with two elements and facet by station.
 #' data(daily_niger)
-#' timeseries_plot(data = daily_niger, date_time = "date", elements = c("tmax", "tmin"), 
+#' daily_niger_1 <- daily_niger %>% dplyr::filter(year < 1950)
+#' timeseries_plot(data = daily_niger_1, date_time = "date", elements = c("tmax", "tmin"), 
 #'                 station = "station_name", facet_by = "stations")
 #' 
 #' # Can make additional changes to the plot since the returned object is a \code{ggplot2} object
 #' # for example, to add colour-blind friendly colours instead of the default colours
 #' require(ggplot2)
-#' t1 <- timeseries_plot(data = daily_niger, date_time = "date", elements = c("tmax", "tmin"), 
+#' t1 <- timeseries_plot(data = daily_niger_1, date_time = "date", elements = c("tmax", "tmin"), 
 #'                       station = "station_name", facet_by = "stations")
 #' t1 + ggplot2::scale_colour_discrete(type = c("#E69F00", "#56B4E9"))
 timeseries_plot <- function(data, date_time, elements, station = NULL, 

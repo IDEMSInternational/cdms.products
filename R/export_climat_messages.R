@@ -1,10 +1,10 @@
 #' Export CLIMAT messages file(s) from daily data
 #'
-#' @param data TODO
-#' @param date_time TODO
+#' @param data \code{data.frame} The data.frame to calculate from.
+#' @param date_time \code{\link[base]{Date}} The name of the date column in \code{data}.
 #' @param station_id TODO
-#' @param year TODO
-#' @param month TODO
+#' @param year \code{character(1)} The name of the year column in \code{data}.
+#' @param month \code{character(1)} The name of the month column in \code{data}. 
 #' @param mean_pressure_station TODO
 #' @param mean_pressure_reduced TODO
 #' @param mean_temp TODO

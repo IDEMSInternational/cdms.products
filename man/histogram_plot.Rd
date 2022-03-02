@@ -13,7 +13,7 @@ histogram_plot(
     "none"),
   position = c("identity", "dodge", "dodge2", "stack", "fill", "layer"),
   colour_bank = NULL,
-  na.rm = FALSE,
+  na_rm = FALSE,
   orientation = NA,
   show_legend = NA,
   width = NULL,
@@ -25,38 +25,38 @@ histogram_plot(
 )
 }
 \arguments{
-\item{data}{The data.frame to calculate from.}
+\item{data}{\code{data.frame} The data.frame to calculate from.}
 
-\item{date_time}{The name of the date column in \code{data}.}
+\item{date_time}{\code{\link[base]{Date}} The name of the date column in \code{data}.}
 
-\item{elements}{The name of the elements column in \code{data}.}
+\item{elements}{\code{character} The name of the elements column in \code{data} to apply the function to.}
 
-\item{station}{The name of the station column in \code{data}, if the data are for multiple station.
+\item{station}{\code{character(1)} The name of the station column in \code{data}, if the data are for multiple station.
 Histogram plots are calculated separately for each station.}
 
-\item{facet_by}{Whether to facet by stations, elements, both, or neither. Options are \code{"stations"}, \code{"elements"}, \code{"station-elements"}, \code{"elements-stations"}, or \code{"none"}.}
+\item{facet_by}{\code{character(1)} Whether to facet by stations, elements, both, or neither. Options are \code{"stations"}, \code{"elements"}, \code{"station-elements"}, \code{"elements-stations"}, or \code{"none"}.}
 
-\item{position}{Position adjustment.}
+\item{position}{\code{character(1)} Position adjustment.}
 
-\item{colour_bank}{A string denoting colour values if \code{position == "layer"}. By default, colours from \code{ggplot2::luv_colours} are used.}
+\item{colour_bank}{\code{character} A string denoting colour values if \code{position == "layer"}. By default, colours from \code{ggplot2::luv_colours} are used.}
 
-\item{na.rm}{If \code{FALSE}, the default, missing values are removed with a warning. If \code{TRUE}, missing values are silently removed.}
+\item{na_rm}{\code{logical(1)} If \code{FALSE}, the default, missing values are removed with a warning. If \code{TRUE}, missing values are silently removed.}
 
 \item{orientation}{The orientation of the layer. The default (\code{NA}) automatically determines the orientation from the aesthetic mapping. In the rare event that this fails it can be given explicitly by setting \code{orientation} to either "x" or "y".}
 
-\item{show_legend}{logical. Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.}
+\item{show_legend}{\code{logical(1)} Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.}
 
 \item{width}{Bar width. By default, set to 90\% of the resolution of the data.}
 
-\item{facet_nrow}{Number of rows for the facets if \code{facet_by} is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_ncol} is given.}
+\item{facet_nrow}{\code{integer(1)} Number of rows for the facets if \code{facet_by} is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_ncol} is given.}
 
-\item{facet_ncol}{Number of rows for the facets if \code{facet_by} is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_nrow} is given.}
+\item{facet_ncol}{\code{integer(1)} Number of rows for the facets if \code{facet_by} is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_nrow} is given.}
 
-\item{title}{The text for the title.}
+\item{title}{\code{character(1)} The text for the title.}
 
-\item{x_title}{The text for the x-axis.}
+\item{x_title}{\code{character(1)} The text for the x-axis.}
 
-\item{y_title}{The text for the y-axis.}
+\item{y_title}{\code{character(1)} The text for the y-axis.}
 }
 \value{
 A plot of type \code{ggplot} to the default plot device
@@ -68,19 +68,21 @@ Produce a histogram of elements by station.
 data("daily_niger")
 
 # Create a histogram plot with facets by both elements and stations
-histogram_plot(data = daily_niger, date_time = "date",
+data(daily_niger)
+daily_niger_1 <- daily_niger \%>\% dplyr::filter(year < 1950)
+histogram_plot(data = daily_niger_1, date_time = "date",
                facet_by = "stations-elements",
                elements = c("tmax", "tmin"), station = "station_name")
                
 # Can make additional changes to the plot since the returned object is a \code{ggplot2} object
 # for example, to edit the colours in the plot:
 require(ggplot2)
-t1 <- histogram_plot(data = daily_niger, date_time = "date", elements = c("rain", "tmax"),
+t1 <- histogram_plot(data = daily_niger_1, date_time = "date", elements = c("rain", "tmax"),
                      position = "dodge", station = "station_name")
 t1 + ggplot2::scale_colour_discrete(type = c("red", "black"))
 
 # Can additionally layer elements in a single plot
-histogram_plot(data = daily_niger, date_time = "date", position = "layer",
+histogram_plot(data = daily_niger_1, date_time = "date", position = "layer",
                facet_by = "stations",
                elements = c("tmax", "tmin"), station = "station_name",
                colour_bank = c("purple", "orange"))
