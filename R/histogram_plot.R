@@ -60,7 +60,7 @@ histogram_plot <- function(data, date_time, elements, station = NULL,
     facet_by = "none"
   }
   if (is.null(colour_bank)){ 
-    colour_bank <- (ggplot2::luv_colours %>% dplyr::slice(which(dplyr::row_number() %% 10 == 1)))$col
+    colour_bank <- (ggplot2::luv_colours[-1,] %>% dplyr::slice(which(dplyr::row_number() %% 10 == 1)))$col
     if (length(elements) > length(colour_bank)) { colour_bank <- ggplot2::luv_colours$col }
   }
   if (position == "layer"){
@@ -96,7 +96,7 @@ histogram_plot <- function(data, date_time, elements, station = NULL,
         base_plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = .data[[date_time]], y = .data[[elements]]))
       }
       base_plot <- base_plot + 
-        ggplot2::facet_wrap(ggplot2::vars(data[[station]]), ncol = facet_ncol, nrow = facet_nrow)
+        ggplot2::facet_wrap(ggplot2::vars(.data[[station]]), ncol = facet_ncol, nrow = facet_nrow)
     } else if (facet_by == "elements"){
         base_plot <- ggplot2::ggplot(data_longer, mapping = ggplot2::aes(x = .data[[date_time]], y = .data$value, colour = .data[[station]], fill = .data[[station]]))
         base_plot <- base_plot + 
@@ -113,6 +113,7 @@ histogram_plot <- function(data, date_time, elements, station = NULL,
     }
     base_plot <- base_plot + ggplot2::geom_bar(stat = "identity", position = position, width = width, na.rm = na.rm,
                                                orientation = orientation, show.legend = show_legend) #+
+
     #ggplot2::scale_color_discrete(type = colour_bank)
   }
   if(title == "Histogram Plot") {
