@@ -18,7 +18,7 @@ output_CPT(
 )
 }
 \arguments{
-\item{data}{The data.frame to calculate from.}
+\item{data}{\code{data.frame} The data.frame to calculate from.}
 
 \item{lat_lon_data}{TODO}
 
@@ -28,11 +28,11 @@ output_CPT(
 
 \item{longitude}{TODO}
 
-\item{station}{The name of the station column in \code{data}, if the data are for multiple station.}
+\item{station}{\code{character(1)} The name of the station column in \code{data}, if the data are for multiple station.}
 
-\item{year}{The name of the year column in \code{data}.}
+\item{year}{\code{character(1)} The name of the year column in \code{data}.}
 
-\item{element}{The name of the column in \code{data} to apply the function to.}
+\item{element}{\code{character(1)} The name of the element column in \code{data} to apply the function to.}
 
 \item{long.data}{TODO}
 

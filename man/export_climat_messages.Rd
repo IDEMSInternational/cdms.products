@@ -25,15 +25,15 @@ export_climat_messages(
 )
 }
 \arguments{
-\item{data}{TODO}
+\item{data}{\code{data.frame} The data.frame to calculate from.}
 
-\item{date_time}{TODO}
+\item{date_time}{\code{\link[base]{Date}} The name of the date column in \code{data}.}
 
 \item{station_id}{TODO}
 
-\item{year}{TODO}
+\item{year}{\code{character(1)} The name of the year column in \code{data}.}
 
-\item{month}{TODO}
+\item{month}{\code{character(1)} The name of the month column in \code{data}.}
 
 \item{mean_pressure_station}{TODO}
 

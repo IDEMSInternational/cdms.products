@@ -6,7 +6,7 @@
 \usage{
 inventory_table(
   data,
-  date,
+  date_time,
   elements,
   station = NULL,
   year = NULL,
@@ -17,24 +17,24 @@ inventory_table(
 )
 }
 \arguments{
-\item{data}{The data.frame to calculate from}
+\item{data}{\code{data.frame} The data.frame to calculate from.}
 
-\item{date}{The name of the date column in \code{data}. This is only needed if \code{year}, \code{month}, and \code{day} are not specified.}
+\item{date_time}{\code{\link[base]{Date}} The name of the date column in \code{data}.}
 
-\item{elements}{The name of the columns in \code{data} to apply the inventory calculation to.}
+\item{elements}{\code{character} The name of the elements column in \code{data} to apply the function to.}
 
-\item{station}{The name of the station column in \code{data}, if the data are for multiple station.
+\item{station}{\code{character(1)} The name of the station column in \code{data}, if the data are for multiple station.
 The inventory table is calculated separately for each station.}
 
-\item{year}{The name of the year column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[date]])}.}
+\item{year}{\code{character(1)} The name of the year column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[date_time]])}.}
 
-\item{month}{The name of the month column in \code{data}. If \code{NULL} it will be created using \code{lubridate::month(data[[date]])}.}
+\item{month}{\code{character(1)} The name of the month column in \code{data}. If \code{NULL} it will be created using \code{lubridate::month(data[[date_time]])}.}
 
-\item{day}{The name of the day column in \code{data}. If \code{NULL} it will be created using \code{lubridate::day(data[[date]])}.}
+\item{day}{\code{character(1)} The name of the day column in \code{data}. If \code{NULL} it will be created using \code{lubridate::day(data[[date_time]])}.}
 
-\item{missing_indicator}{Indicator to give if the data is missing. Default \code{"M"}.}
+\item{missing_indicator}{\code{character(1)} Indicator to give if the data is missing. Default \code{"M"}.}
 
-\item{observed_indicator}{Indicator to give if the data is observed. Default \code{"X"}.}
+\item{observed_indicator}{\code{character(1)} Indicator to give if the data is observed. Default \code{"X"}.}
 }
 \value{
 

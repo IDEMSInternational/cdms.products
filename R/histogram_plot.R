@@ -1,22 +1,22 @@
 #' Produce a histogram of elements by station.
 #'
-#' @param data The data.frame to calculate from.
-#' @param date_time The name of the date column in \code{data}.
-#' @param elements The name of the elements column in \code{data}.
-#' @param station The name of the station column in \code{data}, if the data are for multiple station. 
+#' @param data \code{data.frame} The data.frame to calculate from.
+#' @param date_time \code{\link[base]{Date}} The name of the date column in \code{data}.
+#' @param elements \code{character} The name of the elements column in \code{data} to apply the function to.
+#' @param station \code{character(1)} The name of the station column in \code{data}, if the data are for multiple station.
 #' Histogram plots are calculated separately for each station.
-#' @param position Position adjustment. 
-#' @param facet_by Whether to facet by stations, elements, both, or neither. Options are \code{"stations"}, \code{"elements"}, \code{"station-elements"}, \code{"elements-stations"}, or \code{"none"}.
-#' @param facet_nrow Number of rows for the facets if `facet_by` is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_ncol} is given.
-#' @param facet_ncol Number of rows for the facets if `facet_by` is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_nrow} is given.
+#' @param position \code{character(1)} Position adjustment. 
+#' @param facet_by \code{character(1)} Whether to facet by stations, elements, both, or neither. Options are \code{"stations"}, \code{"elements"}, \code{"station-elements"}, \code{"elements-stations"}, or \code{"none"}.
+#' @param facet_nrow \code{integer(1)} Number of rows for the facets if `facet_by` is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_ncol} is given.
+#' @param facet_ncol \code{integer(1)} Number of rows for the facets if `facet_by` is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_nrow} is given.
 #' @param orientation The orientation of the layer. The default (\code{NA}) automatically determines the orientation from the aesthetic mapping. In the rare event that this fails it can be given explicitly by setting \code{orientation} to either "x" or "y".
 #' @param width Bar width. By default, set to 90% of the resolution of the data.
-#' @param na.rm If \code{FALSE}, the default, missing values are removed with a warning. If \code{TRUE}, missing values are silently removed.
-#' @param show_legend logical. Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.
-#' @param colour_bank A string denoting colour values if `position == "layer"`. By default, colours from `ggplot2::luv_colours` are used.
-#' @param title The text for the title.
-#' @param x_title The text for the x-axis.
-#' @param y_title The text for the y-axis.
+#' @param na_rm \code{logical(1)} If \code{FALSE}, the default, missing values are removed with a warning. If \code{TRUE}, missing values are silently removed.
+#' @param show_legend \code{logical(1)} Should this layer be included in the legends? \code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE} never includes, and \code{TRUE} always includes.
+#' @param colour_bank \code{character} A string denoting colour values if `position == "layer"`. By default, colours from `ggplot2::luv_colours` are used.
+#' @param title \code{character(1)} The text for the title.
+#' @param x_title \code{character(1)} The text for the x-axis.
+#' @param y_title \code{character(1)} The text for the y-axis.
 #'
 #' @return A plot of type \code{ggplot} to the default plot device
 #' @export
@@ -25,19 +25,21 @@
 #' data("daily_niger")
 #' 
 #' # Create a histogram plot with facets by both elements and stations
-#' histogram_plot(data = daily_niger, date_time = "date",
+#' data(daily_niger)
+#' daily_niger_1 <- daily_niger %>% dplyr::filter(year < 1950)
+#' histogram_plot(data = daily_niger_1, date_time = "date",
 #'                facet_by = "stations-elements",
 #'                elements = c("tmax", "tmin"), station = "station_name")
 #'                
 #' # Can make additional changes to the plot since the returned object is a \code{ggplot2} object
 #' # for example, to edit the colours in the plot:
 #' require(ggplot2)
-#' t1 <- histogram_plot(data = daily_niger, date_time = "date", elements = c("rain", "tmax"),
+#' t1 <- histogram_plot(data = daily_niger_1, date_time = "date", elements = c("rain", "tmax"),
 #'                      position = "dodge", station = "station_name")
 #' t1 + ggplot2::scale_colour_discrete(type = c("red", "black"))
 #' 
 #' # Can additionally layer elements in a single plot
-#' histogram_plot(data = daily_niger, date_time = "date", position = "layer",
+#' histogram_plot(data = daily_niger_1, date_time = "date", position = "layer",
 #'                facet_by = "stations",
 #'                elements = c("tmax", "tmin"), station = "station_name",
 #'                colour_bank = c("purple", "orange"))
@@ -46,7 +48,7 @@ histogram_plot <- function(data, date_time, elements, station = NULL,
                            facet_by = c("stations", "elements", "stations-elements", "elements-stations", "none"),
                            position = c("identity", "dodge", "dodge2", "stack", "fill", "layer"), colour_bank = NULL,
                            #plot_type = c("histogram", "density", "frequency"),
-                           na.rm = FALSE, orientation = NA, show_legend = NA, width = NULL,
+                           na_rm = FALSE, orientation = NA, show_legend = NA, width = NULL,
                            facet_nrow = NULL, facet_ncol = NULL, 
                            title = "Histogram Plot", x_title = NULL, y_title = NULL){
   checkmate::assert_data_frame(data)
@@ -69,7 +71,7 @@ histogram_plot <- function(data, date_time, elements, station = NULL,
       base_plot <- base_plot +
         ggplot2::geom_bar(data = data, stat = "identity",
                           mapping = ggplot2::aes(x = .data[[date_time]], y = .data[[elements[i]]]),
-                          colour = colour_bank[i], width = width, na.rm = na.rm,
+                          colour = colour_bank[i], width = width, na.rm = na_rm,
                           orientation = orientation, show.legend = show_legend)
     }
     if (facet_by == "elements"){
@@ -111,7 +113,7 @@ histogram_plot <- function(data, date_time, elements, station = NULL,
           ggplot2::facet_grid(cols = ggplot2::vars(.data[[station]]), rows = ggplot2::vars(.data$elements_list))
       }
     }
-    base_plot <- base_plot + ggplot2::geom_bar(stat = "identity", position = position, width = width, na.rm = na.rm,
+    base_plot <- base_plot + ggplot2::geom_bar(stat = "identity", position = position, width = width, na.rm = na_rm,
                                                orientation = orientation, show.legend = show_legend) #+
 
     #ggplot2::scale_color_discrete(type = colour_bank)

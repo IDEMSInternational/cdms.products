@@ -2,10 +2,10 @@
 #' 
 #' A wrapper for plotting a windrose of wind speed and direction using ggplot2
 #'
-#' @param data The data.frame to calculate from.
+#' @param data \code{data.frame} The data.frame to calculate from.
 #' @param speed TODO
 #' @param direction TODO
-#' @param facet TODO
+#' @param facet_by \code{character(1)} TODO
 #' @param n_directions TODO
 #' @param n_speeds TODO
 #' @param speed_cuts TODO
@@ -20,16 +20,16 @@
 #' @export
 #'
 #' @examples # TODO
-windrose <- function(data, speed, direction, facet = NULL, n_directions = 12, n_speeds = 5, speed_cuts = NA, col_pal = "GnBu",
+windrose <- function(data, speed, direction, facet_by = NULL, n_directions = 12, n_speeds = 5, speed_cuts = NA, col_pal = "GnBu",
                      ggtheme = c("grey", "gray", "bw", "linedraw", "light", "minimal", "classic"),
                      legend_title = "Wind Speed", calm_wind = 0, variable_wind = 990, n_col = NULL) {
   
   checkmate::assert_data_frame(data)
   assert_column_names(data, speed)
   assert_column_names(data, direction)
-  if (!is.null(facet)) {
-    assert_column_names(data, facet)
-    n_facets <- length(unique(data[[facet]]))
+  if (!is.null(facet_by)) {
+    assert_column_names(data, facet_by)
+    n_facets <- length(unique(data[[facet_by]]))
     if (is.null(n_col)) n_col <- ceiling(sqrt(n_facets))
     checkmate::assert_int(n_col)
   }
@@ -43,8 +43,8 @@ windrose <- function(data, speed, direction, facet = NULL, n_directions = 12, n_
   checkmate::assert_numeric(calm_wind)
   checkmate::assert_numeric(variable_wind)
   
-  if (!is.null(facet)) {
-    clifro::windrose(speed = data[[speed]], direction = data[[direction]], facet = data[[facet]], n_directions = n_directions,
+  if (!is.null(facet_by)) {
+    clifro::windrose(speed = data[[speed]], direction = data[[direction]], facet = data[[facet_by]], n_directions = n_directions,
                      n_speeds = n_speeds, speed_cuts = speed_cuts, col_pal = col_pal, ggtheme = ggtheme, legend_title = legend_title,
                      calm_wind = calm_wind, variable_wind = variable_wind, n_col = n_col)
   } else {

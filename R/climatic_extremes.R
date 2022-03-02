@@ -2,8 +2,8 @@
 #' 
 #' @inheritParams climatic_summary
 #' 
-#' @param max_val Logical, if \code{TRUE} the extreme maximum is calculated
-#' @param min_val Logical, if \code{TRUE} the extreme minimum is calculated
+#' @param max_val \code{logical(1)} If \code{TRUE} the extreme maximum is calculated
+#' @param min_val \code{logical(1)} If \code{TRUE} the extreme minimum is calculated
 #'
 #' @return
 #' @export
