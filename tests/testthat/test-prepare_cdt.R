@@ -25,7 +25,7 @@ x_daily <- x_daily %>%
   tidyr::pivot_wider(names_from = station_name, values_from = values)
 
 # create functions daily output
-y_daily <- prepare_cdt(data = daily_summary_data, date = "date", year = "year",
+y_daily <- prepare_cdt(data = daily_summary_data, date_time = "date", year = "year",
                        station = "station_name", element = "sum", metadata = stations_niger, 
                        latitude = "lat", longitude = "long", altitude = "alt",type = "daily")
 
@@ -51,7 +51,7 @@ x_dekad <- x_dekad %>%
   tidyr::pivot_wider(names_from = station_name, values_from = values)
 
 #  create functions dekad output
-y_dekad <- prepare_cdt(data = dekad_summary_data, date = "date", year = "year",
+y_dekad <- prepare_cdt(data = dekad_summary_data, date_time = "date", year = "year",
           station = "station_name", element = "sum", metadata = stations_niger, 
           latitude = "lat", longitude = "long", altitude = "alt", type = "dekad")
 

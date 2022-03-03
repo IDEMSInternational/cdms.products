@@ -8,7 +8,7 @@ prepare_cdt_daily(
   data,
   station,
   element,
-  date,
+  date_time,
   metadata = NULL,
   latitude,
   longitude,
@@ -23,7 +23,7 @@ per day (per station) and one column per element.}
 
 \item{element}{Name of the element column in \code{data}.}
 
-\item{date}{Name of the date column in \code{data}. Required if \code{type =
+\item{date_time}{Name of the date column in \code{data}. Required if \code{type =
   "daily"}. If \code{type = "dekad"} this is only needed if \code{year},
 \code{month}, and \code{dekad} are not specified.}
 
@@ -46,7 +46,8 @@ A data.frame formatted for use in CDT
 Prepare CDT for Daily data
 }
 \examples{
-prepare_cdt_daily(data = daily_niger, date = "date", station = "station_name",
+# Prepare daily_niger data for CDT export
+prepare_cdt_daily(data = daily_niger, date_time = "date", station = "station_name",
                   element = "tmax", metadata = stations_niger, 
                   latitude = "lat", longitude = "long", altitude = "alt")
 }

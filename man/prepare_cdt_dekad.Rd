@@ -8,7 +8,7 @@ prepare_cdt_dekad(
   data,
   station,
   element,
-  date = NULL,
+  date_time = NULL,
   year = NULL,
   month = NULL,
   dekad = NULL,
@@ -26,17 +26,17 @@ per dekad (per station) and one column per element.}
 
 \item{element}{Name of the element column in \code{data}.}
 
-\item{date}{Name of the date column in \code{data}. Required if \code{type =
+\item{date_time}{Name of the date column in \code{data}. Required if \code{type =
   "daily"}. If \code{type = "dekad"} this is only needed if \code{year},
 \code{month}, and \code{dekad} are not specified.}
 
 \item{year}{Name of the year column in \code{data}. Only needed if \code{type
   = "dekad"}. If \code{NULL} it will be created using
-\code{lubridate::year(data[[date]])}.}
+\code{lubridate::year(data[[date_time]])}.}
 
 \item{month}{Name of the month column in \code{data}. Only needed if
 \code{type = "dekad"}. If \code{NULL} it will be created using
-\code{lubridate::month(data[[date]])}.}
+\code{lubridate::month(data[[date_time]])}.}
 
 \item{dekad}{Name of the dekad column in \code{data}. Only needed if
 \code{type = "dekad"}. If \code{NULL} it will be created using \code{dekad}
@@ -61,5 +61,14 @@ A data.frame formatted for use in CDT
 Prepare data in format for CDT
 }
 \examples{
-# TODO
+# Create prepare summary dekad data for CDT export
+summary_data <- daily_niger \%>\%
+                   dplyr::mutate(dekad_date = dekad(daily_niger$date)) \%>\%
+                   dplyr::group_by(station_name, year, dekad_date) \%>\%
+                   dplyr::summarise(date = dplyr::first(date), sum = sum(tmax))
+
+prepare_cdt_dekad(data = summary_data, date_time = "date", year = "year",
+                  station = "station_name",
+                  element = "sum", metadata = stations_niger, 
+                  latitude = "lat", longitude = "long", altitude = "alt")
 }

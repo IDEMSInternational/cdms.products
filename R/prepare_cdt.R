@@ -9,15 +9,15 @@
 #' @param altitude Name of the altitude column in \code{metadata}.
 #' @param type Character indicating the type of data, either \code{"dekad"} or
 #'   \code{"daily"}.
-#' @param date Name of the date column in \code{data}. Required if \code{type =
+#' @param date_time Name of the date column in \code{data}. Required if \code{type =
 #'   "daily"}. If \code{type = "dekad"} this is only needed if \code{year},
 #'   \code{month}, and \code{dekad} are not specified.
 #' @param year Name of the year column in \code{data}. Only needed if \code{type
 #'   = "dekad"}. If \code{NULL} it will be created using
-#'   \code{lubridate::year(data[[date]])}.
+#'   \code{lubridate::year(data[[date_time]])}.
 #' @param month Name of the month column in \code{data}. Only needed if
 #'   \code{type = "dekad"}. If \code{NULL} it will be created using
-#'   \code{lubridate::month(data[[date]])}.
+#'   \code{lubridate::month(data[[date_time]])}.
 #' @param dekad Name of the dekad column in \code{data}. Only needed if
 #'   \code{type = "dekad"}. If \code{NULL} it will be created using \code{dekad}
 #'   function.
@@ -30,22 +30,13 @@
 #' @return A data.frame formatted for use in CDT
 #' @export
 #'
-#' @examples
-#' # create summary data
+#' @examples # Create summary daily data
 #' data("daily_niger"); data("stations_niger")
-#' summary_data <- daily_niger %>%
-#' dplyr::mutate(dekad_date = dekad(daily_niger$date)) %>%
-#' dplyr::group_by(station_name, year, dekad_date) %>%
-#' dplyr::summarise(date = dplyr::first(date), sum = sum(tmax))
-#' 
-#' prepare_cdt(data = summary_data, date = "date", year = "year",
-#'             station = "station_name",
-#'             element = "sum", metadata = stations_niger, 
-#'             latitude = "lat", longitude = "long", altitude = "alt")
-
-
+#' cdt_data <- prepare_cdt(data = daily_niger, station = "station_name", element = "rain",
+#'                         type = "daily", date_time = "date", latitude = "lat",
+#'                         longitude = "long", altitude = "alt", metadata = stations_niger)
 prepare_cdt <- function(data, station, element, latitude, longitude, 
-                        altitude, type = c("dekad", "daily"), date = NULL, 
+                        altitude, type = c("dekad", "daily"), date_time = NULL, 
                         year = NULL, month = NULL, dekad = NULL, 
                         metadata = NULL) {
   
@@ -71,35 +62,35 @@ prepare_cdt <- function(data, station, element, latitude, longitude,
   if (!is.null(year)) assert_column_names(data, year)
   if (!is.null(month)) assert_column_names(data, month)
   if (!is.null(dekad)) assert_column_names(data, dekad)
-  if (!is.null(date)) assert_column_names(data, date)
-  if (type == "daily") checkmate::assert_date(data[[date]])
+  if (!is.null(date_time)) assert_column_names(data, date_time)
+  if (type == "daily") checkmate::assert_date(data[[date_time]])
   if (type == "dekad") {
-    if (is.null(date)){
+    if (is.null(date_time)){
       checkmate::assert_string(year)
       checkmate::assert_string(month)
       checkmate::assert_string(dekad)
     } else {
-      checkmate::assert_date(data[[date]])
+      checkmate::assert_date(data[[date_time]])
     }
   }
   
   if (type == "dekad") {
-    date <- "date"
-    if (is.null(date)){
-      data[[date]] <- paste0(.data[[year]], .data[[month]], .data[[dekad]])
+    date_time <- "date"
+    if (is.null(date_time)){
+      data[[date_time]] <- paste0(.data[[year]], .data[[month]], .data[[dekad]])
     } else {
-      year <- lubridate::year(data[[date]])
-      month <- lubridate::month(data[[date]])
-      dekad <- dekad(data[[date]])
-      data[[date]] <- paste0(year, month, dekad)
+      year <- lubridate::year(data[[date_time]])
+      month <- lubridate::month(data[[date_time]])
+      dekad <- dekad(data[[date_time]])
+      data[[date_time]] <- paste0(year, month, dekad)
     }
   }
   
-  data[[date]] <- as.character(data[[date]])
+  data[[date_time]] <- as.character(data[[date_time]])
   data_date <- data %>%
     dplyr::ungroup() %>%
-    dplyr::select(c(.data[[station]], .data[[date]], .data[[element]])) %>%
-    tidyr::pivot_longer(cols = c(.data[[date]]),
+    dplyr::select(c(.data[[station]], .data[[date_time]], .data[[element]])) %>%
+    tidyr::pivot_longer(cols = c(.data[[date_time]]),
                         names_to = ".x", values_to = "names") %>%
     dplyr::select(-c(.data$`.x`)) %>%
     dplyr::rename(values = .data[[element]])
