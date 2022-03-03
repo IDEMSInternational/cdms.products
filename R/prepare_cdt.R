@@ -75,7 +75,7 @@ prepare_cdt <- function(data, station, element, latitude, longitude,
   }
   
   if (type == "dekad") {
-    date_time <- "date"
+    date_time <- "date_time"
     if (is.null(date_time)){
       data[[date_time]] <- paste0(.data[[year]], .data[[month]], .data[[dekad]])
     } else {
