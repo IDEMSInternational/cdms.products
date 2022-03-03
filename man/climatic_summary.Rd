@@ -45,11 +45,11 @@ climatic_summary(
 
 \item{month}{\code{character(1)} The name of the month column in \code{data}.}
 
-\item{dekad}{TODO}
+\item{dekad}{\code{character(1)} The name of the dekad column in \code{data}.}
 
-\item{pentad}{TODO}
+\item{pentad}{\code{character(1)} The name of the pentad column in \code{data}.}
 
-\item{to}{TODO}
+\item{to}{\code{character(1)} The date-time format to put the data into.}
 
 \item{by}{TODO}
 
@@ -57,12 +57,11 @@ climatic_summary(
 
 \item{doy_first}{\code{integer(1)} The first day of the year.}
 
-\item{doy_last}{\code{integer(1)} The last day of the year}
+\item{doy_last}{\code{integer(1)} The last day of the year.}
 
 \item{summaries}{\code{character} A named character vector of summary functions. The names are
-the used as the column names in the results. The values can be any function
-name as a string. e.g. c(mean = "mean", st_dv = "sd", n_na =
-"naflex::na_n")}
+used as the column names in the results. The values can be any function
+name as a string. e.g. c(mean = "mean", st_dv = "sd", n_na = "naflex::na_n")}
 
 \item{na_rm}{\code{logical(1)} If \code{TRUE} all \code{na_} parameters are ignored and missing
 values are removed. If \code{FALSE} missing values are not removed unless
