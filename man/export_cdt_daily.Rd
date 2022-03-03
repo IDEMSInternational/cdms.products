@@ -8,7 +8,7 @@ export_cdt_daily(
   data,
   station,
   element,
-  date,
+  date_time,
   latitude,
   longitude,
   altitude,
@@ -25,7 +25,7 @@ per day (per station) and one column per element.}
 
 \item{element}{Name of the element column in \code{data}.}
 
-\item{date}{Name of the date column in \code{data}. Required if \code{type =
+\item{date_time}{Name of the date column in \code{data}. Required if \code{type =
   "daily"}. If \code{type = "dekad"} this is only needed if \code{year},
 \code{month}, and \code{dekad} are not specified.}
 
@@ -52,8 +52,9 @@ Invisibly returns the file path of the saved data
 Export daily data in the format for CDT
 }
 \examples{
-# TODO
-
-
-
+# To write daily_niger data to CDT format
+## NOT RUN ##
+#export_cdt_daily(data = daily_niger, station = "station_name", element = "rain", type = "daily",
+#           date_time = "date", latitude = "lat", longitude = "long", altitude = "alt",
+#           metadata = stations_niger)
 }

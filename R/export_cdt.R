@@ -7,20 +7,22 @@
 #' @return Invisibly returns the file path of the saved data
 #' @export
 #'
-#' @examples # TODO
-#' 
+#' @examples # To write daily_niger data to CDT format
+#' ## NOT RUN ##
+#' #export_cdt(data = daily_niger, station = "station_name", element = "rain", type = "daily",
+#' #           date_time = "date", latitude = "lat", longitude = "long", altitude = "alt",
+#' #           metadata = stations_niger)
 export_cdt <- function(data, station, element, latitude, longitude, altitude,
-                       type = c("dekad", "daily"), date = NULL, year = NULL, 
+                       type = c("dekad", "daily"), date_time = NULL, year = NULL, 
                        month = NULL, dekad = NULL, metadata = NULL,
                        file_path = paste0("CDT-", element, ".csv"),
                        ...) {
-  checkmate::check_string(file)
+  checkmate::check_string(file_path)
   cdt_data <- prepare_cdt(data = data, station = station, element = element, 
                           latitude = latitude, longitude = longitude,
-                          altitude = altitude, type = type, date = date, 
+                          altitude = altitude, type = type, date_time = date_time, 
                           year = year, month = month, dekad = dekad,
                           metadata = metadata)
-  
   csv_params <- utils::modifyList(list(x = cdt_data,
                                        file = file_path,
                                        row.names = FALSE),

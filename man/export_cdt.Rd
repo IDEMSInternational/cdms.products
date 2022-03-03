@@ -12,7 +12,7 @@ export_cdt(
   longitude,
   altitude,
   type = c("dekad", "daily"),
-  date = NULL,
+  date_time = NULL,
   year = NULL,
   month = NULL,
   dekad = NULL,
@@ -38,17 +38,17 @@ one row per time point (per station) and one column per element.}
 \item{type}{Character indicating the type of data, either \code{"dekad"} or
 \code{"daily"}.}
 
-\item{date}{Name of the date column in \code{data}. Required if \code{type =
+\item{date_time}{Name of the date column in \code{data}. Required if \code{type =
   "daily"}. If \code{type = "dekad"} this is only needed if \code{year},
 \code{month}, and \code{dekad} are not specified.}
 
 \item{year}{Name of the year column in \code{data}. Only needed if \code{type
   = "dekad"}. If \code{NULL} it will be created using
-\code{lubridate::year(data[[date]])}.}
+\code{lubridate::year(data[[date_time]])}.}
 
 \item{month}{Name of the month column in \code{data}. Only needed if
 \code{type = "dekad"}. If \code{NULL} it will be created using
-\code{lubridate::month(data[[date]])}.}
+\code{lubridate::month(data[[date_time]])}.}
 
 \item{dekad}{Name of the dekad column in \code{data}. Only needed if
 \code{type = "dekad"}. If \code{NULL} it will be created using \code{dekad}
@@ -71,6 +71,9 @@ Invisibly returns the file path of the saved data
 Export daily or dekadal data in the format for CDT
 }
 \examples{
-# TODO
-
+# To write daily_niger data to CDT format
+## NOT RUN ##
+#export_cdt(data = daily_niger, station = "station_name", element = "rain", type = "daily",
+#           date_time = "date", latitude = "lat", longitude = "long", altitude = "alt",
+#           metadata = stations_niger)
 }
