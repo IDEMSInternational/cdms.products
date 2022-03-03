@@ -6,17 +6,16 @@
 #' @param elements \code{character} The name of the elements column in \code{data} to apply the function to.
 #' @param year \code{character(1)} The name of the year column in \code{data}.
 #' @param month \code{character(1)} The name of the month column in \code{data}. 
-#' @param dekad TODO
-#' @param pentad TODO
-#' @param to TODO
+#' @param dekad \code{character(1)} The name of the dekad column in \code{data}.
+#' @param pentad \code{character(1)} The name of the pentad column in \code{data}.
+#' @param to \code{character(1)} The date-time format to put the data into.
 #' @param by TODO
 #' @param doy \code{character(1)} The name of the day of the year (1-366) column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[doy]])}.
 #' @param doy_first \code{integer(1)} The first day of the year.
-#' @param doy_last \code{integer(1)} The last day of the year
+#' @param doy_last \code{integer(1)} The last day of the year.
 #' @param summaries \code{character} A named character vector of summary functions. The names are
-#'   the used as the column names in the results. The values can be any function
-#'   name as a string. e.g. c(mean = "mean", st_dv = "sd", n_na =
-#'   "naflex::na_n")
+#'   used as the column names in the results. The values can be any function
+#'   name as a string. e.g. c(mean = "mean", st_dv = "sd", n_na = "naflex::na_n")
 #' @param na_rm \code{logical(1)} If \code{TRUE} all \code{na_} parameters are ignored and missing
 #'   values are removed. If \code{FALSE} missing values are not removed unless
 #'   any \code{na_} parameters are specified.

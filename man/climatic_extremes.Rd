@@ -45,11 +45,11 @@ climatic_extremes(
 
 \item{month}{\code{character(1)} The name of the month column in \code{data}.}
 
-\item{dekad}{TODO}
+\item{dekad}{\code{character(1)} The name of the dekad column in \code{data}.}
 
-\item{pentad}{TODO}
+\item{pentad}{\code{character(1)} The name of the pentad column in \code{data}.}
 
-\item{to}{TODO}
+\item{to}{\code{character(1)} The date-time format to put the data into.}
 
 \item{by}{TODO}
 
@@ -57,11 +57,11 @@ climatic_extremes(
 
 \item{doy_first}{\code{integer(1)} The first day of the year.}
 
-\item{doy_last}{\code{integer(1)} The last day of the year}
+\item{doy_last}{\code{integer(1)} The last day of the year.}
 
-\item{max_val}{\code{logical(1)} If \code{TRUE} the extreme maximum is calculated}
+\item{max_val}{\code{logical(1)} If \code{TRUE} the extreme maximum is calculated.}
 
-\item{min_val}{\code{logical(1)} If \code{TRUE} the extreme minimum is calculated}
+\item{min_val}{\code{logical(1)} If \code{TRUE} the extreme minimum is calculated.}
 
 \item{first_date}{\code{logical(1)} If \code{TRUE} the first instance of \code{date_time} when the value equals the summary value is included. Generally only used for extreme summaries i.e. first \code{date_time} when the maximum occurred.}
 
