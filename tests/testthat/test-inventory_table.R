@@ -67,3 +67,13 @@ test_that("inventory_table returns correct result", {
   expect_equal(x_day_all_elements,y_day_all_elements)
   expect_equal(x_doy_all_elements,y_doy_all_elements)
 })
+
+inputs <- list(data = daily_niger, date = "date", elements = c("rain"), station = "station_name", 
+               year = "year", month = "month", day = "day")
+
+test_that("inventory returns an error whn conditions are not met",{
+  expect_error(inventory_table(),)
+  expect_error(do.call(inventory_table, inputs[-1]))
+  expect_error(do.call(inventory_table, inputs[-2]))
+  expect_error(do.call(inventory_table, inputs[-3]))
+})
