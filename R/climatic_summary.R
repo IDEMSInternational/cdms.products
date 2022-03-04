@@ -15,7 +15,7 @@
 #' @param doy_last \code{integer(1)} The last day of the year.
 #' @param summaries \code{character} A named character vector of summary functions. The names are
 #'   used as the column names in the results. The values can be any function
-#'   name as a string. e.g. c(mean = "mean", st_dv = "sd", n_na = "naflex::na_n")
+#'   name as a string or a function call as a formula. e.g. c(mean = "mean", st_dv = "sd", n = "~dplyr::n()")
 #' @param na_rm \code{logical(1)} If \code{TRUE} all \code{na_} parameters are ignored and missing
 #'   values are removed. If \code{FALSE} missing values are not removed unless
 #'   any \code{na_} parameters are specified.
@@ -46,7 +46,7 @@ climatic_summary <- function(data, date_time, station = NULL, elements = NULL,
                                     "overall"),
                              by = NULL,
                              doy = NULL, doy_first = 1, doy_last = 366, 
-                             summaries = c(n = "dplyr::n"), na_rm = FALSE,
+                             summaries = c(n = "~dplyr::n()"), na_rm = FALSE,
                              na_prop = NULL, na_n = NULL, na_consec = NULL, 
                              na_n_non = NULL,
                              first_date = FALSE, n_dates = FALSE, last_date = FALSE,
@@ -200,19 +200,23 @@ climatic_summary <- function(data, date_time, station = NULL, elements = NULL,
   }
   exp_summaries <- vector("list", length(summaries))
   names(exp_summaries) <- names(summaries)
+  lambda_summaries <- exp_summaries
   for (i in seq_along(summaries)) {
     fn_exp <- summaries[[i]]
-    fn_exp <- paste0(fn_exp, "(", .x_call)
-    add_params <- summaries_params[[names(summaries)[i]]]
-    fn_exp <- add_params(fn_exp, add_params)
-    fn_exp <- paste0(fn_exp, ")")
+    if (!startsWith(fn_exp, "~")) {
+      fn_exp <- paste0(fn_exp, "(", .x_call)
+      add_params <- summaries_params[[names(summaries)[i]]]
+      fn_exp <- add_params(fn_exp, add_params)
+      fn_exp <- paste0(fn_exp, ")")
+    }
     exp_summaries[[i]] <- fn_exp
+    lambda_summaries[[i]] <- ifelse(startsWith(fn_exp, "~"), fn_exp, 
+                               paste0("~", fn_exp))
   }
-  lambda_summaries <- paste0("~", exp_summaries)
   lambda_summaries <- sapply(lambda_summaries, stats::formula)
   names(lambda_summaries) <- names(summaries)
   sum_data <- grp_data %>%
-    dplyr::summarise(dplyr::across(dplyr::all_of(elements), 
+    dplyr::summarise(dplyr::across(tidyselect::all_of(elements), 
                                    lambda_summaries, .names = names))
   
   if (first_date || n_dates || last_date) {
