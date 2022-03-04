@@ -19,7 +19,7 @@ climatic_summary(
   doy = NULL,
   doy_first = 1,
   doy_last = 366,
-  summaries = c(n = "dplyr::n"),
+  summaries = c(n = "~dplyr::n()"),
   na_rm = FALSE,
   na_prop = NULL,
   na_n = NULL,
@@ -61,7 +61,7 @@ climatic_summary(
 
 \item{summaries}{\code{character} A named character vector of summary functions. The names are
 used as the column names in the results. The values can be any function
-name as a string. e.g. c(mean = "mean", st_dv = "sd", n_na = "naflex::na_n")}
+name as a string or a function call as a formula. e.g. c(mean = "mean", st_dv = "sd", n = "~dplyr::n()")}
 
 \item{na_rm}{\code{logical(1)} If \code{TRUE} all \code{na_} parameters are ignored and missing
 values are removed. If \code{FALSE} missing values are not removed unless
