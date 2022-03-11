@@ -9,9 +9,9 @@
 #' @param longitude \code{character(1)} The name of the longitude column in \code{metadata}, or \code{data} if \code{metadata = NULL}.
 #' @param metadata \code{data.frame} The metadata data.frame to calculate from.
 #' @param join_by \code{character} The variable(s) to merge the \code{data} and \code{metadata} data frames.
-#' @param add_cols TODO
+#' @param add_cols Names of additional metadata columns that should be included in the output
 #'
-#' @return
+#' @return A data.frame formatted for use in geoclim.
 #' @export
 #'
 #' @examples # TODO

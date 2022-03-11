@@ -36,10 +36,10 @@ prepare_geoclim_month(
 
 \item{join_by}{\code{character} The variable(s) to merge the \code{data} and \code{metadata} data frames.}
 
-\item{add_cols}{TODO}
+\item{add_cols}{Names of additional metadata columns that should be included in the output}
 }
 \value{
-
+A data.frame formatted for use in geoclim.
 }
 \description{
 Prepare monthly data in GeoCLIM format

@@ -55,7 +55,7 @@ assumed to be in \code{metadata} and \code{station} must be in both
 \item{altitude}{Name of the altitude column in \code{metadata}.}
 }
 \value{
-A data.frame formatted for use in CDT
+A data.frame formatted for use in CDT.
 }
 \description{
 Prepare data in format for CDT

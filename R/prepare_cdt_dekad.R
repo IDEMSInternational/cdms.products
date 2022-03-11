@@ -4,7 +4,7 @@
 #' @param data data.frame of dekadal climatic data in tidy format i.e. one row
 #'   per dekad (per station) and one column per element.
 #'
-#' @return A data.frame formatted for use in CDT
+#' @return A data.frame formatted for use in CDT.
 #' @export
 #'
 #' @examples # Create prepare summary dekad data for CDT export

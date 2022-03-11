@@ -1,8 +1,8 @@
 #' Prepare pentad data in GeoCLIM format
 #' @inheritParams prepare_geoclim
-#' @param pentad TODO
+#' @param pentad \code{character(1)} The name of the pentad column in \code{data}.
 #'
-#' @return
+#' @return A data.frame formatted for use in geoclim.
 #' @export
 #'
 #' @examples # TODO

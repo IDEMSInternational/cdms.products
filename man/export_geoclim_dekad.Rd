@@ -24,19 +24,19 @@ export_geoclim_dekad(
 
 \item{year}{\code{character(1)} The name of the year column in \code{data}.}
 
-\item{dekad}{TODO}
+\item{dekad}{\code{character(1)} The name of the dekad column in \code{data}.}
 
 \item{element}{\code{character(1)} The name of the element column in \code{data} to apply the function to.}
 
-\item{metadata}{TODO}
+\item{metadata}{\code{data.frame} The metadata data.frame to calculate from.}
 
-\item{join_by}{TODO}
+\item{join_by}{\code{character} The variable(s) to merge the \code{data} and \code{metadata} data frames.}
 
-\item{station_id}{TODO}
+\item{station_id}{\code{character(1)} The name of the station column in \code{metadata}, or \code{data} if \code{metadata = NULL}.}
 
-\item{latitude}{TODO}
+\item{latitude}{\code{character(1)} The name of the latitude column in \code{metadata}, or \code{data} if \code{metadata = NULL}.}
 
-\item{longitude}{TODO}
+\item{longitude}{\code{character(1)} The name of the longitude column in \code{metadata}, or \code{data} if \code{metadata = NULL}.}
 
 \item{add_cols}{Names of additional metadata columns that should be included in the output}
 

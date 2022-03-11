@@ -1,8 +1,8 @@
 #' Prepare dekad data in GeoCLIM format
 #' @inheritParams prepare_geoclim
-#' @param dekad TODO
+#' @param dekad \code{character(1)} The name of the dekad column in \code{data}.
 #'
-#' @return
+#' @return A data.frame formatted for use in geoclim.
 #' @export
 #'
 #' @examples # TODO

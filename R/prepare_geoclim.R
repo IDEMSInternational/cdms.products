@@ -2,17 +2,17 @@
 #'
 #' @param data \code{data.frame} The data.frame to calculate from.
 #' @param year \code{character(1)} The name of the year column in \code{data}.
-#' @param type_col TODO
+#' @param type_col \code{character(1)} The name of the dekad or pentad column in \code{data}.
 #' @param element \code{character(1)} The name of the element column in \code{data} to apply the function to.
-#' @param station_id TODO
-#' @param latitude TODO
-#' @param longitude TODO
-#' @param type TODO
-#' @param metadata TODO
-#' @param join_by TODO
+#' @param station_id \code{character(1)} The name of the station column in \code{metadata}, or \code{data} if \code{metadata = NULL}.
+#' @param latitude \code{character(1)} The name of the latitude column in \code{metadata}, or \code{data} if \code{metadata = NULL}.
+#' @param longitude \code{character(1)} The name of the longitude column in \code{metadata}, or \code{data} if \code{metadata = NULL}.
+#' @param type \code{character(1)} Whether the data is in `dekad` or `pentad` format.
+#' @param metadata \code{data.frame} The metadata data.frame to calculate from.
+#' @param join_by \code{character} The variable(s) to merge the \code{data} and \code{metadata} data frames.
 #' @param add_cols Names of additional metadata columns that should be included in the output
 #'
-#' @return
+#' @return A data.frame formatted for use in geoclim.
 #' @export
 #'
 #' @examples # TODO
