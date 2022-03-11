@@ -1,10 +1,10 @@
 #' Export daily or dekadal data in the format for CDT
 #' 
 #' @inheritParams prepare_cdt
-#' @param file_path A character specifying the file path and file name to export
-#' @param ... Other parameters passed to \code{write.csv()}
+#' @param file_path \code{character(1)} A character specifying the file path and file name to export.
+#' @param ... Other parameters passed to \code{write.csv()}.
 #'
-#' @return Invisibly returns the file path of the saved data
+#' @return Invisibly returns the file path of the saved data.
 #' @export
 #'
 #' @examples # To write daily_niger data to CDT format

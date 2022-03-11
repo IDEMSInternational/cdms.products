@@ -2,7 +2,7 @@
 #' @inheritParams export_geoclim
 #' @inheritParams prepare_geoclim_pentad
 #'
-#' @return Invisibly returns the file path of the saved data
+#' @return Invisibly returns the file path of the saved data.
 #' @export
 #'
 #' @examples # TODO

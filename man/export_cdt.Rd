@@ -60,12 +60,12 @@ specified, \code{latitude}, \code{longitude} and \code{altitude} are
 assumed to be in \code{metadata} and \code{station} must be in both
 \code{data} and \code{metadata} to facilitate joining.}
 
-\item{file_path}{A character specifying the file path and file name to export}
+\item{file_path}{\code{character(1)} A character specifying the file path and file name to export.}
 
-\item{...}{Other parameters passed to \code{write.csv()}}
+\item{...}{Other parameters passed to \code{write.csv()}.}
 }
 \value{
-Invisibly returns the file path of the saved data
+Invisibly returns the file path of the saved data.
 }
 \description{
 Export daily or dekadal data in the format for CDT

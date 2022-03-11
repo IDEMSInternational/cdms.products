@@ -43,12 +43,12 @@ export_geoclim(
 
 \item{add_cols}{Names of additional metadata columns that should be included in the output}
 
-\item{file_path}{TODO}
+\item{file_path}{\code{character(1)} A character specifying the file path and file name to export.}
 
 \item{...}{Other parameters passed to \code{write.csv()}}
 }
 \value{
-Invisibly returns the file path of the saved data
+Invisibly returns the file path of the saved data.
 }
 \description{
 Export dekad or pentad data in GeoCLIM format

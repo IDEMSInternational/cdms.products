@@ -1,9 +1,9 @@
 #' Export dekad or pentad data in GeoCLIM format
 #' @inheritParams prepare_geoclim
-#' @param file_path TODO
+#' @param file_path \code{character(1)} A character specifying the file path and file name to export.
 #' @param ... Other parameters passed to \code{write.csv()}
 #'
-#' @return Invisibly returns the file path of the saved data
+#' @return Invisibly returns the file path of the saved data.
 #' @export
 #'
 #' @examples # TODO

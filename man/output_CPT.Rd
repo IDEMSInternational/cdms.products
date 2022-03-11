@@ -13,20 +13,20 @@ output_CPT(
   station,
   year,
   element,
-  long.data = TRUE,
+  long_data = TRUE,
   na_code = -999
 )
 }
 \arguments{
 \item{data}{\code{data.frame} The data.frame to calculate from.}
 
-\item{lat_lon_data}{TODO}
+\item{lat_lon_data}{\code{data.frame} The name of the metadata to calculate from.}
 
-\item{station_latlondata}{TODO}
+\item{station_latlondata}{\code{character(1)} The name of the station column in \code{lat_lon_data}, or \code{data} if \code{long_data = FALSE}.}
 
-\item{latitude}{TODO}
+\item{latitude}{\code{character(1)} The name of the latitude column in \code{lat_lon_data}, or \code{data} if \code{long_data = FALSE}.}
 
-\item{longitude}{TODO}
+\item{longitude}{\code{character(1)} The name of the longitude column in \code{lat_lon_data}, or \code{data} if \code{long_data = FALSE}.}
 
 \item{station}{\code{character(1)} The name of the station column in \code{data}, if the data are for multiple station.}
 
@@ -34,12 +34,12 @@ output_CPT(
 
 \item{element}{\code{character(1)} The name of the element column in \code{data} to apply the function to.}
 
-\item{long.data}{TODO}
+\item{long_data}{\code{logical(1)} Whether all columns are in \code{data}. If all data is in one data frame then must have \code{long_data = TRUE}.}
 
-\item{na_code}{TODO}
+\item{na_code}{\code{numeric(1)} Indicator for NA values in data.}
 }
 \value{
-
+TODO
 }
 \description{
 Title
