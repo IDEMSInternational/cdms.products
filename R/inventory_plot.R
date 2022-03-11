@@ -30,8 +30,8 @@
 #' @param facet_scales \code{character(1)} Are scales shared across all facets (the default, \code{"fixed"}),
 #' or do they vary across rows (\code{"free_x"}), columns (\code{"free_y"}), or both rows and columns (\code{"free"})?
 #' @param facet_dir TODO
-#' @param facet_x_margin \code{numeric} Margin width around the text for the x-facets.
-#' @param facet_y_margin \code{numeric} Margin width around the text for the y-facets.
+#' @param facet_x_margin \code{numeric(4)} Margin width around the text for the x-facets.
+#' @param facet_y_margin \code{numeric(4)} Margin width around the text for the y-facets.
 #' @param facet_nrow \code{integer(1)} Number of rows for the facets if `facet_by` is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_ncol} is given.
 #' @param facet_ncol \code{integer(1)} Number of rows for the facets if `facet_by` is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_nrow} is given.
 #' @param missing_colour \code{character(1)} Colour to represent the missing values. Default \code{"red"}.
