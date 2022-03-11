@@ -28,15 +28,15 @@ export_geoclim_month(
 
 \item{element}{\code{character(1)} The name of the element column in \code{data} to apply the function to.}
 
-\item{station_id}{TODO}
+\item{station_id}{\code{character(1)} The name of the station column in \code{metadata}, or \code{data} if \code{metadata = NULL}.}
 
-\item{latitude}{TODO}
+\item{latitude}{\code{character(1)} The name of the latitude column in \code{metadata}, or \code{data} if \code{metadata = NULL}.}
 
-\item{longitude}{TODO}
+\item{longitude}{\code{character(1)} The name of the longitude column in \code{metadata}, or \code{data} if \code{metadata = NULL}.}
 
-\item{metadata}{TODO}
+\item{metadata}{\code{data.frame} The metadata data.frame to calculate from.}
 
-\item{join_by}{TODO}
+\item{join_by}{\code{character} The variable(s) to merge the \code{data} and \code{metadata} data frames.}
 
 \item{add_cols}{TODO}
 

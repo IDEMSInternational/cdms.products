@@ -92,9 +92,9 @@ or do they vary across rows (\code{"free_x"}), columns (\code{"free_y"}), or bot
 
 \item{facet_dir}{TODO}
 
-\item{facet_x_margin}{\code{numeric} Margin width around the text for the x-facets.}
+\item{facet_x_margin}{\code{numeric(4)} Margin width around the text for the x-facets.}
 
-\item{facet_y_margin}{\code{numeric} Margin width around the text for the y-facets.}
+\item{facet_y_margin}{\code{numeric(4)} Margin width around the text for the y-facets.}
 
 \item{facet_nrow}{\code{integer(1)} Number of rows for the facets if \code{facet_by} is one of \code{"stations"} or \code{"elements"}. Only if \code{facet_ncol} is given.}
 

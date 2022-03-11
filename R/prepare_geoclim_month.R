@@ -4,17 +4,18 @@
 #' @param year \code{character(1)} The name of the year column in \code{data}.
 #' @param month \code{character(1)} The name of the month column in \code{data}.
 #' @param element \code{character(1)} The name of the element column in \code{data} to apply the function to.
-#' @param station_id TODO
-#' @param latitude TODO
-#' @param longitude TODO
-#' @param metadata TODO
-#' @param join_by TODO
+#' @param station_id \code{character(1)} The name of the station column in \code{metadata}, or \code{data} if \code{metadata = NULL}.
+#' @param latitude \code{character(1)} The name of the latitude column in \code{metadata}, or \code{data} if \code{metadata = NULL}.
+#' @param longitude \code{character(1)} The name of the longitude column in \code{metadata}, or \code{data} if \code{metadata = NULL}.
+#' @param metadata \code{data.frame} The metadata data.frame to calculate from.
+#' @param join_by \code{character} The variable(s) to merge the \code{data} and \code{metadata} data frames.
 #' @param add_cols TODO
 #'
 #' @return
 #' @export
 #'
 #' @examples # TODO
+
 prepare_geoclim_month <- function(data, year, month, element, station_id, 
                                   latitude, longitude, metadata = NULL,
                                   join_by = NULL, add_cols = NULL) {
