@@ -1,3 +1,4 @@
+library(cdms.products)
 library(dplyr)
 library(tidyr)
 
@@ -29,6 +30,22 @@ y_daily <- prepare_cdt_daily(data = daily_summary_data, date_time = "date",
                              station = "station_name", element = "sum", metadata = stations_niger,
                              latitude = "lat", longitude = "long", altitude = "alt")
 
-test_that("prepare-cdt gives correct values", {
+test_that("prepare_cdt_daily gives correct values", {
   expect_equal(x_daily,y_daily)
+})
+
+test_that("prepare_cdt_daily returns an error when conditions are not met", {
+  mandatory_inputs <- list(data = daily_summary_data, date_time = "date",
+                           station = "station_name", element = "sum", metadata = stations_niger,
+                           latitude = "lat", longitude = "long", altitude = "alt")
+  
+  expect_error(prepare_cdt_daily(),)
+  expect_error(do.call(prepare_cdt_daily, mandatory_inputs[-1]))
+  expect_error(do.call(prepare_cdt_daily, mandatory_inputs[-2]))
+  expect_error(do.call(prepare_cdt_daily, mandatory_inputs[-3]))
+  expect_error(do.call(prepare_cdt_daily, mandatory_inputs[-4]))
+  expect_error(do.call(prepare_cdt_daily, mandatory_inputs[-5]))
+  expect_error(do.call(prepare_cdt_daily, mandatory_inputs[-6]))
+  expect_error(do.call(prepare_cdt_daily, mandatory_inputs[-7]))
+  expect_error(do.call(prepare_cdt_daily, mandatory_inputs[-8]))
 })
