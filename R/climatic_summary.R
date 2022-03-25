@@ -58,7 +58,9 @@ climatic_summary <- function(data, date_time, station = NULL, elements = NULL,
                     checkmate::check_posixct(data[[date_time]]))
   checkmate::assert_character(elements)
   assert_column_names(data, elements)
-  if (elements == "obsValue" && "describedBy" %in% names(data)) {
+  if (length(elements) == 1 && 
+      elements == "obsValue" && 
+      "describedBy" %in% names(data)) {
     element_names <- as.character(unique(data[["describedBy"]]))
     data <- elements_wider(data, name = "describedBy", value = elements)
     elements <- element_names
