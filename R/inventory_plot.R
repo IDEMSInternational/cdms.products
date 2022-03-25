@@ -88,6 +88,13 @@ inventory_plot <- function(data, date_time, elements, station = NULL, year = NUL
   data[[date_time]] <- as.Date(data[[date_time]])
   checkmate::assert_character(elements)
   assert_column_names(data, elements)
+  if (length(elements) == 1 && 
+      elements == "obsValue" && 
+      "describedBy" %in% names(data)) {
+    element_names <- as.character(unique(data[["describedBy"]]))
+    data <- elements_wider(data, name = "describedBy", value = elements)
+    elements <- element_names
+  }
   if (!is.null(station)) assert_column_names(data, station)
   
   if (display_rain_days && !is.null(rain) && !rain %in% elements) elements <- c(elements, rain)
