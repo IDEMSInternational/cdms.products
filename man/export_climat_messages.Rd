@@ -29,7 +29,7 @@ export_climat_messages(
 
 \item{date_time}{\code{\link[base]{Date}} The name of the date column in \code{data}.}
 
-\item{station_id}{TODO}
+\item{station_id}{\code{character(1)} The name of the station column in \code{data}.}
 
 \item{year}{\code{character(1)} The name of the year column in \code{data}.}
 
