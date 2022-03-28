@@ -1,27 +1,27 @@
 #' Prepare data in format for CDT
 #'
-#' @param data data.frame of daily or dekadal climatic data in tidy format i.e.
+#' @param data \code{data.frame} data.frame of daily or dekadal climatic data in tidy format i.e.
 #'   one row per time point (per station) and one column per element.
-#' @param station Name of the station identifying column in \code{data}.
-#' @param element Name of the element column in \code{data}.
-#' @param latitude Name of the latitude column in \code{metadata}.
-#' @param longitude Name of the longitude column in \code{metadata}.
-#' @param altitude Name of the altitude column in \code{metadata}.
-#' @param type Character indicating the type of data, either \code{"dekad"} or
+#' @param station \code{character(1)} Name of the station identifying column in \code{data}.
+#' @param element \code{character(1)} Name of the element column in \code{data}.
+#' @param latitude \code{character(1)} Name of the latitude column in \code{metadata}.
+#' @param longitude \code{character(1)} Name of the longitude column in \code{metadata}.
+#' @param altitude \code{character(1)} Name of the altitude column in \code{metadata}.
+#' @param type \code{character(1)} Character indicating the type of data, either \code{"dekad"} or
 #'   \code{"daily"}.
-#' @param date_time Name of the date column in \code{data}. Required if \code{type =
+#' @param date_time \code{character(1)} Name of the date column in \code{data}. Required if \code{type =
 #'   "daily"}. If \code{type = "dekad"} this is only needed if \code{year},
 #'   \code{month}, and \code{dekad} are not specified.
-#' @param year Name of the year column in \code{data}. Only needed if \code{type
+#' @param year \code{character(1)} Name of the year column in \code{data}. Only needed if \code{type
 #'   = "dekad"}. If \code{NULL} it will be created using
 #'   \code{lubridate::year(data[[date_time]])}.
-#' @param month Name of the month column in \code{data}. Only needed if
+#' @param month \code{character(1)} Name of the month column in \code{data}. Only needed if
 #'   \code{type = "dekad"}. If \code{NULL} it will be created using
 #'   \code{lubridate::month(data[[date_time]])}.
-#' @param dekad Name of the dekad column in \code{data}. Only needed if
+#' @param dekad \code{character(1)} Name of the dekad column in \code{data}. Only needed if
 #'   \code{type = "dekad"}. If \code{NULL} it will be created using \code{dekad}
 #'   function.
-#' @param metadata data.frame of station metadata. Use this is the station
+#' @param metadata \code{data.frame} data.frame of station metadata. Use this is the station
 #'   details are in a separate data.frame with one row per station. If
 #'   specified, \code{latitude}, \code{longitude} and \code{altitude} are
 #'   assumed to be in \code{metadata} and \code{station} must be in both

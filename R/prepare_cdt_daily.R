@@ -1,7 +1,7 @@
 #' Prepare CDT for Daily data
 #'
 #' @inheritParams prepare_cdt
-#' @param data data.frame of daily climatic data in tidy format i.e. one row
+#' @param data \code{data.frame} data.frame of daily climatic data in tidy format i.e. one row
 #'   per day (per station) and one column per element.
 #'   
 #' @return A data.frame formatted for use in CDT
