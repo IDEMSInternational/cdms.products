@@ -17,28 +17,28 @@ prepare_climdex(
 )
 }
 \arguments{
-\item{data}{data.frame of daily climatic data in tidy format i.e. one row per
+\item{data}{\code{data.frame} data.frame of daily climatic data in tidy format i.e. one row per
 day and one column per element.}
 
-\item{prcp}{Name of the precipitation/rainfall column in \code{data}.}
+\item{prcp}{\code{character(1)} Name of the precipitation/rainfall column in \code{data}.}
 
-\item{tmax}{Name of the maximum temperature column in \code{data}.}
+\item{tmax}{\code{character(1)} Name of the maximum temperature column in \code{data}.}
 
-\item{tmin}{Name of the minimum temperature column in \code{data}.}
+\item{tmin}{\code{character(1)} Name of the minimum temperature column in \code{data}.}
 
-\item{date}{Name of the date column in \code{data}. This is only needed if
+\item{date}{\code{character(1)} Name of the date column in \code{data}. This is only needed if
 \code{year}, \code{month}, and \code{day} are not specified.}
 
-\item{year}{Name of the year column in \code{data}. If \code{NULL} it will be
+\item{year}{\code{character(1)} Name of the year column in \code{data}. If \code{NULL} it will be
 created using \code{lubridate::year(data[[date]])}.}
 
-\item{month}{Name of the month column in \code{data}. If \code{NULL} it will
+\item{month}{\code{character(1)} Name of the month column in \code{data}. If \code{NULL} it will
 be created using \code{lubridate::month(data[[date]])}.}
 
-\item{day}{Name of the day of the month column in \code{data}. If \code{NULL}
+\item{day}{\code{character(1)} Name of the day of the month column in \code{data}. If \code{NULL}
 it will be created using \code{lubridate::day(data[[date]])}.}
 
-\item{na}{The value to replace missing values with. The default (-99.9)
+\item{na}{\code{integer(1)} The value to replace missing values with. The default (-99.9)
 should be used to comply with the RClimDex format requirements.}
 }
 \value{

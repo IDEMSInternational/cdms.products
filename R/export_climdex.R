@@ -1,15 +1,16 @@
 #' Export data in the format for RClimDex
 #' 
 #' @inheritParams prepare_climdex
-#' @param file_type A character specifying the file type to export as, either \code{"csv"} or `\code{"txt"}.
-#' @param file_path A character specifying the file path and file name to export
+#' @param file_type \code{character(1)} A character specifying the file type to export as, either \code{"csv"} or `\code{"txt"}.
+#' @param file_path \code{character(1)} A character specifying the file path and file name to export
 #' @param ... Other parameters passed to \code{write.table()}
 #'
 #' @return Invisibly returns the file path of the saved data
 #' @export
 #'
-#' @examples # TODO
-#' 
+#' @examples # Export data to climdex
+#' # NOT RUN:
+#' # export_climdex(data = daily_niger, date = "date", prcp = "rain", tmax = "tmax", tmin = "tmin")
 export_climdex <- function(data, prcp, tmax, tmin, date = NULL, year = NULL, 
                            month = NULL, day = NULL, 
                            file_type = c("csv", "txt"),

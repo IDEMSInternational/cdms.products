@@ -1,19 +1,18 @@
 #' Prepare data in the format for RClimDex
-#' 
-#' @param data data.frame of daily climatic data in tidy format i.e. one row per
+#' @param data \code{data.frame} data.frame of daily climatic data in tidy format i.e. one row per
 #'   day and one column per element.
-#' @param prcp Name of the precipitation/rainfall column in \code{data}.
-#' @param tmax Name of the maximum temperature column in \code{data}.
-#' @param tmin Name of the minimum temperature column in \code{data}.
-#' @param date Name of the date column in \code{data}. This is only needed if
+#' @param prcp \code{character(1)} Name of the precipitation/rainfall column in \code{data}.
+#' @param tmax \code{character(1)} Name of the maximum temperature column in \code{data}.
+#' @param tmin \code{character(1)} Name of the minimum temperature column in \code{data}.
+#' @param date \code{character(1)} Name of the date column in \code{data}. This is only needed if
 #'   \code{year}, \code{month}, and \code{day} are not specified.
-#' @param year Name of the year column in \code{data}. If \code{NULL} it will be
+#' @param year \code{character(1)} Name of the year column in \code{data}. If \code{NULL} it will be
 #'   created using \code{lubridate::year(data[[date]])}.
-#' @param month Name of the month column in \code{data}. If \code{NULL} it will
+#' @param month \code{character(1)} Name of the month column in \code{data}. If \code{NULL} it will
 #'   be created using \code{lubridate::month(data[[date]])}.
-#' @param day Name of the day of the month column in \code{data}. If \code{NULL}
+#' @param day \code{character(1)} Name of the day of the month column in \code{data}. If \code{NULL}
 #'   it will be created using \code{lubridate::day(data[[date]])}.
-#' @param na The value to replace missing values with. The default (-99.9)
+#' @param na \code{integer(1)} The value to replace missing values with. The default (-99.9)
 #'   should be used to comply with the RClimDex format requirements.
 #'
 #' @return A data.frame formatted for use in RClimDex
