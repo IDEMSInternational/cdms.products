@@ -49,7 +49,8 @@ Prepare monthly data in GeoCLIM format
 }
 \examples{
 # Calculate monthly summaries for the rainfall column
-summary_data <- daily_niger \%>\% group_by(year, month, station_name) \%>\% summarise(mean_rain = mean(rain))
+summary_data <- daily_niger \%>\% dplyr::group_by(year, month, station_name) \%>\%
+     dplyr::summarise(mean_rain = mean(rain))
 prepare_geoclim_month(data = summary_data, year = "year", month = "month",
                    station_id = "station_name",
                    element = "rain", metadata = stations_niger,

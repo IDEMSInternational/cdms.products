@@ -8,7 +8,8 @@
 #' @examples
 #' # Calculate pentad summaries for the rainfall column
 #' pentad_data <- daily_niger %>% dplyr::mutate(pentad = pentad(date))
-#' summary_data <- pentad_data %>% group_by(station_name, year, pentad) %>% summarise(mean_rain = mean(rain, na.rm = TRUE))
+#' summary_data <- pentad_data %>% dplyr::group_by(station_name, year, pentad) %>%
+#'       dplyr::summarise(mean_rain = mean(rain, na.rm = TRUE))
 #' prepare_geoclim_pentad(data = summary_data, year = "year",
 #'                 station_id = "station_name",
 #'                 pentad = "pentad",

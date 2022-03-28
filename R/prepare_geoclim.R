@@ -15,10 +15,11 @@
 #' @return A data.frame formatted for use in GeoCLIM
 #' @export
 #'
-#' @examples # TODO
+#' @examples
 #' # Calculate dekadal summaries for the rainfall column
 #' dekad_data <- daily_niger %>% dplyr::mutate(dekad = dekad(date))
-#' summary_data <- dekad_data %>% group_by(station_name, year, dekad) %>% summarise(mean_rain = mean(rain, na.rm = TRUE))
+#' summary_data <- dekad_data %>% dplyr::group_by(station_name, year, dekad) %>%
+#'       dplyr::summarise(mean_rain = mean(rain, na.rm = TRUE))
 #' prepare_geoclim(data = summary_data, year = "year",
 #'                 station_id = "station_name",
 #'                 type_col = "dekad",
