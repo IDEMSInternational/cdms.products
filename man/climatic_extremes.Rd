@@ -51,7 +51,7 @@ climatic_extremes(
 
 \item{to}{\code{character(1)} The date-time format to put the data into.}
 
-\item{by}{TODO}
+\item{by}{\code{character} The name of columns in \code{data} to group the summary data by.}
 
 \item{doy}{\code{character(1)} The name of the day of the year (1-366) column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[doy]])}.}
 

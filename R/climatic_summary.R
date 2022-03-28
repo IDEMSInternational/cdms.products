@@ -9,7 +9,7 @@
 #' @param dekad \code{character(1)} The name of the dekad column in \code{data}.
 #' @param pentad \code{character(1)} The name of the pentad column in \code{data}.
 #' @param to \code{character(1)} The date-time format to put the data into.
-#' @param by TODO
+#' @param by \code{character} The name of columns in \code{data} to group the summary data by.
 #' @param doy \code{character(1)} The name of the day of the year (1-366) column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[doy]])}.
 #' @param doy_first \code{integer(1)} The first day of the year.
 #' @param doy_last \code{integer(1)} The last day of the year.
@@ -36,7 +36,9 @@
 #'
 #' @examples
 #' # Calculate frequencies for tmin/tmax for each year, month, and station.
-#' climatic_summary(data = daily_niger, date_time = "date", station = "station_name",
+#' # filter daily_niger data for the example
+#' daily_niger_1 <- daily_niger %>% dplyr::filter(year > 1960)
+#' climatic_summary(data = daily_niger_1, date_time = "date", station = "station_name",
 #'                  elements = c("tmin", "tmax"), to = "monthly")
 #' @importFrom rlang .data
 
