@@ -1,4 +1,4 @@
-#' Title
+#' Outputs data in the format for the CPT software
 #'
 #' @param data \code{data.frame} The data.frame to calculate from.
 #' @param lat_lon_data \code{data.frame} The name of the metadata to calculate from.
@@ -11,11 +11,19 @@
 #' @param long_data \code{logical(1)} Whether all columns are in \code{data}. If all data is in one data frame then must have \code{long_data = TRUE}.
 #' @param na_code \code{numeric(1)} Indicator for NA values in data.
 #'
-#' @return # TODO
+#' @return A data.frame formatted for use in CPT.
 #' @export
 #'
-#' @examples # TODO
-output_CPT <- function(data, lat_lon_data, station_latlondata, latitude, longitude, station, year, element, long_data = TRUE, na_code = -999) {
+#' @examples
+#' # Create summary data
+#' yearly_niger <- daily_niger %>% dplyr::group_by(station_name, year) %>%
+#'     dplyr::summarise(mean_rain = mean(rain))
+#' output_CPT(data = yearly_niger, lat_lon_data = stations_niger,
+#'            station_latlondata = "station_name", latitude = "lat", longitude = "long",
+#'            station = "station_name", year = "year", element = "mean_rain")
+
+output_CPT <- function(data, lat_lon_data, station_latlondata, latitude, longitude, station, year,
+                       element, long_data = TRUE, na_code = -999) {
   
   if(missing(data)) stop("data should be provided")
   if(missing(station)) stop("station must be provided")

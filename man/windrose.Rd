@@ -58,7 +58,8 @@ A wrapper for plotting a windrose of wind speed and direction using \code{ggplot
 \examples{
 # Generate a windrose plot for the daily_niger data
 data(daily_niger)
-windrose_plot <- windrose(data = daily_niger, speed = "ws", direction = "wd", facet_by = "station_name")
+windrose_plot <- windrose(data = daily_niger, speed = "ws", direction = "wd",
+                          facet_by = "station_name")
 }
 \seealso{
 \code{\link[ggplot2]{theme}} for more possible arguments to pass to \code{windrose}.

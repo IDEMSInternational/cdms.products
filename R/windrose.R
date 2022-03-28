@@ -26,7 +26,8 @@
 #' @examples
 #' # Generate a windrose plot for the daily_niger data
 #' data(daily_niger)
-#' windrose_plot <- windrose(data = daily_niger, speed = "ws", direction = "wd", facet_by = "station_name")
+#' windrose_plot <- windrose(data = daily_niger, speed = "ws", direction = "wd",
+#'                           facet_by = "station_name")
 windrose <- function(data, speed, direction, facet_by = NULL, n_directions = 12, n_speeds = 5, speed_cuts = NA, col_pal = "GnBu",
                      ggtheme = c("grey", "gray", "bw", "linedraw", "light", "minimal", "classic"),
                      legend_title = "Wind Speed", calm_wind = 0, variable_wind = 990, n_col = NULL) {

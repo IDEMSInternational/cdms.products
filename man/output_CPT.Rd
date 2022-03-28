@@ -2,7 +2,7 @@
 % Please edit documentation in R/output_CPT.R
 \name{output_CPT}
 \alias{output_CPT}
-\title{Title}
+\title{Outputs data in the format for the CPT software}
 \usage{
 output_CPT(
   data,
@@ -39,11 +39,16 @@ output_CPT(
 \item{na_code}{\code{numeric(1)} Indicator for NA values in data.}
 }
 \value{
-TODO
+A data.frame formatted for use in CPT.
 }
 \description{
-Title
+Outputs data in the format for the CPT software
 }
 \examples{
-# TODO
+# Create summary data
+yearly_niger <- daily_niger \%>\% dplyr::group_by(station_name, year) \%>\%
+    dplyr::summarise(mean_rain = mean(rain))
+output_CPT(data = yearly_niger, lat_lon_data = stations_niger,
+           station_latlondata = "station_name", latitude = "lat", longitude = "long",
+           station = "station_name", year = "year", element = "mean_rain")
 }
