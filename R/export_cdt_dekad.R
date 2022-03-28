@@ -14,7 +14,7 @@
 #'                    dplyr::mutate(dekad_date = dekad(daily_niger$date)) %>%
 #'                    dplyr::group_by(station_name, year, dekad_date) %>%
 #'                    dplyr::summarise(date = dplyr::first(date), sum = sum(tmax))
-#' ## NOT RUN ##
+#' # NOT RUN:
 #' #export_cdt_dekad(data = daily_niger, station = "station_name", element = "rain",
 #' #           date_time = "date", latitude = "lat", longitude = "long", altitude = "alt",
 #' #           metadata = stations_niger)

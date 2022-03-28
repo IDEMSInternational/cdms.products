@@ -53,7 +53,7 @@ Export daily data in the format for CDT
 }
 \examples{
 # To write daily_niger data to CDT format
-## NOT RUN ##
+# NOT RUN:
 #export_cdt_daily(data = daily_niger, station = "station_name", element = "rain", type = "daily",
 #           date_time = "date", latitude = "lat", longitude = "long", altitude = "alt",
 #           metadata = stations_niger)

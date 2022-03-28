@@ -8,8 +8,7 @@
 #' @export
 #'
 #' @examples # To write daily_niger data to CDT format
-#' ## NOT RUN ##
-#' #export_cdt(data = daily_niger, station = "station_name", element = "rain", type = "daily",
+#' # NOT RUN:
 #' #           date_time = "date", latitude = "lat", longitude = "long", altitude = "alt",
 #' #           metadata = stations_niger)
 export_cdt <- function(data, station, element, latitude, longitude, altitude,
