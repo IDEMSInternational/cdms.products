@@ -2,13 +2,13 @@
 % Please edit documentation in R/climatic_missing.R
 \name{climatic_missing}
 \alias{climatic_missing}
-\title{Title}
+\title{Summarise missing data in a data frame}
 \usage{
 climatic_missing(
   data,
   date_time,
   elements,
-  stations,
+  station_id = NULL,
   start = TRUE,
   end = FALSE
 )
@@ -20,7 +20,7 @@ climatic_missing(
 
 \item{elements}{The name of the column in \code{data} to apply the function to.}
 
-\item{stations}{The name of the station column in \code{data}, if the data are for multiple station.
+\item{station_id}{The name of the station column in \code{data}, if the data are for multiple station.
 The calculations are performed separately for each station.}
 
 \item{start}{\code{logical(1)} If \code{TRUE} start date as ...}
@@ -28,11 +28,15 @@ The calculations are performed separately for each station.}
 \item{end}{\code{logical(1)} If \code{TRUE} set end date as ...}
 }
 \value{
-
+Data frame summarising the missing data
 }
 \description{
-Title
+Summarise missing data in a data frame
 }
 \examples{
-# TODO
+# Summarising missing data in the rainfall, temperature, and sun columns
+climatic_missing(data = daily_niger, date_time = "date", 
+                 elements = c("rain", "tmax", "tmin", "sunh"),
+                 station_id = "station_name")
+
 }
