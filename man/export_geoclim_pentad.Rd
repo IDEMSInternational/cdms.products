@@ -51,5 +51,16 @@ Invisibly returns the file path of the saved data.
 Export pentad data in GeoCLIM format
 }
 \examples{
-# TODO
+# Calculate pentad summaries for the rainfall column
+pentad_data <- daily_niger \%>\% dplyr::mutate(pentad = pentad(date))
+# Summarise the data
+summary_data <- pentad_data \%>\% dplyr::group_by(station_name, year, pentad) \%>\%
+      dplyr::summarise(mean_rain = mean(rain, na.rm = TRUE))
+# NOT RUN: Export the data to CSV format
+#export_geoclim_pentad(data = summary_data, year = "year",
+#                     station_id = "station_name",
+#                     pentad = "pentad",
+#                     element = "mean_rain", metadata = stations_niger, 
+#                     join_by = "station_name",
+#                     latitude = "lat", longitude = "long")
 }

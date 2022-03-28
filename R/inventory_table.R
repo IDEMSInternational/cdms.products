@@ -1,4 +1,4 @@
-#' Inventory Table
+#' Create Inventory Table
 #'
 #' @param data \code{data.frame} The data.frame to calculate from.
 #' @param date_time \code{\link[base]{Date}} The name of the date column in \code{data}.
@@ -11,10 +11,13 @@
 #' @param missing_indicator \code{character(1)} Indicator to give if the data is missing. Default \code{"M"}.
 #' @param observed_indicator \code{character(1)} Indicator to give if the data is observed. Default \code{"X"}.
 #'
-#' @return
+#' @return A data.frame indicating if the value is missing or observed.
 #' @export
 #'
-#' @examples # TODO
+#' @examples # Create inventory table for maximum and minimum temperature
+#' inventory_table(data = daily_niger, date_time = "date", elements = c("tmax", "tmin"),
+#'                 station = "station_name")
+
 inventory_table <- function(data, date_time, elements, station = NULL, year = NULL, month = NULL,  
                             day = NULL, missing_indicator = "M", observed_indicator = "X") {
   

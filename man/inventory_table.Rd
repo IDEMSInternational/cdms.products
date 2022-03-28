@@ -2,7 +2,7 @@
 % Please edit documentation in R/inventory_table.R
 \name{inventory_table}
 \alias{inventory_table}
-\title{Inventory Table}
+\title{Create Inventory Table}
 \usage{
 inventory_table(
   data,
@@ -37,11 +37,13 @@ The inventory table is calculated separately for each station.}
 \item{observed_indicator}{\code{character(1)} Indicator to give if the data is observed. Default \code{"X"}.}
 }
 \value{
-
+A data.frame indicating if the value is missing or observed.
 }
 \description{
-Inventory Table
+Create Inventory Table
 }
 \examples{
-# TODO
+# Create inventory table for maximum and minimum temperature
+inventory_table(data = daily_niger, date_time = "date", elements = c("tmax", "tmin"),
+                station = "station_name")
 }

@@ -51,5 +51,12 @@ Invisibly returns the file path of the saved data.
 Export monthly data in GeoCLIM format
 }
 \examples{
-# TODO
+# Calculate monthly summaries for the rainfall column
+summary_data <- daily_niger \%>\% dplyr::group_by(year, month, station_name) \%>\%
+     dplyr::summarise(mean_rain = mean(rain))
+export_geoclim_month(data = summary_data, year = "year", month = "month",
+                     station_id = "station_name",
+                     element = "mean_rain", metadata = stations_niger,
+                     join_by = "station_name",
+                     latitude = "lat", longitude = "long")
 }
