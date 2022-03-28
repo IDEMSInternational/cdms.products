@@ -10,12 +10,22 @@
 #' @param type \code{character(1)} Whether the data is in `dekad` or `pentad` format.
 #' @param metadata \code{data.frame} The metadata data.frame to calculate from.
 #' @param join_by \code{character} The variable(s) to merge the \code{data} and \code{metadata} data frames.
-#' @param add_cols Names of additional metadata columns that should be included in the output
+#' @param add_cols \code{character} Names of additional metadata columns that should be included in the output
 #'
-#' @return A data.frame formatted for use in geoclim.
+#' @return A data.frame formatted for use in GeoCLIM
 #' @export
 #'
 #' @examples # TODO
+#' # Calculate dekadal summaries for the rainfall column
+#' dekad_data <- daily_niger %>% dplyr::mutate(dekad = dekad(date))
+#' summary_data <- dekad_data %>% group_by(station_name, year, dekad) %>% summarise(mean_rain = mean(rain, na.rm = TRUE))
+#' prepare_geoclim(data = summary_data, year = "year",
+#'                 station_id = "station_name",
+#'                 type_col = "dekad",
+#'                 element = "mean_rain", metadata = stations_niger, 
+#'                 join_by = "station_name",
+#'                 latitude = "lat", longitude = "long")
+
 prepare_geoclim <- function(data, year, type_col, element, station_id, 
                             latitude, longitude, type = c("dekad", "pentad"), 
                             metadata = NULL, join_by = NULL, add_cols = NULL) {

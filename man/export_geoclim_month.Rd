@@ -22,9 +22,9 @@ export_geoclim_month(
 \arguments{
 \item{data}{\code{data.frame} The data.frame to calculate from.}
 
-\item{year}{\code{character(1)} The name of the year column in \code{data}.}
+\item{year}{\code{character(1)} The name of the year column in \code{data}. If \code{NULL} it will be created using \code{lubridate::year(data[[date_time]])}.}
 
-\item{month}{\code{character(1)} The name of the month column in \code{data}.}
+\item{month}{\code{character(1)} The name of the month column in \code{data}. If \code{NULL} it will be created using \code{lubridate::month(data[[date_time]])}.}
 
 \item{element}{\code{character(1)} The name of the element column in \code{data} to apply the function to.}
 
@@ -38,7 +38,7 @@ export_geoclim_month(
 
 \item{join_by}{\code{character} The variable(s) to merge the \code{data} and \code{metadata} data frames.}
 
-\item{add_cols}{Names of additional metadata columns that should be included in the output}
+\item{add_cols}{\code{character} Names of additional metadata columns that should be included in the output}
 
 \item{file_path}{\code{character(1)} A character specifying the file path and file name to export.}
 

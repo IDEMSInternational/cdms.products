@@ -39,14 +39,23 @@ prepare_geoclim(
 
 \item{join_by}{\code{character} The variable(s) to merge the \code{data} and \code{metadata} data frames.}
 
-\item{add_cols}{Names of additional metadata columns that should be included in the output}
+\item{add_cols}{\code{character} Names of additional metadata columns that should be included in the output}
 }
 \value{
-A data.frame formatted for use in geoclim.
+A data.frame formatted for use in GeoCLIM
 }
 \description{
 Prepare dekad or pentad data in GeoCLIM format
 }
 \examples{
 # TODO
+# Calculate dekadal summaries for the rainfall column
+dekad_data <- daily_niger \%>\% dplyr::mutate(dekad = dekad(date))
+summary_data <- dekad_data \%>\% group_by(station_name, year, dekad) \%>\% summarise(mean_rain = mean(rain, na.rm = TRUE))
+prepare_geoclim(data = summary_data, year = "year",
+                station_id = "station_name",
+                type_col = "dekad",
+                element = "mean_rain", metadata = stations_niger, 
+                join_by = "station_name",
+                latitude = "lat", longitude = "long")
 }

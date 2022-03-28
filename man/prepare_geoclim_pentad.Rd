@@ -36,14 +36,22 @@ prepare_geoclim_pentad(
 
 \item{join_by}{\code{character} The variable(s) to merge the \code{data} and \code{metadata} data frames.}
 
-\item{add_cols}{Names of additional metadata columns that should be included in the output}
+\item{add_cols}{\code{character} Names of additional metadata columns that should be included in the output}
 }
 \value{
-A data.frame formatted for use in geoclim.
+A data.frame formatted for use in GeoCLIM
 }
 \description{
 Prepare pentad data in GeoCLIM format
 }
 \examples{
-# TODO
+# Calculate pentad summaries for the rainfall column
+pentad_data <- daily_niger \%>\% dplyr::mutate(pentad = pentad(date))
+summary_data <- pentad_data \%>\% group_by(station_name, year, pentad) \%>\% summarise(mean_rain = mean(rain, na.rm = TRUE))
+prepare_geoclim_pentad(data = summary_data, year = "year",
+                station_id = "station_name",
+                pentad = "pentad",
+                element = "mean_rain", metadata = stations_niger, 
+                join_by = "station_name",
+                latitude = "lat", longitude = "long")
 }

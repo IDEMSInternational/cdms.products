@@ -38,7 +38,7 @@ export_geoclim_dekad(
 
 \item{longitude}{\code{character(1)} The name of the longitude column in \code{metadata}, or \code{data} if \code{metadata = NULL}.}
 
-\item{add_cols}{Names of additional metadata columns that should be included in the output}
+\item{add_cols}{\code{character} Names of additional metadata columns that should be included in the output}
 
 \item{file_path}{\code{character(1)} A character specifying the file path and file name to export.}
 
