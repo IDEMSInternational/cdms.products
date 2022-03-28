@@ -2,7 +2,7 @@
 % Please edit documentation in R/climatic_summary.R
 \name{climatic_summary}
 \alias{climatic_summary}
-\title{Title}
+\title{Calculate summaries from climatic data}
 \usage{
 climatic_summary(
   data,
@@ -88,11 +88,13 @@ Must be a list of lists with the same names as \code{summaries}.}
 \code{dplyr::across}}
 }
 \value{
-
+A summary data frame for selected element(s) in climatic data.
 }
 \description{
-Title
+Calculate summaries from climatic data
 }
 \examples{
-# TODO
+# Calculate frequencies for tmin/tmax for each year, month, and station.
+climatic_summary(data = daily_niger, date_time = "date", station = "station_name",
+                 elements = c("tmin", "tmax"), to = "monthly")
 }

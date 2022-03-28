@@ -1,4 +1,4 @@
-#' Title
+#' Calculate summaries from climatic data
 #' 
 #' @param data \code{data.frame} The data.frame to calculate from.
 #' @param date_time \code{\link[base]{Date}} The name of the date column in \code{data}.
@@ -31,11 +31,15 @@
 #' @param n_dates \code{logical(1)} If \code{TRUE} the number of \code{date_time} points when the value equals the summary value is included. Generally only used for extreme summaries i.e. number of days in which the minimum occurred.
 #' @param last_date \code{logical(1)} If \code{TRUE} the last instance of \code{date_time} when the value equals the summary value is included. Generally only used for extreme summaries i.e. last \code{date_time} when the maximum occurred.
 #'
-#' @return
+#' @return A summary data frame for selected element(s) in climatic data.
 #' @export
 #'
-#' @examples # TODO
+#' @examples
+#' # Calculate frequencies for tmin/tmax for each year, month, and station.
+#' climatic_summary(data = daily_niger, date_time = "date", station = "station_name",
+#'                  elements = c("tmin", "tmax"), to = "monthly")
 #' @importFrom rlang .data
+
 climatic_summary <- function(data, date_time, station = NULL, elements = NULL, 
                              year = NULL, month = NULL, dekad = NULL, 
                              pentad = NULL,
