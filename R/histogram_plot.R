@@ -18,7 +18,7 @@
 #' @param x_title \code{character(1)} The text for the x-axis.
 #' @param y_title \code{character(1)} The text for the y-axis.
 #'
-#' @return A plot of type \code{ggplot} to the default plot device
+#' @return a \code{ggplot} object.
 #' @export
 #'
 #' @examples

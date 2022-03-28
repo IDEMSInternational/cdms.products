@@ -59,7 +59,7 @@ Histogram plots are calculated separately for each station.}
 \item{y_title}{\code{character(1)} The text for the y-axis.}
 }
 \value{
-A plot of type \code{ggplot} to the default plot device
+a \code{ggplot} object.
 }
 \description{
 Produce a histogram of elements by station.
