@@ -85,11 +85,16 @@ any \code{na_} parameters are specified.}
 \code{dplyr::across}}
 }
 \value{
-
+A summary data frame containing minimum/maximum values for element(s).
 }
 \description{
 Calculate extremes from climatic data
 }
 \examples{
-# TODO
+# Run example for a subset of the data
+daily_niger_1 <- daily_niger \%>\% filter(year > 1970)
+# create a data frame displaying the min and max values for tmin/tmax for each day and station
+climatic_extremes(data = daily_niger_1, date_time = "date", elements = c("tmin", "tmax"),
+                  max_val = TRUE, min_val = TRUE,
+                  station = "station_name", na_rm = TRUE)
 }

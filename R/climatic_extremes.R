@@ -5,10 +5,17 @@
 #' @param max_val \code{logical(1)} If \code{TRUE} the extreme maximum is calculated.
 #' @param min_val \code{logical(1)} If \code{TRUE} the extreme minimum is calculated.
 #'
-#' @return
+#' @return A summary data frame containing minimum/maximum values for element(s).
 #' @export
 #'
-#' @examples # TODO
+#' @examples
+#' # Run example for a subset of the data
+#' daily_niger_1 <- daily_niger %>% filter(year > 1970)
+#' # create a data frame displaying the min and max values for tmin/tmax for each day and station
+#' climatic_extremes(data = daily_niger_1, date_time = "date", elements = c("tmin", "tmax"),
+#'                   max_val = TRUE, min_val = TRUE,
+#'                   station = "station_name", na_rm = TRUE)
+
 climatic_extremes <- function(data, date_time, elements, station = NULL,
                               year = NULL, month = NULL, dekad = NULL, 
                               pentad = NULL,
