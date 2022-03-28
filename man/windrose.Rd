@@ -50,11 +50,16 @@ This is used if speed_cuts is NA (default 5).}
 \item{n_col}{\code{integer(1)} The number of columns to plot (default 1).}
 }
 \value{
-
+a \code{ggplot} object.
 }
 \description{
 A wrapper for plotting a windrose of wind speed and direction using \code{ggplot2}
 }
 \examples{
-# TODO
+# Generate a windrose plot for the daily_niger data
+data(daily_niger)
+windrose_plot <- windrose(data = daily_niger, speed = "ws", direction = "wd", facet_by = "station_name")
+}
+\seealso{
+\code{\link[ggplot2]{theme}} for more possible arguments to pass to \code{windrose}.
 }
