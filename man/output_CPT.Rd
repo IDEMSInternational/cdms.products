@@ -42,7 +42,8 @@ output_CPT(
 A data.frame formatted for use in CPT.
 }
 \description{
-Outputs data in the format for the CPT software
+\code{output_CPT} returns a data frame to a format suitable for
+use in the CPT software.
 }
 \examples{
 # Create summary data
