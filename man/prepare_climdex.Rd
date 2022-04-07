@@ -45,7 +45,9 @@ should be used to comply with the RClimDex format requirements.}
 A data.frame formatted for use in RClimDex
 }
 \description{
-Prepare data in the format for RClimDex
+\code{prepare_climdex} rearranges a data frame to a
+format suitable for use in RClimDex. This data frame can be rearranged and
+exported to a file or connection with \code{export_climdex}.
 }
 \examples{
 # Preparing the daily_niger data for export to ClimDex
