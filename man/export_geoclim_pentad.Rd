@@ -48,7 +48,9 @@ export_geoclim_pentad(
 Invisibly returns the file path of the saved data.
 }
 \description{
-Export pentad data in GeoCLIM format
+\code{export_geoclim_pentad} takes a data frame that is given by
+by pentad. This data frame is then rearranged using \code{prepare_geoclim_pentad} to a
+format suitable for use in GeoCLIM, and then written to a file or connection.
 }
 \examples{
 # Calculate pentad summaries for the rainfall column
