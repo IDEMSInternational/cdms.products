@@ -1,4 +1,8 @@
 #' Prepare CDT for Daily data
+#' 
+#' @description `prepare_cdt_daily` takes a daily data. This data is then
+#' rearranged to a format suitable for use in CDT. This data frame can be
+#' rearranged and exported to a file or connection with `export_cdt_daily`.
 #'
 #' @inheritParams prepare_cdt
 #' @param data \code{data.frame} data.frame of daily climatic data in tidy format i.e. one row
