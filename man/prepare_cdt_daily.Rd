@@ -43,7 +43,7 @@ assumed to be in \code{metadata} and \code{station} must be in both
 A data.frame formatted for use in CDT
 }
 \description{
-\code{prepare_cdt_daily} takes a daily data. This data is then
+\code{prepare_cdt_daily} takes daily data. This data is then
 rearranged to a format suitable for use in CDT. This data frame can be
 rearranged and exported to a file or connection with \code{export_cdt_daily}.
 }
