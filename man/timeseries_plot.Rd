@@ -62,8 +62,9 @@ Timeseries plots are calculated separately for each station.}
 a \code{ggplot} object.
 }
 \description{
-Creates a timeseries graph for each element and station given. Takes a data frame as an input and the relevant columns to create the plot.
-Creates a graph using \code{ggplot2} and returns a timeseries plot.
+Returns a timeseries plot using \code{ggplot2} for each element
+and station given. Takes a data frame as an input and the relevant columns to
+create the plot.
 }
 \examples{
 # Create a time series plot with two elements and facet by station.

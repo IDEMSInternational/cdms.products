@@ -1,6 +1,7 @@
 #' Windrose from the clifro package
 #' 
-#' A wrapper for plotting a windrose of wind speed and direction using \code{ggplot2}
+#' @description Returns a windrose plot using \code{ggplot2} of wind speed and
+#' direction. This function is a wrapper of the `clifro::windrose()` function.
 #'
 #' @param data \code{data.frame} The data.frame to calculate from.
 #' @param speed \code{numeric} A vector containing wind speeds.

@@ -62,7 +62,9 @@ Histogram plots are calculated separately for each station.}
 a \code{ggplot} object.
 }
 \description{
-Produce a histogram of elements by station.
+Returns a histogram using \code{ggplot2} for each element and
+station given. Takes a data frame as an input and the relevant columns to
+create the plot.
 }
 \examples{
 data("daily_niger")

@@ -53,7 +53,8 @@ This is used if speed_cuts is NA (default 5).}
 a \code{ggplot} object.
 }
 \description{
-A wrapper for plotting a windrose of wind speed and direction using \code{ggplot2}
+Returns a windrose plot using \code{ggplot2} of wind speed and
+direction. This function is a wrapper of the \code{clifro::windrose()} function.
 }
 \examples{
 # Generate a windrose plot for the daily_niger data

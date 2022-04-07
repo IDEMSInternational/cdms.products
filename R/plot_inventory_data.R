@@ -1,9 +1,8 @@
 #' Produce an bar chart of frequencies of missing data
 #' 
-#' @description 
-#' Creates a bar chart displaying the frequency of missing data for each element and station given.
+#' @description Returns a bar chart using \code{ggplot2} that displays the
+#' frequency of missing data for each element and station given.
 #' Takes a data frame as an input and the relevant columns to create the plot.
-#' Creates a graph using \code{ggplot2} and returns a bar plot.
 #' 
 #' @param data The data.frame to calculate from
 #' @param elements The name of the columns in \code{data} to apply the summary calculation to.

@@ -52,9 +52,9 @@ The summary table is calculated separately for each station.}
 A plot of type \code{ggplot} to the default plot device
 }
 \description{
-Creates a bar chart displaying the frequency of missing data for each element and station given.
+Returns a bar chart using \code{ggplot2} that displays the
+frequency of missing data for each element and station given.
 Takes a data frame as an input and the relevant columns to create the plot.
-Creates a graph using \code{ggplot2} and returns a bar plot.
 }
 \examples{
 data(daily_niger) 
