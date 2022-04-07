@@ -1,4 +1,5 @@
 #' Create Inventory Table
+#' Create a table containing an indicator if the value is missing or observed.
 #'
 #' @param data \code{data.frame} The data.frame to calculate from.
 #' @param date_time \code{\link[base]{Date}} The name of the date column in \code{data}.

@@ -2,7 +2,8 @@
 % Please edit documentation in R/inventory_table.R
 \name{inventory_table}
 \alias{inventory_table}
-\title{Create Inventory Table}
+\title{Create Inventory Table
+Create a table containing an indicator if the value is missing or observed.}
 \usage{
 inventory_table(
   data,
@@ -41,6 +42,7 @@ A data.frame indicating if the value is missing or observed.
 }
 \description{
 Create Inventory Table
+Create a table containing an indicator if the value is missing or observed.
 }
 \examples{
 # Create inventory table for maximum and minimum temperature
