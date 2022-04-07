@@ -1,5 +1,9 @@
 #' Export daily or dekadal data in the format for CDT
 #' 
+#' @description `export_cdt` rearranges a data frame using `prepare_cdt` to a
+#' format suitable for use in CDT. The data frame is then written to a
+#' file or connection.
+#' 
 #' @inheritParams prepare_cdt
 #' @param file_path \code{character(1)} A character specifying the file path and file name to export.
 #' @param ... Other parameters passed to \code{write.csv()}.

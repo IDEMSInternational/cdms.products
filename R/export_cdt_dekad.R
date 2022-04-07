@@ -1,5 +1,9 @@
 #' Export dekad data in CDT format
 #' 
+#' @description `export_cdt_dekad` takes a data frame that has elements summarised
+#' by dekad. This data frame is then rearranged using `prepare_cdt_dekad` to a
+#' format suitable for use in CDT, and then written to a file or connection.
+#' 
 #' @inheritParams prepare_cdt_dekad
 #' @inheritParams export_cdt
 #' @param ... Other parameters passed to \code{write.csv()}

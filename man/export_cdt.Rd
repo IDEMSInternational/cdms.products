@@ -68,7 +68,9 @@ assumed to be in \code{metadata} and \code{station} must be in both
 Invisibly returns the file path of the saved data.
 }
 \description{
-Export daily or dekadal data in the format for CDT
+\code{export_cdt} rearranges a data frame using \code{prepare_cdt} to a
+format suitable for use in CDT. The data frame is then written to a
+file or connection.
 }
 \examples{
 # To write daily_niger data to CDT format
