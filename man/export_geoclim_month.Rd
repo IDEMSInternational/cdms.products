@@ -48,7 +48,7 @@ export_geoclim_month(
 Invisibly returns the file path of the saved data.
 }
 \description{
-\code{export_geoclim_month} takes a data frame that is summarised by
+\code{export_geoclim_month} takes a data frame that is given by
 month. This data frame is then rearranged using \code{prepare_geoclim_month} to a
 format suitable for use in GeoCLIM, and then written to a file or connection.
 }

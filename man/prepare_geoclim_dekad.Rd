@@ -42,7 +42,10 @@ prepare_geoclim_dekad(
 A data.frame formatted for use in GeoCLIM
 }
 \description{
-Prepare dekad data in GeoCLIM format
+\code{prepare_geoclim_dekad} takes a data frame that is in dekad
+format. This data is then rearranged to a format suitable for use in GeoCLIM.
+This data frame can be rearranged and exported to a file or connection with
+\code{export_geoclim_dekad}.
 }
 \examples{
 # Calculate dekadal summaries for the rainfall column

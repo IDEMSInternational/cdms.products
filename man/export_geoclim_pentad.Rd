@@ -48,8 +48,8 @@ export_geoclim_pentad(
 Invisibly returns the file path of the saved data.
 }
 \description{
-\code{export_geoclim_pentad} takes a data frame that is given by
-by pentad. This data frame is then rearranged using \code{prepare_geoclim_pentad} to a
+\code{export_geoclim_pentad} takes a data frame that is in a pentad
+format. This data frame is then rearranged using \code{prepare_geoclim_pentad} to a
 format suitable for use in GeoCLIM, and then written to a file or connection.
 }
 \examples{

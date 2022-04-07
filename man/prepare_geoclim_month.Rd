@@ -45,7 +45,10 @@ prepare_geoclim_month(
 A data.frame formatted for use in GeoCLIM
 }
 \description{
-Prepare monthly data in GeoCLIM format
+\code{prepare_geoclim_month} takes a data frame that is in monthly
+format. This data is then rearranged to a format suitable for use in GeoCLIM.
+This data frame can be rearranged and exported to a file or connection with
+\code{export_geoclim_month}.
 }
 \examples{
 # Calculate monthly summaries for the rainfall column

@@ -49,7 +49,7 @@ Invisibly returns the file path of the saved data.
 }
 \description{
 \code{export_geoclim_dekad} takes a data frame that is given by
-by dekad This data frame is then rearranged using \code{prepare_geoclim_dekad} to a
+by dekad. This data frame is then rearranged using \code{prepare_geoclim_dekad} to a
 format suitable for use in GeoCLIM, and then written to a file or connection.
 }
 \examples{

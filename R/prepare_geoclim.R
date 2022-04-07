@@ -1,4 +1,8 @@
 #' Prepare dekad or pentad data in GeoCLIM format
+#' 
+#' @description `prepare_geoclim` rearranges a data frame to a
+#' format suitable for use in GeoCLIM. This data frame can be rearranged and
+#' exported to a file or connection with `export_geoclim`.
 #'
 #' @param data \code{data.frame} The data.frame to calculate from.
 #' @param year \code{character(1)} The name of the year column in \code{data}.

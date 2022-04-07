@@ -1,7 +1,7 @@
 #' Export dekad data in GeoCLIM format
 #' 
 #' @description `export_geoclim_dekad` takes a data frame that is given by
-#' by dekad This data frame is then rearranged using `prepare_geoclim_dekad` to a
+#' by dekad. This data frame is then rearranged using `prepare_geoclim_dekad` to a
 #' format suitable for use in GeoCLIM, and then written to a file or connection.
 #' 
 #' @inheritParams export_geoclim

@@ -1,7 +1,7 @@
 #' Export pentad data in GeoCLIM format
-#' 
-#' @description `export_geoclim_pentad` takes a data frame that is given by
-#' by pentad. This data frame is then rearranged using `prepare_geoclim_pentad` to a
+#'
+#' @description `export_geoclim_pentad` takes a data frame that is in a pentad
+#' format. This data frame is then rearranged using `prepare_geoclim_pentad` to a
 #' format suitable for use in GeoCLIM, and then written to a file or connection.
 #' 
 #' @inheritParams export_geoclim
