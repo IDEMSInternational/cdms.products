@@ -88,7 +88,8 @@ any \code{na_} parameters are specified.}
 A summary data frame containing minimum/maximum values for element(s).
 }
 \description{
-Calculate extremes from climatic data
+\code{climatic_extremes} returns a data table displaying the minimum and/or maximum
+values for elements in a given time period. This can be provided by station.
 }
 \examples{
 # Run example for a subset of the data
