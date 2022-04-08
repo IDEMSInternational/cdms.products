@@ -24,9 +24,9 @@
 #'                     dplyr::group_by(station_name, year, dekad_date) %>%
 #'                     dplyr::summarise(date = dplyr::first(date), sum_tmax = sum(tmax))
 #' # NOT RUN:
-#' export_cdt(data = summary_data, station = "station_name", element = "sum_tmax", type = "dekad",
-#'            date_time = "date", latitude = "lat", longitude = "long", altitude = "alt",
-#'            dekad = "dekad_date", metadata = stations_niger)
+#' # export_cdt(data = summary_data, station = "station_name", element = "sum_tmax", type = "dekad",
+#' #            date_time = "date", latitude = "lat", longitude = "long", altitude = "alt",
+#' #            dekad = "dekad_date", metadata = stations_niger)
 export_cdt <- function(data, station, element, latitude, longitude, altitude,
                        type = c("dekad", "daily"), date_time = NULL, year = NULL, 
                        month = NULL, dekad = NULL, metadata = NULL,
