@@ -16,6 +16,17 @@
 #' #export_cdt_daily(data = daily_niger, station = "station_name", element = "rain", type = "daily",
 #' #           date_time = "date", latitude = "lat", longitude = "long", altitude = "alt",
 #' #           metadata = stations_niger)
+#'
+#' # To write daily_niger data to CDT format for dekad data
+#' # first put daily_niger data into a dekad format
+#' summary_data <- daily_niger %>%
+#'                     dplyr::mutate(dekad_date = dekad(daily_niger$date)) %>%
+#'                     dplyr::group_by(station_name, year, dekad_date) %>%
+#'                     dplyr::summarise(date = dplyr::first(date), sum_tmax = sum(tmax))
+#' # NOT RUN:
+#' export_cdt(data = summary_data, station = "station_name", element = "sum_tmax", type = "dekad",
+#'            date_time = "date", latitude = "lat", longitude = "long", altitude = "alt",
+#'            dekad = "dekad_date", metadata = stations_niger)
 export_cdt <- function(data, station, element, latitude, longitude, altitude,
                        type = c("dekad", "daily"), date_time = NULL, year = NULL, 
                        month = NULL, dekad = NULL, metadata = NULL,
