@@ -9,6 +9,7 @@ dekad_summary_data <- daily_niger %>%
   dplyr::mutate(dekad_date = dekad(daily_niger$date)) %>%
   dplyr::group_by(station_name, year, dekad_date) %>%
   dplyr::summarise(date = dplyr::first(date), sum = sum(tmax))
+
 # create expected dekad output
 x_dekad <- prepare_cdt(data = dekad_summary_data, date_time = "date", year = "year",
                        station = "station_name", element = "sum", metadata = stations_niger, 
@@ -20,14 +21,14 @@ y_dekad <- export_cdt_dekad(data = dekad_summary_data, station = "station_name",
                       altitude = "alt", type =  "dekad", date_time = "date", 
                       metadata = stations_niger, 
                       file_path = paste0("CDT-", element, ".csv"))
-y_dekad <- read_csv("CDT-sum.csv")
+y_dekad <- readr::read_csv("CDT-sum.csv")
 
 test_that("export_cdt gives correct values", {
   expect_equal(y_dekad, x_dekad)
 })
 
 test_that("export_cdt_dekad returns an error when conditions are not met", {
-  mandatory_inputs <- list(data = daily_summary_data, station = "station_name", 
+  mandatory_inputs <- list(data = dekad_summary_data, station = "station_name", 
                            element = "sum", latitude = "lat", longitude = "long", 
                            altitude = "alt", date_time = "date", 
                            metadata = stations_niger)

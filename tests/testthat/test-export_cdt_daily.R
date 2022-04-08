@@ -20,7 +20,7 @@ y_daily <- export_cdt_daily(data = daily_summary_data, station = "station_name",
                       altitude = "alt", type =  "daily", date_time = "date", 
                       metadata = stations_niger, 
                       file_path = paste0("CDT-", element, ".csv"))
-y_daily <- read_csv(paste0("CDT-", element, ".csv"))
+y_daily <- readr::read_csv(paste0("CDT-", element, ".csv"))
 
 test_that("export_cdt_daily gives correct values", {
   expect_equal(y_daily, x_daily)
