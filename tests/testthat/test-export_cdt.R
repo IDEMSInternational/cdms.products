@@ -8,7 +8,7 @@ data("daily_niger"); data("stations_niger")
 daily_summary_data <- daily_niger %>%
   dplyr::group_by(station_name, year, date) %>%
   dplyr::summarise(date = date, sum = sum(tmax))
-element = "sum"
+
 # create dekad summary data
 dekad_summary_data <- daily_niger %>%
   dplyr::mutate(dekad_date = dekad(daily_niger$date)) %>%
