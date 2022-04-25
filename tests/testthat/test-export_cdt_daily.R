@@ -42,3 +42,34 @@ test_that("export_cdt_daily returns an error when conditions are not met", {
   expect_error(do.call(export_cdt_daily, mandatory_inputs[-7]))
   expect_error(do.call(export_cdt_daily, mandatory_inputs[-8]))
 })
+
+test_that("export_cdt_daily returns an error when numbers outside valid ranges are supplied", {
+  entries_outside_valid_ranges <- data.frame(year = character(), station_name = integer(), 
+                                daily_date = character(), date =  numeric(), sum = character())
+  expect_error(export_cdt_daily(data = entries_outside_valid_ranges, station = "station_name", 
+                                element = "sum", latitude = "lat", longitude = "long", 
+                                altitude = "alt", type =  "daily", date_time = "date", 
+                                metadata = stations_niger, 
+                                file_path = paste0("CDT-", element, ".csv")),)
+})
+
+test_that("export_cdt_daily  does not return an error when an empty dataframe is supplied", {
+  empty_metadata <- data.frame(station_name = character(), id = integer(), 
+                               lat = numeric(), long = numeric(), alt = integer(), daily = logical())
+  empty_dataframe <- data.frame(station_name = character(), year = integer(), 
+                               daily_date = numeric(), date =  as.Date(integer(0)), sum = numeric())
+  expect_error(export_cdt_daily(data = empty_dataframe, station = "station_name", 
+                               element = "sum", latitude = "lat", longitude = "long", 
+                               altitude = "alt", type =  "daily", date_time = "date", 
+                               metadata = stations_niger, 
+                               file_path = paste0("CDT-", element, ".csv")), NA)
+})
+
+test_that("export_cdt_daily returns an error when an data frame with incorrectly formatted data  is supplied", {
+  poorly_formatted_data <- lapply(daily_summary_data, as.character)
+  expect_error(export_cdt_daily(data = poorly_formatted_data, station = "station_name", 
+                                element = "sum", latitude = "lat", longitude = "long", 
+                                altitude = "alt", type =  "daily", date_time = "date", 
+                                metadata = stations_niger, 
+                                file_path = paste0("CDT-", element, ".csv")),)
+})
