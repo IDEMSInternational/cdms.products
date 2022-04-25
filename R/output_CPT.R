@@ -1,5 +1,8 @@
 #' Outputs data in the format for the CPT software
-#'
+#' 
+#' @description `output_CPT` returns a data frame to a format suitable for
+#' use in the CPT software.
+#' 
 #' @param data \code{data.frame} The data.frame to calculate from.
 #' @param lat_lon_data \code{data.frame} The name of the metadata to calculate from.
 #' @param station_latlondata \code{character(1)} The name of the station column in \code{lat_lon_data}, or \code{data} if \code{long_data = FALSE}.

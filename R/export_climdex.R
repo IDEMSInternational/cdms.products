@@ -1,5 +1,9 @@
 #' Export data in the format for RClimDex
 #' 
+#' @description `export_climdex` rearranges a data frame using `prepare_climdex` to a
+#' format suitable for use in RClimDex. The data frame is then written to a
+#' file or connection.
+#' 
 #' @inheritParams prepare_climdex
 #' @param file_type \code{character(1)} A character specifying the file type to export as, either \code{"csv"} or `\code{"txt"}.
 #' @param file_path \code{character(1)} A character specifying the file path and file name to export

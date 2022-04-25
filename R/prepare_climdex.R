@@ -1,4 +1,9 @@
 #' Prepare data in the format for RClimDex
+#' 
+#' @description `prepare_climdex` rearranges a data frame to a
+#' format suitable for use in RClimDex. This data frame can be rearranged and
+#' exported to a file or connection with `export_climdex`.
+#' 
 #' @param data \code{data.frame} data.frame of daily climatic data in tidy format i.e. one row per
 #'   day and one column per element.
 #' @param prcp \code{character(1)} Name of the precipitation/rainfall column in \code{data}.

@@ -1,4 +1,10 @@
 #' Prepare dekad data in GeoCLIM format
+#' 
+#' @description `prepare_geoclim_dekad` takes a data frame that is in dekad
+#' format. This data is then rearranged to a format suitable for use in GeoCLIM.
+#' This data frame can be rearranged and exported to a file or connection with
+#' `export_geoclim_dekad`.
+#' 
 #' @inheritParams prepare_geoclim
 #' @param dekad \code{character(1)} The name of the dekad column in \code{data}.
 #'

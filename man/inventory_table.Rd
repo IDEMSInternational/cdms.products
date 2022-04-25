@@ -40,7 +40,8 @@ The inventory table is calculated separately for each station.}
 A data.frame indicating if the value is missing or observed.
 }
 \description{
-Create Inventory Table
+Returns a table for each cell in a climatic data frame with an
+indicator to show whether the corresponding cell value is missing or observed.
 }
 \examples{
 # Create inventory table for maximum and minimum temperature

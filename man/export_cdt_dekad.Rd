@@ -64,7 +64,9 @@ assumed to be in \code{metadata} and \code{station} must be in both
 Invisibly returns the file path of the saved data
 }
 \description{
-Export dekad data in CDT format
+\code{export_cdt_dekad} takes a data frame that has elements summarised
+by dekad. This data frame is then rearranged using \code{prepare_cdt_dekad} to a
+format suitable for use in CDT, and then written to a file or connection.
 }
 \examples{
 # To write daily_niger data to CDT format

@@ -91,7 +91,8 @@ Must be a list of lists with the same names as \code{summaries}.}
 A summary data frame for selected element(s) in climatic data.
 }
 \description{
-Calculate summaries from climatic data
+\code{climatic_summary} returns a data table displaying
+summary statistics for element(s) (and for each station) in a given time period.
 }
 \examples{
 # Calculate frequencies for tmin/tmax for each year, month, and station.

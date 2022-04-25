@@ -42,7 +42,10 @@ prepare_geoclim_pentad(
 A data.frame formatted for use in GeoCLIM
 }
 \description{
-Prepare pentad data in GeoCLIM format
+\code{prepare_geoclim_pentad} takes a data frame that is in pentad
+format. This data is then rearranged to a format suitable for use in GeoCLIM.
+This data frame can be rearranged and exported to a file or connection with
+\code{export_geoclim_pentad}.
 }
 \examples{
 # Calculate pentad summaries for the rainfall column

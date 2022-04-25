@@ -1,4 +1,7 @@
 #' Create Inventory Table
+#' 
+#' @description Returns a table for each cell in a climatic data frame with an
+#' indicator to show whether the corresponding cell value is missing or observed.
 #'
 #' @param data \code{data.frame} The data.frame to calculate from.
 #' @param date_time \code{\link[base]{Date}} The name of the date column in \code{data}.

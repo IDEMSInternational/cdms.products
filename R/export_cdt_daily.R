@@ -1,5 +1,9 @@
 #' Export daily data in the format for CDT
 #' 
+#' @description `export_cdt_daily` takes a data frame with daily data.
+#' This data frame is then rearranged using `prepare_cdt_daily` to a
+#' format suitable for use in CDT, and then written to a file or connection.
+#' 
 #' @inheritParams prepare_cdt_daily
 #' @inheritParams export_cdt
 #' @param ... Other parameters passed to \code{write.csv()}

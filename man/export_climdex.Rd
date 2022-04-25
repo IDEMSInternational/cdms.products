@@ -50,7 +50,9 @@ it will be created using \code{lubridate::day(data[[date]])}.}
 Invisibly returns the file path of the saved data
 }
 \description{
-Export data in the format for RClimDex
+\code{export_climdex} rearranges a data frame using \code{prepare_climdex} to a
+format suitable for use in RClimDex. The data frame is then written to a
+file or connection.
 }
 \examples{
 # Export data to climdex

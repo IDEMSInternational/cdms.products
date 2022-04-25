@@ -1,4 +1,9 @@
 #' Export monthly data in GeoCLIM format
+#' 
+#' @description `export_geoclim_month` takes a data frame that is given by
+#' month. This data frame is then rearranged using `prepare_geoclim_month` to a
+#' format suitable for use in GeoCLIM, and then written to a file or connection.
+#' 
 #' @inheritParams prepare_geoclim_month
 #' @param file_path \code{character(1)} A character specifying the file path and file name to export.
 #' @param ... Other parameters passed to \code{write.csv()}.

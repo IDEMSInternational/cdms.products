@@ -31,7 +31,9 @@ The calculations are performed separately for each station.}
 Data frame summarising the missing data
 }
 \description{
-Summarise missing data in a data frame
+\code{climatic_missing} returns a data table displaying the number and
+percentage of missing values for an element (and station) in a given time period.
+The total number of full years are also given.
 }
 \examples{
 # Summarising missing data in the rainfall, temperature, and sun columns

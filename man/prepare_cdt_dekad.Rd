@@ -58,7 +58,9 @@ assumed to be in \code{metadata} and \code{station} must be in both
 A data.frame formatted for use in CDT.
 }
 \description{
-Prepare data in format for CDT
+\code{prepare_cdt_dekad} takes a dekad data. This data is then
+rearranged to a format suitable for use in CDT. This data frame can be
+rearranged and exported to a file or connection with \code{export_CDT_dekad}.
 }
 \examples{
 # Create prepare summary dekad data for CDT export

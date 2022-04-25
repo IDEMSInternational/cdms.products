@@ -1,5 +1,8 @@
 #' Calculate extremes from climatic data
 #' 
+#' @description \code{climatic_extremes} returns a data table displaying the minimum and/or maximum
+#' values for elements in a given time period. This can be provided by station.
+#' 
 #' @inheritParams climatic_summary
 #' 
 #' @param max_val \code{logical(1)} If \code{TRUE} the extreme maximum is calculated.

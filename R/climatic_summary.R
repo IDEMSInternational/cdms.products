@@ -1,5 +1,8 @@
 #' Calculate summaries from climatic data
 #' 
+#' @description \code{climatic_summary} returns a data table displaying
+#' summary statistics for element(s) (and for each station) in a given time period.
+#' 
 #' @param data \code{data.frame} The data.frame to calculate from.
 #' @param date_time \code{\link[base]{Date}} The name of the date column in \code{data}.
 #' @param station \code{character(1)} The name of the station column in \code{data}, if the data are for multiple station.

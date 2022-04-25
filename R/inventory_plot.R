@@ -1,9 +1,8 @@
 #' Produce an inventory of available and missing data
 #' 
-#' @description 
-#' Creates an inventory plot displaying whether a value is observed or missing for each element and station given.
+#' @description Returns an inventory plot using \code{ggplot2} that displays
+#' whether a value is observed or missing for each element and station given.
 #' Takes a data frame as an input and the relevant columns to create the plot.
-#' Creates a graph using \code{ggplot2} and returns a inventory plot.
 #'
 #' @param data \code{data.frame} The data.frame to calculate from.
 #' @param date_time \code{\link[base]{Date}} The name of the date column in \code{data}.

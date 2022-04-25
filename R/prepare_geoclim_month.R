@@ -1,4 +1,9 @@
 #' Prepare monthly data in GeoCLIM format
+#' 
+#' @description `prepare_geoclim_month` takes a data frame that is in monthly
+#' format. This data is then rearranged to a format suitable for use in GeoCLIM.
+#' This data frame can be rearranged and exported to a file or connection with
+#' `export_geoclim_month`.
 #'
 #' @param data \code{data.frame} The data.frame to calculate from.
 #' @param date_time \code{\link[base]{Date}} The name of the date column in \code{data}.

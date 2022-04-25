@@ -51,7 +51,9 @@ export_geoclim(
 Invisibly returns the file path of the saved data.
 }
 \description{
-Export dekad or pentad data in GeoCLIM format
+\code{export_geoclim} rearranges a data frame using \code{prepare_geoclim} to a
+format suitable for use in GeoCLIM. The data frame is then written to a
+file or connection.
 }
 \examples{
 # Calculate dekadal summaries for the rainfall column

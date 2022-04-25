@@ -1,4 +1,8 @@
 #' Summarise missing data in a data frame
+#' 
+#' @description \code{climatic_missing} returns a data table displaying the number and
+#' percentage of missing values for an element (and station) in a given time period.
+#' The total number of full years are also given.
 #'
 #' @param data The data.frame to calculate from.
 #' @param date_time The name of the date column in \code{data}.
