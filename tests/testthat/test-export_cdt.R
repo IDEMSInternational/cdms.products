@@ -26,15 +26,16 @@ x_dekad <- prepare_cdt(data = dekad_summary_data, date_time = "date", year = "ye
                        latitude = "lat", longitude = "long", altitude = "alt", type = "dekad")
 
 # create functions daily output
+element <- "sum"
 y_daily <- export_cdt(data = daily_summary_data, station = "station_name", 
-                      element = "sum", latitude = "lat", longitude = "long", 
+                      element = element, latitude = "lat", longitude = "long", 
                       altitude = "alt", type =  "daily", date_time = "date", 
                       metadata = stations_niger, file_path = paste0("CDT-", element, ".csv"))
 y_daily <- readr::read_csv(paste0("CDT-", element, ".csv"))
 
 # create functions dekad output
 y_dekad <- export_cdt(data = dekad_summary_data, station = "station_name", 
-                      element = "sum", latitude = "lat", longitude = "long", 
+                      element = element, latitude = "lat", longitude = "long", 
                       altitude = "alt", type =  "dekad", date_time = "date", 
                       metadata = stations_niger, file_path = paste0("CDT-", element, ".csv"))
 y_dekad <- readr::read_csv(paste0("CDT-", element, ".csv"))
