@@ -10,16 +10,17 @@ daily_summary_data <- daily_niger %>%
   dplyr::summarise(date = date, sum = sum(tmax))
 
 # create expected daily output
+element <- "sum"
 x_daily <- prepare_cdt(data = daily_summary_data, date_time = "date", year = "year",
-                       station = "station_name", element = "sum", metadata = stations_niger, 
+                       station = "station_name", element = element, metadata = stations_niger, 
                        latitude = "lat", longitude = "long", altitude = "alt",type = "daily")
 
 # create functions daily output
 y_daily <- export_cdt_daily(data = daily_summary_data, station = "station_name", 
-                      element = "sum", latitude = "lat", longitude = "long", 
-                      altitude = "alt", type =  "daily", date_time = "date", 
-                      metadata = stations_niger, 
-                      file_path = paste0("CDT-", element, ".csv"))
+                            element = element, latitude = "lat", longitude = "long", 
+                            altitude = "alt", type =  "daily", date_time = "date", 
+                            metadata = stations_niger, 
+                            file_path = paste0("CDT-", element, ".csv"))
 y_daily <- readr::read_csv(paste0("CDT-", element, ".csv"))
 
 test_that("export_cdt_daily gives correct values", {
@@ -45,7 +46,7 @@ test_that("export_cdt_daily returns an error when conditions are not met", {
 
 test_that("export_cdt_daily returns an error when numbers outside valid ranges are supplied", {
   entries_outside_valid_ranges <- data.frame(year = character(), station_name = integer(), 
-                                daily_date = character(), date =  numeric(), sum = character())
+                                             daily_date = character(), date =  numeric(), sum = character())
   expect_error(export_cdt_daily(data = entries_outside_valid_ranges, station = "station_name", 
                                 element = "sum", latitude = "lat", longitude = "long", 
                                 altitude = "alt", type =  "daily", date_time = "date", 
@@ -57,12 +58,12 @@ test_that("export_cdt_daily  does not return an error when an empty dataframe is
   empty_metadata <- data.frame(station_name = character(), id = integer(), 
                                lat = numeric(), long = numeric(), alt = integer(), daily = logical())
   empty_dataframe <- data.frame(station_name = character(), year = integer(), 
-                               daily_date = numeric(), date =  as.Date(integer(0)), sum = numeric())
+                                daily_date = numeric(), date =  as.Date(integer(0)), sum = numeric())
   expect_error(export_cdt_daily(data = empty_dataframe, station = "station_name", 
-                               element = "sum", latitude = "lat", longitude = "long", 
-                               altitude = "alt", type =  "daily", date_time = "date", 
-                               metadata = stations_niger, 
-                               file_path = paste0("CDT-", element, ".csv")), NA)
+                                element = "sum", latitude = "lat", longitude = "long", 
+                                altitude = "alt", type =  "daily", date_time = "date", 
+                                metadata = stations_niger, 
+                                file_path = paste0("CDT-", element, ".csv")), NA)
 })
 
 test_that("export_cdt_daily returns an error when an data frame with incorrectly formatted data  is supplied", {
