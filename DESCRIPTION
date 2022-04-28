@@ -38,7 +38,8 @@ Imports:
     tidyselect,
     zoo,
     utils,
-    naflex
+    naflex,
+    readr
 Suggests: 
     covr,
     openair,
