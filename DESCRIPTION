@@ -48,4 +48,4 @@ Config/testthat/edition: 3
 Depends: 
     R (>= 2.10)
 Remotes:
-    climdex.pcic (1.1-11)
+    pacificclimate/climdex.pcic
