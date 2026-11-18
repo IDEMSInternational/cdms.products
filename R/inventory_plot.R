@@ -163,11 +163,11 @@ inventory_plot <- function(data, date_time, elements, station = NULL, year = NUL
       }
       if(facet_by == "stations-elements") {
         g <- g + 
-          ggplot2::facet_grid(facets = stats::as.formula(paste(station, "~variable")), scales = facet_scales)
+          ggplot2::facet_grid(rows = stats::as.formula(paste(station, "~variable")), scales = facet_scales)
       }
       else if(facet_by == "elements-stations") {
         g <- g +
-          ggplot2::facet_grid(facets = stats::as.formula(paste("variable~", station)), scales = facet_scales)
+          ggplot2::facet_grid(rows = stats::as.formula(paste("variable~", station)), scales = facet_scales)
       } else stop("invalid facet_by value:", facet_by)
     } else if(!is.null(station)) {
       fm <- stats::as.formula(paste(station, "~."))
@@ -176,7 +176,7 @@ inventory_plot <- function(data, date_time, elements, station = NULL, year = NUL
           ggplot2::facet_wrap(facets = fm, nrow = facet_nrow, ncol = facet_ncol, scales = facet_scales)
       } else {
         g <- g + 
-          ggplot2::facet_grid(facets = fm, scales = facet_scales)
+          ggplot2::facet_grid(rows = fm, scales = facet_scales)
       }
       if(title == "Inventory Plot") {
         title <- paste0(title, ": ", elements)
@@ -187,7 +187,7 @@ inventory_plot <- function(data, date_time, elements, station = NULL, year = NUL
           ggplot2::facet_wrap(facets = variable ~ ., nrow = facet_nrow, ncol = facet_ncol, scales = facet_scales)
       } else {
         g <- g + 
-          ggplot2::facet_grid(facets = variable ~ ., scales = facet_scales)
+          ggplot2::facet_grid(rows = variable ~ ., scales = facet_scales)
       }
     }
     if (scale_xdate) {
@@ -207,24 +207,24 @@ inventory_plot <- function(data, date_time, elements, station = NULL, year = NUL
       if (is.null(facet_by) || facet_by == "stations") {
         if (is.null(facet_by)) message("facet_by not specified. facets will be by stations.")
         g <- g + 
-          ggplot2::facet_grid(facets = stats::as.formula(paste(station, "+ variable~.")), scales = facet_scales) + 
+          ggplot2::facet_grid(rows = stats::as.formula(paste(station, "+ variable~.")), scales = facet_scales) +
           theme_blank_y_axis + 
           ggplot2::scale_y_continuous(breaks = NULL) + 
           ggplot2::labs(y = y_title)
       } else if (facet_by == "elements") {
         g <- g + 
-          ggplot2::facet_grid(facets = stats::as.formula(paste("variable +", station, "~.")), scales = facet_scales) + 
+          ggplot2::facet_grid(rows = stats::as.formula(paste("variable +", station, "~.")), scales = facet_scales) +
           theme_blank_y_axis + 
           ggplot2::scale_y_continuous(breaks = NULL) + 
           ggplot2::labs(y = y_title)
       } else if (facet_by == "stations-elements") {
         g <- g + 
-          ggplot2::facet_grid(facets = stats::as.formula(paste(station, "~variable")), scales = facet_scales) + 
+          ggplot2::facet_grid(rows = stats::as.formula(paste(station, "~variable")), scales = facet_scales) +
           theme_blank_y_axis + 
           ggplot2::scale_y_continuous(breaks = NULL) + 
           ggplot2::labs(y = y_title)
       } else if (facet_by == "elements-stations") {
-        g <- g + ggplot2::facet_grid(facets = stats::as.formula(paste("variable~", station)), scales = facet_scales) + 
+        g <- g + ggplot2::facet_grid(rows = stats::as.formula(paste("variable~", station)), scales = facet_scales) +
           theme_blank_y_axis + 
           ggplot2::scale_y_continuous(breaks = NULL) + 
           ggplot2::labs(y = y_title)
